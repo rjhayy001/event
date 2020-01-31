@@ -19,12 +19,11 @@
                                 size="80"
                                  color="white"
                             >
-                            <v-icon size="60" color="primary">mdi-account-group</v-icon>
+                            <v-icon size="60" color="primary">mdi-office</v-icon>
                             </v-list-item-avatar>
                         </v-list-item>
                         <v-card-actions >
-                            <v-btn text>view</v-btn>
-                            <v-btn text>button</v-btn>
+                            <v-btn @click="$router.push({name: 'company'})"  text>view</v-btn>
                         </v-card-actions>
                     </v-card>
                 </v-flex>
@@ -51,8 +50,7 @@
                         </v-list-item-avatar>
                     </v-list-item>
                     <v-card-actions >
-                        <v-btn text>view</v-btn>
-                        <v-btn text>button</v-btn>
+                        <v-btn @click="$router.push({name: 'visitor'})"  text>view</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-flex>
@@ -79,8 +77,7 @@
                         </v-list-item-avatar>
                     </v-list-item>
                     <v-card-actions >
-                        <v-btn text>view</v-btn>
-                        <v-btn text>button</v-btn>
+                        <v-btn @click="$router.push({name: 'event'})" text>view</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-flex>
