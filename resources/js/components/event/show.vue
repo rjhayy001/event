@@ -43,7 +43,7 @@
                                             View
                                         </v-list-item-title>
                                     </v-list-item>
-                                    <v-list-item @click="$router.push({name: 'edit_company', params: { id: item.id },})" >
+                                    <v-list-item >
                                         <v-list-item-icon class="mr-0">
                                             <v-icon size="20" color="info">mdi-pencil</v-icon>
                                         </v-list-item-icon>
