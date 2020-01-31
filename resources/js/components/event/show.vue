@@ -62,6 +62,22 @@
                                 </v-list>
                             </v-menu>
                         </template>
+                        <template v-slot:item.from="{ item }">
+                                <v-chip v-if="item.from != 'no given date'"
+                                    color="primary"
+                                    >
+                                    {{item.from}}
+                                </v-chip>
+                                <p v-else>{{item.from}}</p>
+                        </template>
+                        <template v-slot:item.to="{ item }">
+                                <v-chip v-if="item.to != 'no given date'"
+                                    color="error"
+                                    >
+                                    {{item.from}}
+                                </v-chip>
+                                <p v-else>{{item.from}}</p>
+                        </template>
                     </v-data-table>
                 </v-flex>
             </v-layout>
@@ -79,8 +95,8 @@ export default {
                 align: 'left',
                 value: 'name',
             },
-            { text: 'Start Date', value: 'start_date' },
-            { text: 'End Date', value: 'end_date' },
+            { text: 'Start Date', value: 'from' },
+            { text: 'End Date', value: 'to' },
             { text: 'company attending', value: 'company_count' },
             { text: 'expected visitors', value: 'visitor_count' },
             { text: 'actions', value: 'action' },
@@ -103,12 +119,12 @@ export default {
         destroy(id) {
             this.$root.$confirm('Are you sure you want to delete ?').then((result) => {
                 if(result) {
-                    // axios.delete('/companies/'+id, {})
-                    // .then(response => {
-                    //     console.log(response.data)
-                    //     this.companies = response.data;
-                    //     alert('deleted');
-                    // });
+                    axios.delete('/events/'+id, {})
+                     .then((response) =>  {
+                         console.log(response.data)
+                         this.events = response.data;
+                        this.$store.commit('setSnack', 'Event Deleted !')
+                    });
                 }
             })
         }

@@ -23,10 +23,8 @@ class EventController extends Controller
             return [
                 'id' => $event->id ,
                 'name'=>$event->name   ,
-                'from'=> $event->fromdate ? $event->fromdate : 'no given date yet',
-                'start_date' =>$event->start_date,
-                'end_date' =>$event->end_date,
-                'to'=> $event->todate ?$event->todate:'no given date yet',
+                'from'=> $event->fromdate ?  date('d F Y', strtotime($event->fromdate)) : 'no given date' ,
+                'to'=> $event->todate ? date('d F Y', strtotime($event->todate)) : 'no given date',
                 'company_count'=> $event->companies->count() ,
                 'visitor_count' => $event->visitors->count()
             ];
@@ -185,5 +183,8 @@ class EventController extends Controller
     public function destroy($id)
     {
         //
+        $event = Event::findorfail($id);
+        $event->delete();
+        return $this->index();
     }
 }
