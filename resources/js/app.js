@@ -2,6 +2,7 @@
 require('./bootstrap');
 window.Vue = require('vue');
 import Vuex from "vuex"
+Vue.use(require('vue-moment'));
 import Timeselector from 'vue-timeselector';
 import vuetify from './vuetify';
 import * as  VeeValidate from 'vee-validate';

@@ -53,15 +53,23 @@ class Event extends Model
             return date('d F Y', strtotime($this->fromdate)) ;
         }
     }
-
     public function getCompanycountAttribute($value)
     {
         return $this->companies->count();
     }
 
-    public function getVisitorcountAttribute($value)
+    // public function getCompanycountAttribute($value)
+    // {
+    //     return $this->companies->count();
+    // }
+
+    public function getStartDateAttribute($value)
     {
-        return $this->visitors->count();
+        return  date('d F Y', strtotime($this->fromdate));
+    }
+    public function getEndDateAttribute($value)
+    {
+        return  date('d F Y', strtotime($this->todate));
     }
 
     public function getPresentationImageAttribute($value){

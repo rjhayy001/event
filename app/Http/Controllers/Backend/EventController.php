@@ -24,6 +24,8 @@ class EventController extends Controller
                 'id' => $event->id ,
                 'name'=>$event->name   ,
                 'from'=> $event->fromdate ? $event->fromdate : 'no given date yet',
+                'start_date' =>$event->start_date,
+                'end_date' =>$event->end_date,
                 'to'=> $event->todate ?$event->todate:'no given date yet',
                 'company_count'=> $event->companies->count() ,
                 'visitor_count' => $event->visitors->count()
