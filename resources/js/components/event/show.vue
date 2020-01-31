@@ -74,9 +74,9 @@
                                 <v-chip v-if="item.to != 'no given date'"
                                     color="error"
                                     >
-                                    {{item.from}}
+                                    {{item.to}}
                                 </v-chip>
-                                <p v-else>{{item.from}}</p>
+                                <p v-else>{{item.to}}</p>
                         </template>
                     </v-data-table>
                 </v-flex>
