@@ -2,6 +2,7 @@ import show_category from '../settings/category/show'
 import show_visitor from '../visitor/show'
 import show_company from '../company/show'
 import show_event from '../event/show'
+import show_dashboard from '../dashboard/show'
 
 export default [
   	{
@@ -26,6 +27,12 @@ export default [
 		path : '/event',
 	  	component: show_event,
 	  	name: 'event',
+	  
+    },
+  	{
+		path : '/dashboard',
+	  	component: show_dashboard,
+	  	name: 'dashboard',
 	  
     },
 ]
