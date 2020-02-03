@@ -149,7 +149,7 @@ class VisitorController extends Controller
             list(, $image)      = explode(',', $image);
             $data = base64_decode($image);
             $imageName = date("YmdHis"). '.' . 'jpeg';
-            file_put_contents(public_path() . '/' . 'image/' . $imageName, $data);
+            file_put_contents(public_path() . '/' . 'images/' . $imageName, $data);
 
             $visitor->image = $imageName ;
         }
@@ -195,12 +195,11 @@ class VisitorController extends Controller
         }
             return response(['message'=> 'password Incorrect']);
     }
-    public function event_visitor(Request $request ,$id)
+    public function event_visitor($id)
     {
-        $visitor = Visitor::find($id);
-        $eventid = $request->input('event_id');
+        $visitor = Visitor::findorfail(Auth::user()->id);
         // $data[$visitor->id] = ['event_id'=>$eventid ];
-        $visitor->events()->attach($eventid);
+        $visitor->events()->attach($id);
         return 'event saved';
     }
     public function remove_event_visitor(Request $request , $id)

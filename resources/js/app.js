@@ -2,7 +2,6 @@
 require('./bootstrap');
 window.Vue = require('vue');
 import Vuex from "vuex"
-Vue.use(require('vue-moment'));
 import Timeselector from 'vue-timeselector';
 import vuetify from './vuetify';
 import * as  VeeValidate from 'vee-validate';
@@ -76,6 +75,7 @@ axios.interceptors.response.use( ( response ) => {
     return Promise.reject( error );
 });
 Vue.use(VeeValidate);
+Vue.use(require('vue-moment'));
 Vue.component('app-confirm', require('./components/alerts/confirm.vue').default);
 Vue.component('app-alert', require('./components/alerts/sweetalert.vue').default);
 Vue.component('text-editor', VueEditor);

@@ -25,6 +25,7 @@
         "@fullcalendar/vue": "^4.3.1",
         "jquery": "^3.4.1",
         "leaflet": "^1.6.0",
+        "moment": "^2.24.0",
         "vee-validate": "^2.2.15",
         "vue": "^2.6.11",
         "vue-full-calendar": "^2.7.0",

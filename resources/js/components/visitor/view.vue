@@ -25,7 +25,7 @@
                             round
                         >
                             <img
-                                src="https://demos.creative-tim.com/vue-material-dashboard/img/marc.aba54d65.jpg"
+                                :src=" visitor.image ? visitor.image : 'https://demos.creative-tim.com/vue-material-dashboard/img/marc.aba54d65.jpg'"
                             >
                         </v-avatar>
                         <v-list disabled>
@@ -71,43 +71,66 @@
 
                    </v-card>
                 </v-flex>
-                <v-flex xs12 sm8 class="mx-10">
-                     <v-toolbar flat color="white" class="">
-                        <v-toolbar-title class="text-uppercase title">Upcoming Events</v-toolbar-title>
-                    </v-toolbar>
-                    <v-card >
-                       <v-data-table
-                        :headers="headers"
-                        fixed-header
-                        :items="upcoming_event"
-                        hide-default-footer
-                        disable-pagination
-                        class=" mb-3"
-                        @click:row = "getrow"
-                        ></v-data-table>
-                   </v-card>
-
-                    <v-toolbar flat color="white" class="">
-                        <v-toolbar-title class="text-uppercase title">Past Events</v-toolbar-title>
-                    </v-toolbar>
-                    <v-card >
-                       <v-data-table
-                            :headers="headers"
-                            fixed-header
-                            :items="upcoming_event"
-                            hide-default-footer
-                            disable-pagination
-                            class=" mb-3"
-                            @click:row = "getrow"
-                        ></v-data-table>
-                   </v-card>
-                </v-flex>
+               <v-flex xs12 sm9>
+                    <v-container>
+                        <v-layout row wrap >
+                            <v-flex xs12 sm6>
+                                <v-toolbar flat color="white">
+                                    <v-toolbar-title class="text-uppercase title">upcoming events</v-toolbar-title>
+                                </v-toolbar>
+                                <v-simple-table class="elevation-1">
+                                    <template v-slot:default fixed-header>
+                                        <thead>
+                                            <tr>
+                                            <th class="text-left">Name</th>
+                                            <th class="text-left">Date Scheduled</th>
+                                            <th class="text-left">End Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody > 
+                                            <tr v-for="item in upcoming_event" :key="item.name" @click="to_event(item.id)">
+                                            <td>{{ item.name }}</td>
+                                            <td>{{ fulldate(item.fromdate) }}</td>
+                                            <td>{{ item.todate ? fulldate(item.todate): 'not set' }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </template>
+                                </v-simple-table>
+                            </v-flex>
+                            <v-flex xs12 sm6>
+                                <v-toolbar flat color="white">
+                                    <v-toolbar-title class="text-uppercase title">past events</v-toolbar-title>
+                                </v-toolbar>
+                                <v-simple-table class="elevation-1">
+                                    <template v-slot:default fixed-header>
+                                        <thead>
+                                            <tr>
+                                            <th class="text-left">Name</th>
+                                            <th class="text-left">Date Scheduled</th>
+                                            <th class="text-left">End Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="item in past_event" :key="item.name" @click="to_event(item.id)" >
+                                            <td>{{ item.name }}</td>
+                                            <td>{{ fulldate(item.fromdate) }}</td>
+                                            <td>{{ item.todate ? fulldate(item.todate): 'not set' }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </template>
+                                </v-simple-table>
+                            </v-flex>
+                        </v-layout>
+                    </v-container>
+               </v-flex>
             </v-layout>
         </v-container>
     </div>
 </template>
 <script>
+import DateHelperVue from '../mixins/DateHelper.vue';
 export default {
+    mixins:[DateHelperVue],
     data: () => ({
         show: false ,
         data_loaded: true ,
@@ -127,13 +150,26 @@ export default {
         ],
     }),
     methods : {
+        to_event(e) {
+           this.$router.push({name: 'view_event', params: { id: e },})
+        },
         get_visitors_info() {
             this.data_loaded = false ;
             axios.get('/visitors/'+this.$route.params.id+'/edit', {})
             .then(response => {
                 console.log(response.data)
                 this.visitor = response.data ;
-            this.data_loaded = true ;
+                response.data.events.forEach(element => {
+                    if(element.fromdate != null) {
+                        if(this.fulldate(new Date()) < this.fulldate(element.fromdate)) {
+                            this.upcoming_event.push(element)
+                        }
+                        if(this.fulldate(new Date()) > this.fulldate(element.fromdate)) {
+                            this.past_event.push(element)
+                        }
+                    }
+                });
+                this.data_loaded = true ;
 
             });
         },

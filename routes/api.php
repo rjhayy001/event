@@ -29,7 +29,7 @@ Route::namespace('Api')->group(function () {
 
         // visitors api
         Route::resource('visitor','VisitorController');
-        Route::post('event_visitor/{id}' ,'VisitorController@event_visitor');
+        Route::get('event_visitor/{id}' ,'VisitorController@event_visitor');
         Route::post('remove_event_visitor/{id}' ,'VisitorController@remove_event_visitor');
         Route::post('change_password' ,'VisitorController@change_password');
         

@@ -23,7 +23,7 @@ class VisitorResource extends JsonResource
             'email'=> $this->email,
             'username'=> $this->username,
             'password'=> $this->password,
-            'profile_pic'=>$this->image ? asset('images/'. $this->image): asset('profile.jpg') ,
+            'profile_pic'=>$this->image ,
             // 'events' => Company_eventResource::collection($this->events)
         ];
     }

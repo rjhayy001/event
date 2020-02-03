@@ -94,7 +94,7 @@ class VisitorController extends Controller
      */
     public function edit($id)
     {
-        $visitor = Visitor::findorfail($id);
+        $visitor = Visitor::with('events')->findorfail($id);
         return $visitor;
     }
 

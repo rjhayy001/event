@@ -69,7 +69,9 @@
     </div>
 </template>
 <script>
+import DateHelperVue from '../mixins/DateHelper.vue';
 export default {
+    mixins:[DateHelperVue],
     data: () => ({
         data_loaded : true ,
         companies:[],

@@ -26,4 +26,8 @@ class Visitor extends Authenticatable
     public function getCreatedatAttribute($value) {
         return date('d F Y H:i', strtotime($value)) ; 
     }
+
+    public function getImageAttribute($value) {
+        return $value ? asset('images/'.$value) : asset('images/test_profile.jpg') ; 
+    }
 }

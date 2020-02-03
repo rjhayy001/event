@@ -120,7 +120,7 @@ class CompanyController extends Controller
     public function edit($id)
     {
         //
-        $company = Company::with('contacts')->findorfail($id);
+        $company = Company::with('contacts','events')->findorfail($id);
         return $company ;
     }
 
