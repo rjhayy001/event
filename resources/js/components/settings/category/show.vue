@@ -58,7 +58,7 @@
                         <template v-slot:item.action="{ item }">
                              <v-menu bottom origin="right center" transition="scale-transition">
                                 <template v-slot:activator="{ on }">
-                                    <v-btn text color="primary" dark v-on="on" @click.stop>
+                                    <v-btn text color="teal" dark v-on="on" @click.stop>
                                         <v-icon>mdi-dots-vertical</v-icon>
                                     </v-btn>
                                 </template>
