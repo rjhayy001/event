@@ -6,7 +6,7 @@
 
 table > thead.v-data-table-header > tr > th,
 thead .v-data-table__checkbox > .v-icon {
-	background-color: #1565c0 !important;
+	background-color: #009688 !important;
 	color: #fff !important;
 	text-transform: capitalize !important;
 }
@@ -23,7 +23,9 @@ thead .v-data-table__checkbox > .v-icon {
   transition-property: opacity;
   transition-timing-function: ease;
 }
-
+.custom_button {
+  color: white !important;
+}
 .fade-enter,
 .fade-leave-active {
   opacity: 0

@@ -5,7 +5,7 @@
                     <v-card
                         class="mx-auto purple "
                         max-width="344"
-                        outlined color="primary"
+                        outlined color="teal"
                         dark
                     >
                         <v-list-item three-line>
@@ -19,7 +19,7 @@
                                 size="80"
                                  color="white"
                             >
-                            <v-icon size="60" color="primary">mdi-office</v-icon>
+                            <v-icon size="60" color="teal">mdi-office</v-icon>
                             </v-list-item-avatar>
                         </v-list-item>
                         <v-card-actions >
@@ -32,7 +32,7 @@
                     class="mx-auto purple "
                     max-width="344"
                     outlined 
-                    color="info"
+                    color="teal "
                     dark
                 >
                     <v-list-item three-line>
@@ -46,7 +46,7 @@
                             size="80"
                                 color="white"
                         >
-                        <v-icon size="60" color="primary">mdi-account-group</v-icon>
+                        <v-icon size="60" color="teal">mdi-account-group</v-icon>
                         </v-list-item-avatar>
                     </v-list-item>
                     <v-card-actions >
@@ -59,7 +59,7 @@
                     class="mx-auto purple "
                     max-width="344"
                     outlined 
-                    color="primary"
+                    color="teal"
                     dark
                 >
                     <v-list-item three-line>
@@ -73,7 +73,7 @@
                             size="80"
                                 color="white"
                         >
-                        <v-icon size="60" color="primary">mdi-history</v-icon>
+                        <v-icon size="60" color="teal">mdi-history</v-icon>
                         </v-list-item-avatar>
                     </v-list-item>
                     <v-card-actions >

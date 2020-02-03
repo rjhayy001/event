@@ -6,7 +6,7 @@
                     <v-toolbar flat >
                     <v-toolbar-title>Companies List</v-toolbar-title>
                     <v-spacer></v-spacer>
-                    <v-btn color="primary" to="company/create" >
+                    <v-btn color="teal" class="custom_button" to="company/create" >
                        <v-icon class="pr-2">mdi-plus</v-icon> add company
                     </v-btn>
                     </v-toolbar>

@@ -6,7 +6,7 @@
                     <v-toolbar flat >
                     <v-toolbar-title>Event's List</v-toolbar-title>
                     <v-spacer></v-spacer>
-                    <v-btn color="primary" to="event/create" >
+                    <v-btn color="teal" class="custom_button" to="event/create" >
                        <v-icon class="pr-2">mdi-plus</v-icon> add event
                     </v-btn>
                     </v-toolbar>

@@ -3,7 +3,7 @@
         <v-toolbar flat color="white" class="mb-3">
             <v-toolbar-title class="text-uppercase title">add event</v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-btn color="success" tile @click="submit" class="mr-2">
+            <v-btn color="teal" tile @click="submit" class="mr-2 custom_button">
                 <v-icon left>mdi-content-save</v-icon>
             Create Event
             </v-btn>

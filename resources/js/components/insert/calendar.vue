@@ -24,6 +24,8 @@
     <v-sheet height="600">
       <v-calendar
         ref="calendar"
+        color="teal"
+        text-color="white"
         v-model="value"
         :weekdays="weekday"
         :type="type"

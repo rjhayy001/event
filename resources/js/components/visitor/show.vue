@@ -6,7 +6,7 @@
                     <v-toolbar flat >
                     <v-toolbar-title>Visitor's List</v-toolbar-title>
                     <v-spacer></v-spacer>
-                    <v-btn color="primary" to="visitor/create" >
+                    <v-btn color="teal" class="custom_button" to="visitor/create" >
                        <v-icon class="pr-2">mdi-plus</v-icon> add visitor
                     </v-btn>
                     </v-toolbar>

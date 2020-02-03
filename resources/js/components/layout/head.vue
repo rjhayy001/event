@@ -2,7 +2,7 @@
     <v-app-bar
       :clipped-left="$vuetify.breakpoint.lgAndUp"
       app
-      color="blue darken-3"
+      color="teal"
       dark
     >
       <v-app-bar-nav-icon @click.stop="$store.state.drawer = !$store.state.drawer" />

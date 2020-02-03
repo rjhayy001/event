@@ -130,7 +130,7 @@
                             </v-layout>
                             <v-layout row wrap mb-3 justify-end>
                                  <v-flex xs12 class="text-right">
-                                    <v-btn color="success" tile @click="submit" >
+                                    <v-btn color="teal" class="custom_button" tile @click="submit" >
                                         <v-icon left>mdi-content-save-edit-outline</v-icon>
                                         save company
                                     </v-btn>
