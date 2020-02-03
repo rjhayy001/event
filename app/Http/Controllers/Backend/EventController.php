@@ -82,6 +82,7 @@ class EventController extends Controller
             $this->format_Program($request->programs , $event);
             $this->format_presentation($request->presentation , $event);
             $this->format_pricing($request->prices , $event);
+            $this->format_company($request->companies , $event);
             
         }
         return $event ;
@@ -100,6 +101,17 @@ class EventController extends Controller
         }
 
         $event->categories()->sync($data);
+    }
+
+    public function format_company($companies ,$event) {
+        $data = [];
+        if(count($companies)) {
+            foreach ($companies as $key => $value) {
+                $data[$value['id']] = ['paidprice' => $value['paidprice'] , 'is_restaurant' => $value['is_restaurant'] == true ? 1 : 0 ,
+                'lat' => $value['lat'] , 'lng' => $value['lang'] , 'description' => $value['description'] , 'highlight' =>  $value['highlight'] == true ? 1 : 0  ];
+            }
+        }
+        $event->companies()->sync($data);
     }
 
     public function format_Program($programs, $event)
