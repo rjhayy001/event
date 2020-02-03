@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -9,7 +9,7 @@
 
         <!-- Fonts -->
         <link rel="stylesheet" href="{{asset('css/app.css')}}">
-        <link rel="icon" type="image/png"  href="{{asset('images/qonvex_buy_sell.png')}}">
+        <link rel="icon" href="http://event-app.ohm-conception.com/Settings/logo.png" type="image/gif" sizes="16x16">
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
         integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
         crossorigin=""/>

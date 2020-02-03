@@ -26158,3 +26158,33 @@ thead .v-data-table__checkbox > .v-icon {
   opacity: 0;
 }
 
+.orange_white {
+  background-color: #ff9800 !important;
+  color: white !important;
+}
+
+.gray_white {
+  background-color: #757575 !important;
+  color: white !important;
+}
+
+.violet_white {
+  background-color: #3f51b5 !important;
+  color: white !important;
+}
+
+.blue_white {
+  background-color: #2196f3 !important;
+  color: white !important;
+}
+
+.green_white {
+  background-color: #4caf50 !important;
+  color: white !important;
+}
+
+.sky_white {
+  background-color: #03a9f4 !important;
+  color: white !important;
+}
+

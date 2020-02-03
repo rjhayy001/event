@@ -81,15 +81,28 @@
                     </v-card-actions>
                 </v-card>
             </v-flex>
+            <v-flex xs6 class="ml-8 mt-8">
+                <vue-calendar></vue-calendar>
+            </v-flex>
         </v-layout>
     </v-container>
+
 </template>
 <script>
+import fullCalendar from 'vue-fullcalendar';
+import VueCalendar from '../insert/calendar';
 export default {
+    components:{
+         'full-calendar' : fullCalendar,
+         'vue-calendar' : VueCalendar
+
+    },
+   
     data: () => ({
         companies: [],
         visitors: [],
         events: [],
+        
     }),
     methods: {
         get_companies(){
@@ -110,9 +123,9 @@ export default {
             axios.get('/events', {})
             .then(response => {
                 this.events = response.data;
-                console.log(this.events)
             });
-        }
+        },
+       
     },
     created: function () {
         this.get_companies()

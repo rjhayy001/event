@@ -362,7 +362,7 @@
                                 <v-container grid-list-md>
                                     <v-layout row >
                                         <v-flex xs7>
-                                           <v-btn small color="success" class="float-right" dense @click="dialog2 = !dialog2">
+                                           <v-btn small color="success" class="float-right" dense @click="open_map">
                                                 <v-icon left>mdi-map-check-outline</v-icon> manage map
                                             </v-btn>
                                             <p class="subheading font-weight-bold">Map Overview</p>
@@ -453,25 +453,27 @@
                                                 <v-card>
                                                     <v-container grid-list-md>
                                                         <v-layout row wrap>
-                                                            <v-flex xs10>
-                                                                <div style="height: 80vh; width: 100%">
+                                                            <v-flex xs10 >
+                                                                <div style="height: 80vh; width: 100%;" ref="map_container">
                                                                     <l-map :zoom="zoom" :options="{zoomControl: false}" :crs="crs">
-                                                                    <l-image-overlay
-                                                                        :url="url"
-                                                                        :bounds="bounds">
-                                                                    </l-image-overlay>
-                                                                    <l-marker
-                                                                        v-for="star in stars"
-                                                                        :lat-lng="star"
-                                                                        :key="star.name">
-                                                                    <l-popup :content="star.name"/>
+                                                                        <l-image-overlay
+                                                                            :url="url"
+                                                                            :bounds="bounds">
+                                                                        </l-image-overlay>
+                                                                        <l-marker
+                                                                            v-for="star in stars"
+                                                                            :lat-lng="star"
+                                                                            :key="star.name">
+                                                                        <l-popup :content="star.name"/>
                                                                     </l-marker>
                                                                 </l-map>
                                                             </div>
                                                             </v-flex>
+                                                            <v-flex xs2>
+                                                                {{height}}
+                                                            </v-flex>
                                                         </v-layout>
                                                     </v-container>
-                                                    
                                                 </v-card>
                                             </v-dialog>
                                         </v-flex>
@@ -512,7 +514,7 @@
                                 <v-list-item-subtitle>{{items.name}}</v-list-item-subtitle>
                                 </v-list-item-content>
                                 <v-list-item-icon>
-                                <v-icon>mdi-coin-outline</v-icon>
+                                <v-icon>mdi-currency-eur</v-icon>
                                 </v-list-item-icon>
                             </v-list-item>
                         </div>
@@ -546,7 +548,8 @@
   export default {
     data: (v,) => ({
         zoom:0,
-        url: 'http://event-app.ohm-conception.com/Settings/logo.png',
+        height : '' , 
+        url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTZnxy2VJBu-4M8Abvqm8Vaiu_8i0frvF-V7HqIXOSjY0X9dD0R',
         bounds: [[-10.5, -25], [1021.5, 1023]],
         crs: L.CRS.Simple,
         stars: [
@@ -599,13 +602,10 @@
         
     },
     methods : {
-         removeMarker(index) {
-      this.markers.splice(index, 1);
-    },
-    addMarker(event) {
-      this.markers.push(event.latlng);
-    },
-        
+        open_map(){
+            this.dialog2 = !this.dialog2 ;
+            this.get_container()
+        },
         submit(){
             this.$validator.validateAll().then(result => {
                 if (result){
@@ -749,12 +749,17 @@
                     this.event.highlights_image = ''  ;
                 }
         },
+        get_container(){
+            this.height = this.$refs.map_container ;
+            console.log(this.height)
+        }
 
     },
 
     created() {
         this.get_categories();
         this.get_companies();
-    }
+    },
+    
 }
 </script>
