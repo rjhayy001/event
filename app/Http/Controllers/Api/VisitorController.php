@@ -202,11 +202,10 @@ class VisitorController extends Controller
         $visitor->events()->attach($id);
         return 'event saved';
     }
-    public function remove_event_visitor(Request $request , $id)
+    public function remove_event_visitor($id)
     {
-        $visitor = Visitor::find($id);
-        $eventid = $request->input('event_id');
-        $visitor->events()->detach($eventid);
+        $visitor = Visitor::find(Auth::user()->id);
+        $visitor->events()->detach($id);
         return 'event removed';
     }
     public function update_profile(Request $request){
