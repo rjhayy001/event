@@ -30,7 +30,7 @@ Route::namespace('Api')->group(function () {
         // visitors api
         Route::resource('visitor','VisitorController');
         Route::get('event_visitor/{id}' ,'VisitorController@event_visitor');
-        Route::post('remove_event_visitor/{id}' ,'VisitorController@remove_event_visitor');
+        Route::get('remove_event_visitor/{id}' ,'VisitorController@remove_event_visitor');
         Route::post('change_password' ,'VisitorController@change_password');
         
         Route::post('update_profile' ,'VisitorController@update_profile');
