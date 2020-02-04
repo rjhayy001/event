@@ -464,18 +464,32 @@
                                                                     <p class="subheading"> Select a map:</p>
                                                                     <v-divider></v-divider>
                                                                     <upload-btn
+                                                                    block
                                                                     @file-update="file_changed"
                                                                     fixedWidth="300"
                                                                         title="Change Map"
                                                                         color="teal" 
                                                                         class="custom_button my-3 "                                                                       >
                                                                         <template slot="icon">
-                                                                            <v-icon right>mdi-content-save-edit</v-icon>
+                                                                            <v-icon  right>mdi-content-save-edit</v-icon>
                                                                         </template>
                                                                     </upload-btn>
                                                                     <v-divider></v-divider>
                                                                     <p class="subheading pt-3"> Place Company on the map:</p>
                                                                     <v-divider></v-divider>
+                                                                    <v-container grid-list-md>
+                                                                        <v-layout row wrap>
+                                                                            <v-flex xs6 sm3  v-for="(item, index) in event.companies" :key="index">
+                                                                                <v-avatar>
+                                                                                    <img
+                                                                                        contain
+                                                                                        :src="item.logo"
+                                                                                        :alt="item.name"
+                                                                                    >
+                                                                                </v-avatar>
+                                                                            </v-flex>
+                                                                        </v-layout>
+                                                                    </v-container>
                                                             </v-flex>
                                                         </v-layout>
                                                     </v-container>
