@@ -18,7 +18,7 @@ class GeneralSeeder extends Seeder
             'value' => '' ,
             ]);
           General::create([
-            'field' => 'app Logo',
+            'field' => 'app_Logo',
             'value' => '' ,
             ]);
           General::create([
