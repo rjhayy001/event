@@ -3,6 +3,7 @@ import show_visitor from '../visitor/show'
 import show_company from '../company/show'
 import show_event from '../event/show'
 import show_dashboard from '../dashboard/show'
+import show_app from '../app/show'
 
 export default [
   	{
@@ -33,6 +34,12 @@ export default [
 		path : '/dashboard',
 	  	component: show_dashboard,
 	  	name: 'dashboard',
+	  
+    },
+  	{
+		path : '/app',
+	  	component: show_app,
+	  	name: 'app',
 	  
     },
 ]

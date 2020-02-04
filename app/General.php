@@ -16,4 +16,8 @@ class General extends Model
     {
         return ucfirst($value);
     }
+
+    public function getValueAttribute($value) {
+        return $value ? asset('Settings/'.$value) : 'http://www.aclcbutuan.edu.ph/plugins/images/no-image.jpg' ; 
+    }
 }

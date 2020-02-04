@@ -81,7 +81,7 @@
           model: false,
           children: [
             { icon: 'mdi-tab', text: 'Catégories age' , url:'/category' },
-            { icon: 'mdi-image', text: 'App' },
+            { icon: 'mdi-image', text: 'App' , url:'/app'  },
           ],
         },
       ],

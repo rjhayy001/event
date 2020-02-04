@@ -73,24 +73,24 @@ class Event extends Model
     }
 
     public function getPresentationImageAttribute($value){
-        return $value ? asset('event_images/'. $value) : asset('Settings/Presentation.png') ;
+        return $value ? asset('event_images/'. $value) : asset('Settings/Presentation.jpeg') ;
     }
     public function getProgrammeImageAttribute($value){
-        return $value ? asset('event_images/'. $value) : asset('Settings/Programme.png') ;
+        return $value ? asset('event_images/'. $value) : asset('Settings/Programme.jpeg') ;
     }
     public function getTarifsImageAttribute($value){
-        return $value ? asset('event_images/'. $value) : asset('Settings/Tarifs.png') ;
+        return $value ? asset('event_images/'. $value) : asset('Settings/Tarifs.jpeg') ;
     }
     public function getPlanImageAttribute($value){
-        return $value ? asset('event_images/'. $value) : asset('Settings/Plan.png') ;
+        return $value ? asset('event_images/'. $value) : asset('Settings/Plan.jpeg') ;
     }
     public function getRestaurantImageAttribute($value){
-        return $value ? asset('event_images/'. $value) : asset('Settings/Restauration.png') ;
+        return $value ? asset('event_images/'. $value) : asset('Settings/Restauration.jpeg') ;
     }
     public function getHighlightsImageAttribute($value){
-        return $value ? asset('event_images/'. $value) : asset('Settings/Highlights.png') ;
+        return $value ? asset('event_images/'. $value) : asset('Settings/Highlights.jpeg') ;
     }
     public function getLogoAttribute($value){
-        return $value ? asset('event_images/'. $value) : asset('Settings/Event_logo.png') ;
+        return $value ? asset('event_images/'. $value) : asset('Settings/Event logo.jpeg') ;
     }
 }

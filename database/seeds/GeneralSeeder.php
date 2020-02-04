@@ -14,11 +14,11 @@ class GeneralSeeder extends Seeder
     {
         //
         General::create([
-            'field' => 'background-image',
+            'field' => 'app background',
             'value' => '' ,
             ]);
           General::create([
-            'field' => 'logo',
+            'field' => 'app Logo',
             'value' => '' ,
             ]);
           General::create([
@@ -46,7 +46,7 @@ class GeneralSeeder extends Seeder
             'value' => '' ,
             ]);
           General::create([
-            'field' => 'event_logo',
+            'field' => 'event Logo',
             'value' => '' ,
             ]);
     

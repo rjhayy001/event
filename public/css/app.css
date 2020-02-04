@@ -26192,3 +26192,8 @@ thead .v-data-table__checkbox > .v-icon {
   color: white !important;
 }
 
+.fab_btn {
+  border-radius: 100% !important;
+  color: #009688 !important;
+}
+
