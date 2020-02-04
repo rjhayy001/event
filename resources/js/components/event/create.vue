@@ -366,8 +366,7 @@
                                                 <v-icon left>mdi-map-check-outline</v-icon> manage map
                                             </v-btn>
                                             <p class="subheading font-weight-bold">Map Overview</p>
-                                            <!-- <v-img src="https://picsum.photos/510/300?random" aspect-ratio="1.7"></v-img> -->
-                                            
+                                            <v-img class="elevation-1" :src="event.map ? event.map : 'http://www.aclcbutuan.edu.ph/plugins/images/no-image.jpg'" contain aspect-ratio="1.5"></v-img>
                                         </v-flex>
                                         <v-flex xs5 class="">
                                             <p class="subheading font-weight-bold">Companies</p>
@@ -454,23 +453,29 @@
                                                     <v-container grid-list-md>
                                                         <v-layout row wrap>
                                                             <v-flex xs10 >
-                                                                <div style="height: 80vh; width: 100%;" ref="map_container">
-                                                                    <l-map :zoom="zoom" :options="{zoomControl: false}" :crs="crs">
-                                                                        <l-image-overlay
-                                                                            :url="url"
-                                                                            :bounds="bounds">
-                                                                        </l-image-overlay>
-                                                                        <l-marker
-                                                                            v-for="star in stars"
-                                                                            :lat-lng="star"
-                                                                            :key="star.name">
-                                                                        <l-popup :content="star.name"/>
-                                                                    </l-marker>
-                                                                </l-map>
-                                                            </div>
+                                                                <div  ref="map_container">
+                                                                    
+                                                                    <div style="height: 80vh; width: 100% ;" >
+                                                                        <v-img height="100%" width="100%" st class="elevation-1" :src="event.map " contain ></v-img>
+                                                                    </div>
+                                                                </div>
                                                             </v-flex>
                                                             <v-flex xs2>
-                                                                {{height}}
+                                                                    <p class="subheading"> Select a map:</p>
+                                                                    <v-divider></v-divider>
+                                                                    <upload-btn
+                                                                    @file-update="file_changed"
+                                                                    fixedWidth="300"
+                                                                        title="Change Map"
+                                                                        color="teal" 
+                                                                        class="custom_button my-3 "                                                                       >
+                                                                        <template slot="icon">
+                                                                            <v-icon right>mdi-content-save-edit</v-icon>
+                                                                        </template>
+                                                                    </upload-btn>
+                                                                    <v-divider></v-divider>
+                                                                    <p class="subheading pt-3"> Place Company on the map:</p>
+                                                                    <v-divider></v-divider>
                                                             </v-flex>
                                                         </v-layout>
                                                     </v-container>
@@ -535,7 +540,7 @@
                             </v-list-item>
                         </div>
                         <v-alert type="info" outlined dense v-else >
-                            No Prices added yet.
+                            No Program added yet.
                         </v-alert>
                          </v-list>
                     </v-card>
@@ -545,7 +550,11 @@
     </div>
 </template>
 <script>
-  export default {
+ import UploadButton from 'vuetify-upload-button';
+export default {
+    components: {
+      'upload-btn': UploadButton
+    },
     data: (v,) => ({
         zoom:0,
         height : '' , 
@@ -573,6 +582,7 @@
             place:'',
             dates: [],
             to:'',
+            map:'',
             from:'',
             description:'',
             prices:[],
@@ -666,6 +676,18 @@
             e.value = '';
             // this.event.categories_selected.push(e);
         },
+        file_changed(file) {
+            console.log(file)
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = (e) => {
+                    this.event.map = e.target.result ;
+                }
+                reader.readAsDataURL(file);
+            }else {
+               return
+            }
+        },
         
         add_programs() {
             let list = {'name' : '' , 'time': '', 'details':'','highlight':false ,'model': false }
@@ -754,6 +776,9 @@
             console.log(this.height)
         }
 
+    },
+    mounted (){
+        this.get_container()
     },
 
     created() {
