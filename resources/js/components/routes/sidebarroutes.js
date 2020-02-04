@@ -3,7 +3,7 @@ import show_visitor from '../visitor/show'
 import show_company from '../company/show'
 import show_event from '../event/show'
 import show_dashboard from '../dashboard/show'
-import show_app from '../app/show'
+import show_app from '../settings/app/show'
 
 export default [
   	{

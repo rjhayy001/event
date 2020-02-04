@@ -33,8 +33,8 @@
               :key="i"
               link :to="child.url"
             >
-              <v-list-item-action v-if="child.icon">
-                <v-icon>{{ child.icon }}</v-icon>
+              <v-list-item-action v-if="child.icon" >
+                <v-icon >{{ child.icon }}</v-icon>
               </v-list-item-action>
               <v-list-item-content>
                 <v-list-item-title>

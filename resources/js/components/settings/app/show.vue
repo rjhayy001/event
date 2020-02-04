@@ -9,8 +9,12 @@
         </v-toolbar>
         <v-container>
             <v-layout row wrap>
+                    
                 <v-flex xs12 sm3 v-for="(item, index) in generals" :key="index">
-                    <v-card class="d-inline-block  ma-4">
+                    <v-skeleton-loader v-if="!data_loaded"
+                        type="table-tbody"
+                    ></v-skeleton-loader>
+                    <v-card class="d-inline-block  ma-4" v-else> 
                         <v-container class="">
                             <v-row justify="space-between">
                                 <v-col cols="sm3" class="elevation-1 mb-3">
@@ -55,6 +59,7 @@ export default {
     },
     data: () => ({
         fab:'',
+        data_loaded : true ,
     selectedFile: null,
     isSelecting: false,
     generals:[],
@@ -101,6 +106,7 @@ export default {
                 response.data.forEach(element => {
                     this.generals.push({'id' : element.id  ,'field' : element.field , 'value' : element.value , 'is_selected':false , 'model' :i++ })
                 });
+                this.data_loaded = true ;
             });
         console.log(this.companies)
         },
