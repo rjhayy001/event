@@ -23,7 +23,7 @@ class Event extends JsonResource
         // return parent::toArray($request);
          return [
             'id'=> $this->id,
-            'image'=>$this->image ? asset('image/'. $this->image): '',
+            'image'=>$this->image ,
             'name'=> $this->name,
             'from'=> $this->fromdate,
             'to'=> $this->todate,
