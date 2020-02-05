@@ -91,6 +91,9 @@ class Event extends Model
         return $value ? asset('event_images/'. $value) : asset('Settings/Highlights.jpeg') ;
     }
     public function getLogoAttribute($value){
-        return $value ? asset('event_images/'. $value) : asset('Settings/Event logo.jpeg') ;
+        return $value ? asset('event_images/'. $value) : asset('Settings/Event_Logo.jpeg') ;
+    }
+    public function getImageAttribute($value){
+        return $value ? asset('event_images/'. $value) : asset('Settings/Event_Logo.jpeg') ;
     }
 }

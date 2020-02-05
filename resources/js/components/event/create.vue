@@ -105,6 +105,7 @@
                                                                     <v-text-field
                                                                         dense
                                                                         type="number"
+                                                                        append-icon="mdi-currency-eur"
                                                                         v-model="item.price"
                                                                         :label="item.name"
                                                                         outlined left

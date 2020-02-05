@@ -174,6 +174,8 @@ class EventController extends Controller
     public function edit($id)
     {
         //
+        $event = Event::with('companies','categories','programs','presentation')->findorfail($id);
+        return $event ;
     }
 
     /**
