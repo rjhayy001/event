@@ -51,8 +51,8 @@
                             </v-row>
                         </v-card-text>
                         <v-card-title>Price Information</v-card-title>
-                        <v-divider></v-divider>
-                        <v-simple-table>
+                       
+                        <v-simple-table v-if="event.categories.length ">
                             <tbody >
                                 <tr v-for="(item,index) in event.categories" :key="index" >
                                     <td class="font-weight-bold text-capitalize"> {{item.person}}</td>
@@ -60,6 +60,13 @@
                                 </tr>
                             </tbody>
                         </v-simple-table>
+                         <div class="mb-4" v-else  >
+                        <v-alert type="info" outlined dense class="ma-3 mb-5" >
+                            No fixed prices yet.
+                        </v-alert>
+                        </div>
+                        <v-divider></v-divider>
+
                     </v-card>
                 </v-flex>
                     
@@ -250,7 +257,9 @@ export default {
         dialog2:false,
         show: false ,
         data_loaded: true ,
-        event:[] ,
+        event: {
+            categories:[],
+        } ,
         program_highlight:[],
         company_highlight:[],
     }),

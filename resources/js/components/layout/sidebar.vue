@@ -17,8 +17,7 @@
             :key="item.text"
             v-model="item.model"
             :prepend-icon="item.model ? item.icon : item['icon-alt']"
-              color="teal"
-              class="custom_button"
+              color="black whiten-5"
           >
             <template v-slot:activator>
               <v-list-item
