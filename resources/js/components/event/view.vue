@@ -19,54 +19,31 @@
                         <v-card-text>
                             <v-row >
                                 <v-flex xs12>
-                            <v-divider></v-divider>
-                                    <v-list >
-                                        <v-list-item>
-                                            <v-list-item-content >
-                                                <v-list-item-subtitle class="font-weight-bold" > Name</v-list-item-subtitle>
-                                            </v-list-item-content>
-                                            <v-list-item-content right>
-                                                <v-list-item-subtitle>{{event.name ? event.name : 'not set' }}</v-list-item-subtitle>
-                                            </v-list-item-content>
-                                        </v-list-item>
-                                        <v-divider></v-divider>
-                                        <v-list-item>
-                                            <v-list-item-content>
-                                                <v-list-item-subtitle  class="font-weight-bold"> Start Date</v-list-item-subtitle>
-                                            </v-list-item-content>
-                                            <v-list-item-content right >
-                                                <v-list-item-subtitle>{{event.fromdate ? fulldate(event.fromdate) : 'not set' }}</v-list-item-subtitle>
-                                            </v-list-item-content>
-                                        </v-list-item>
-                                        <v-divider></v-divider>
-                                        <v-list-item>
-                                            <v-list-item-content>
-                                                <v-list-item-subtitle  class="font-weight-bold"> End Date</v-list-item-subtitle>
-                                            </v-list-item-content>
-                                            <v-list-item-content right >
-                                                <v-list-item-subtitle>{{event.todate ? fulldate(event.todate) : 'not set' }}</v-list-item-subtitle>
-                                            </v-list-item-content>
-                                        </v-list-item>
-                                        <v-divider></v-divider>
-                                        <v-list-item>
-                                            <v-list-item-content>
-                                                <v-list-item-subtitle  class="font-weight-bold"> Place</v-list-item-subtitle>
-                                            </v-list-item-content>
-                                            <v-list-item-content right >
-                                                <v-list-item-subtitle>{{event.place ? event.place: 'not set' }}</v-list-item-subtitle>
-                                            </v-list-item-content>
-                                        </v-list-item>
-                                        <v-divider></v-divider>
-                                        <v-list-item>
-                                            <v-list-item-content>
-                                                <v-list-item-subtitle  class="font-weight-bold"> Description</v-list-item-subtitle>
-                                            </v-list-item-content>
-                                            <v-list-item-content right >
-                                                <v-list-item-subtitle v-html="event.description"></v-list-item-subtitle>
-                                            </v-list-item-content>
-                                        </v-list-item>
-                                        <v-divider></v-divider>
-                                    </v-list>
+                                            <v-divider></v-divider>
+                                    <v-simple-table>
+                                        <tbody>
+                                            <tr>
+                                                <td class="font-weight-bold text-capitalize"> name</td>
+                                                <td class="font-weight-bold">{{event.name}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font-weight-bold text-capitalize">Start Date</td>
+                                                <td class="font-weight-bold">{{event.fromdate ? fulldate(event.fromdate) : 'not set'}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font-weight-bold text-capitalize">End Date</td>
+                                                <td class="font-weight-bold">{{event.todate ? fulldate(event.todate) : 'not set'}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font-weight-bold text-capitalize">Place</td>
+                                                <td class="font-weight-bold">{{event.place ? event.place : 'not set'}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font-weight-bold text-capitalize">Description</td>
+                                                <td class="font-weight-bold">{{event.description | striphtml}}</td>
+                                            </tr>
+                                        </tbody>
+                                </v-simple-table>
                                 </v-flex>
                             </v-row>
                         </v-card-text>
@@ -91,9 +68,9 @@
                                         </thead>
                                         <tbody>
                                             <tr v-for="(item,index) in event.programs" :key="index" >
-                                            <td>{{ item.name }}</td>
+                                            <td class="width:30%">{{ item.name }}</td>
                                             <td>{{ item.time }}</td>
-                                            <td v-html="item.details"></td>
+                                            <td>{{item.details | striphtml}}</td>
                                             </tr>
                                         </tbody>
                                     </template>

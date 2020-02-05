@@ -85,6 +85,12 @@ Vue.component('l-tile-layer', LTileLayer);
 Vue.component('l-marker', LMarker);
 Vue.component('l-image-overlay', LImageOverlay);
 Vue.component('l-popup',LPopup)
+Vue.filter('striphtml', function (value) {
+    var div = document.createElement("div");
+    div.innerHTML = value;
+    var text = div.textContent || div.innerText || "";
+    return text;
+  });
 
 
 
