@@ -11,4 +11,8 @@ class Presentation extends Model
     public function event(){
         return $this->hasOne(Event::class);
     }
+
+    public function getImageAttribute($value){
+        return $value ? asset('event_images/'. $value) :'' ;
+    }
 }

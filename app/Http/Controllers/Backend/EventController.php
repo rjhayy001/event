@@ -176,7 +176,8 @@ class EventController extends Controller
         //
         $event = Event::with('companies','categories','programs','presentation')->findorfail($id);
         $program_highlight  = $event->programs()->where('highlight' , '1')->get();
-        return compact('event','program_highlight') ;
+        $company_highlight  = $event->companies()->where('highlight' , '1')->get();
+        return compact('event','program_highlight','company_highlight') ;
     }
 
     /**
