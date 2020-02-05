@@ -297,7 +297,7 @@ export default {
             categories:[],
             companies:[],
             programs:[],
-        } ,
+        },
         program_highlight:[],
         company_highlight:[],
     }),
