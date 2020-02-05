@@ -92,7 +92,7 @@ class EventController extends Controller
     public function search_ko($event = "")
     {
             $events = Event::where('name', 'like', '%'.$event.'%')
-            ->get();
+            ->paginate(5);
             return EventResource::collection($events);
     }
 }
