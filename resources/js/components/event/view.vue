@@ -87,10 +87,19 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr v-for="(item,index) in event.programs" :key="index" >
-                                            <td class="width:30%">{{ item.name }}</td>
-                                            <td>{{ item.time }}</td>
-                                            <td>{{item.details | striphtml}}</td>
+                                            <template v-if="event.programs.length">
+                                                <tr v-for="(item,index) in event.programs" :key="index" >
+                                                    <td class="width:30%">{{ item.name }}</td>
+                                                    <td>{{ item.time }}</td>
+                                                    <td>{{item.details | striphtml}}</td>
+                                                </tr>
+                                            </template>
+                                            <tr v-else>
+                                                <td colspan="3">
+                                                    <v-alert type="info" outlined dense class="ma-3 " >
+                                                        No data saved.
+                                                    </v-alert>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </template>
@@ -110,10 +119,19 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr v-for="(item,index) in event.companies" :key="index" >
-                                            <td>{{ item.name }}</td>
-                                            <td>{{ item.pivot.paidprice ? item.pivot.paidprice : 'not set'  }}</td>
-                                            <td >{{item.pivot.is_restaurant == 0 ? 'No' :'Yes'}}</td>
+                                            <template v-if="event.companies.length">
+                                                <tr v-for="(item,index) in event.companies" :key="index" >
+                                                <td>{{ item.name }}</td>
+                                                <td>{{ item.pivot.paidprice ? item.pivot.paidprice : 'not set'  }}</td>
+                                                <td >{{item.pivot.is_restaurant == 0 ? 'No' :'Yes'}}</td>
+                                                </tr>
+                                            </template>
+                                            <tr v-else>
+                                                <td colspan="3">
+                                                    <v-alert type="info" outlined dense class="ma-3 " >
+                                                        No data saved.
+                                                    </v-alert>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </template>
@@ -126,7 +144,7 @@
                                 </v-toolbar>
                                 <v-layout row wrap>
                                     
-                                 <v-flex xs12 sm6>
+                                <v-flex xs12 sm6>
                                 <p class="font-weight-bold">Programs</p>
                                 <v-simple-table class="elevation-1">
                                     <template v-slot:default fixed-header>
@@ -138,16 +156,25 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr v-for="(item,index) in program_highlight" :key="index" >
-                                            <td class="width:30%">{{ item.name }}</td>
-                                            <td>{{ item.time }}</td>
-                                            <td>{{item.details | striphtml}}</td>
+                                            <template v-if="program_highlight.length">
+                                                <tr v-for="(item,index) in program_highlight" :key="index" >
+                                                    <td class="width:30%">{{ item.name }}</td>
+                                                    <td>{{ item.time }}</td>
+                                                    <td>{{item.details | striphtml}}</td>
+                                                </tr>
+                                            </template>
+                                            <tr v-else>
+                                                <td colspan="3">
+                                                    <v-alert type="info" outlined dense class="ma-3 " >
+                                                         No data saved.
+                                                    </v-alert>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </template>
                                 </v-simple-table>
                             </v-flex>
-                                 <v-flex xs12 sm6>
+                            <v-flex xs12 sm6>
                                 <p class="font-weight-bold">Companies</p>
                                 <v-simple-table class="elevation-1">
                                     <template v-slot:default fixed-header>
@@ -159,19 +186,28 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <template v-if="company_highlight.length">
                                             <tr v-for="(item,index) in company_highlight" :key="index" >
                                             <td>{{ item.name }}</td>
                                             <td>{{ item.pivot.paidprice ? item.pivot.paidprice : 'not set'  }}</td>
                                             <td >{{item.pivot.is_restaurant == 0 ? 'No' :'Yes'}}</td>
                                             </tr>
+                                            </template>
+                                            <tr v-else>
+                                                <td colspan="3">
+                                                    <v-alert type="info" outlined dense class="ma-3 " >
+                                                        No data saved.
+                                                    </v-alert>
+                                                </td>
+                                            </tr>
                                         </tbody>
                                     </template>
                                 </v-simple-table>
                             </v-flex>
-                                </v-layout>
+                            </v-layout>
                             </v-flex>
                         </v-layout>
-                          <v-dialog v-model="dialog2" width="50%" min-height="80%" >
+                        <v-dialog v-model="dialog2" width="50%" min-height="80%" >
                             <v-card>
                                 <v-container grid-list-md>
                                     <v-layout row wrap>
@@ -259,6 +295,8 @@ export default {
         data_loaded: true ,
         event: {
             categories:[],
+            companies:[],
+            programs:[],
         } ,
         program_highlight:[],
         company_highlight:[],
