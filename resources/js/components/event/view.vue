@@ -15,7 +15,6 @@
                     <v-card>
                         <v-img max-height="250" contain :src="event.image" lazy-src="https://cdn.dribbble.com/users/197853/screenshots/5506993/boat-wave.gif" ></v-img>
                         <v-card-title>Event Information</v-card-title>
-
                         <v-card-text>
                             <v-row >
                                 <v-flex xs12>
@@ -92,7 +91,7 @@
                                         <tbody>
                                             <tr v-for="(item,index) in event.companies" :key="index" >
                                             <td>{{ item.name }}</td>
-                                            <td>{{ item.pivot.paidprice }}</td>
+                                            <td>{{ item.pivot.paidprice ? item.pivot.paidprice : 'not set'  }}</td>
                                             <td >{{item.pivot.is_restaurant == 0 ? 'No' :'Yes'}}</td>
                                             </tr>
                                         </tbody>
@@ -115,6 +114,8 @@ export default {
         show: false ,
         data_loaded: true ,
         event:[] ,
+        program_highlight:[],
+        company_highlight:[],
     }),
     methods: {
         to_event(e) {
@@ -126,7 +127,8 @@ export default {
             .then(response => {
                 console.log(response.data)
                 this.data_loaded = true ;
-                this.event = response.data ;
+                this.event = response.data.event ;
+                this.program_highlight =response.data.program_highlight ;
             });
         },
     },
