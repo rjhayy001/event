@@ -202,6 +202,13 @@ class VisitorController extends Controller
         $visitor->events()->attach($id);
         return 'event saved';
     }
+
+    public function attended_events(){
+       $visitor = Visitor::findorfail(Auth::user()->id);
+       $events = $visitor->events;
+       return  EventResource::collection($events) ;
+    }
+
     public function remove_event_visitor($id)
     {
         $visitor = Visitor::find(Auth::user()->id);

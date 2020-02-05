@@ -38,6 +38,7 @@ Route::namespace('Api')->group(function () {
         Route::get('add_favorite/{id}' ,'VisitorController@favorites');
         Route::get('favorites' ,'VisitorController@get_favorites');
         Route::get('remove_favorite/{id}' ,'VisitorController@remove_favorites');
+        Route::get('attended_events' ,'VisitorController@attended_events');
     });
     Route::post('register' ,'VisitorController@register');
     Route::post('login' ,'VisitorController@login');
