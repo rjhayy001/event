@@ -8,7 +8,7 @@ class Company extends Model
 {
     // RELATION
     public function events(){
-        return $this->belongsToMany(Event::class)->withPivot(['paidprice','emplacement','is_restaurant','lat','lng','highlight','description']);
+        return $this->belongsToMany(Event::class)->withPivot(['paidprice','emplacement','is_restaurant','x','y','highlight','description']);
     }
     public function contacts(){
         return $this->hasOne(Contact::class);

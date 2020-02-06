@@ -1,6 +1,7 @@
 
 require('./bootstrap');
 window.Vue = require('vue');
+import html2canvas from 'html2canvas';
 import Vuex from "vuex"
 import Timeselector from 'vue-timeselector';
 import vuetify from './vuetify';
@@ -11,6 +12,7 @@ import router from './router';
 import {LMap, LTileLayer, LMarker,LImageOverlay,LPopup} from 'vue2-leaflet';
 import { Icon } from 'leaflet';
 import { CRS } from "leaflet";
+import VueDraggableResizable from 'vue-draggable-resizable'
 delete Icon.Default.prototype._getIconUrl;
 
 Icon.Default.mergeOptions({
@@ -74,6 +76,7 @@ axios.interceptors.response.use( ( response ) => {
     // store.commit('SHOW_BANNER', {visible:1, message:message, status:2})
     return Promise.reject( error );
 });
+Vue.component('vue-draggable-resizable', VueDraggableResizable)
 Vue.use(VeeValidate);
 Vue.use(require('vue-moment'));
 Vue.component('app-confirm', require('./components/alerts/confirm.vue').default);

@@ -12,7 +12,7 @@ class Event extends Model
         return $this->hasMany(Program::class);
     }
     public function companies(){
-        return $this->belongsToMany(Company::class)->withPivot(['paidprice','emplacement','is_restaurant','lat','lng','highlight','description']);
+        return $this->belongsToMany(Company::class)->withPivot(['paidprice','emplacement','is_restaurant','x','y','highlight','description']);
     }
     public function categories(){
         return $this->belongsToMany(Category::class)->withPivot(['price']);

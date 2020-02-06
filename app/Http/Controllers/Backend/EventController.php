@@ -109,7 +109,7 @@ class EventController extends Controller
         if(count($companies)) {
             foreach ($companies as $key => $value) {
                 $data[$value['id']] = ['paidprice' => $value['paidprice'] , 'is_restaurant' => $value['is_restaurant'] == true ? 1 : 0 ,
-                'lat' => $value['lat'] , 'lng' => $value['lang'] , 'description' => $value['description'] , 'highlight' =>  $value['highlight'] == true ? 1 : 0  ];
+                'x' => $value['x'] , 'y' => $value['y'] , 'description' => $value['description'] , 'highlight' =>  $value['highlight'] == true ? 1 : 0  ];
             }
         }
         $event->companies()->sync($data);

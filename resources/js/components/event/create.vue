@@ -448,49 +448,69 @@
                                                 No Companies added yet .
                                             </v-alert>
                                         </v-flex>
-                                        <v-flex xs12>
-                                            <v-dialog v-model="dialog2" width="80%" min-height="80%" >
-                                                <v-card>
-                                                    <v-container grid-list-md>
+                                        <v-flex xs12 >
+                                            <v-dialog v-model="dialog2" width="80%" min-height="80%" persistent >
+                                                <v-card > 
+                                                    <v-container grid-list-md >
                                                         <v-layout row wrap>
                                                             <v-flex xs10 >
-                                                                <div  ref="map_container">
-                                                                    
-                                                                    <div style="height: 80vh; width: 100% ;" >
-                                                                        <v-img height="100%" width="100%" st class="elevation-1" :src="event.map " contain ></v-img>
-                                                                    </div>
+                                                                <div ref="fullmapss"  style="height: 80vh; width: 100% ; " >
+                                                                    <v-img  color="white" height="100%" width="100%"  :src="event.map " contain ></v-img>
                                                                 </div>
+                                                                <div ref="test_image"></div>
                                                             </v-flex>
-                                                            <v-flex xs2>
-                                                                    <p class="subheading"> Select a map:</p>
-                                                                    <v-divider></v-divider>
-                                                                    <upload-btn
+                                                            <template>
+                                                            </template>
+                                                            <v-flex xs2 data-html2canvas-ignore="true" >
+                                                                <v-btn @click="close_map()" icon right class="float-right mb-5" color="teal">
+                                                                    <v-icon>mdi-close-circle</v-icon>
+                                                                </v-btn>
+                                                                <br><br>
+                                                                <p class="subheading"> Select a map:</p>
+                                                                <v-divider></v-divider>
+                                                                <upload-btn
                                                                     block
                                                                     @file-update="file_changed"
                                                                     fixedWidth="300"
-                                                                        title="Change Map"
-                                                                        color="teal" 
-                                                                        class="custom_button my-3 "                                                                       >
-                                                                        <template slot="icon">
-                                                                            <v-icon  right>mdi-content-save-edit</v-icon>
-                                                                        </template>
-                                                                    </upload-btn>
-                                                                    <v-divider></v-divider>
-                                                                    <p class="subheading pt-3"> Place Company on the map:</p>
-                                                                    <v-divider></v-divider>
-                                                                    <v-container grid-list-md>
-                                                                        <v-layout row wrap>
-                                                                            <v-flex xs6 sm3  v-for="(item, index) in event.companies" :key="index">
-                                                                                <v-avatar>
-                                                                                    <img
-                                                                                        contain
-                                                                                        :src="item.logo"
-                                                                                        :alt="item.name"
-                                                                                    >
-                                                                                </v-avatar>
+                                                                    title="Add Map"
+                                                                    color="teal" 
+                                                                    class="custom_button my-3 "                                                                       >
+                                                                    <template slot="icon">
+                                                                        <v-icon  right>mdi-content-save-edit</v-icon>
+                                                                    </template>
+                                                                </upload-btn>
+                                                                <v-divider></v-divider>
+                                                                <p class="subheading pt-3"> Place Company on the map:</p>
+                                                                <v-divider></v-divider>
+                                                                <v-container grid-list-md>
+                                                                    <v-layout row wrap>
+                                                                        <template v-if="event.map">
+                                                                            <v-flex xs6 sm3 v-for="(item, index) in event.companies"
+                                                                                :key="index" >
+                                                                                <div style="position:relative">
+                                                                                    <vue-draggable-resizable  :x="10" :y="20" :z="999" :w="100" :h="100"  @dragstop="onDragstop">
+                                                                                        <v-avatar color="white">
+                                                                                            <v-img
+                                                                                                contain
+                                                                                                aspect-ratio="1.4"
+                                                                                                :src="item.logo"
+                                                                                                :alt="item.name"
+                                                                                            >
+                                                                                            </v-img>
+                                                                                        </v-avatar>
+                                                                                    </vue-draggable-resizable>
+                                                                                </div>
                                                                             </v-flex>
-                                                                        </v-layout>
-                                                                    </v-container>
+                                                                        </template>
+                                                                        <template v-else>
+                                                                            <v-flex xs12>
+                                                                                <v-alert type="info" outlined dense >
+                                                                                    Add map first.
+                                                                                </v-alert>
+                                                                            </v-flex>
+                                                                        </template>
+                                                                    </v-layout>
+                                                                </v-container>
                                                             </v-flex>
                                                         </v-layout>
                                                     </v-container>
@@ -568,20 +588,13 @@
  import UploadButton from 'vuetify-upload-button';
 export default {
     components: {
-      'upload-btn': UploadButton
+      'upload-btn': UploadButton,
     },
     data: (v,) => ({
-        zoom:0,
-        height : '' , 
-        url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTZnxy2VJBu-4M8Abvqm8Vaiu_8i0frvF-V7HqIXOSjY0X9dD0R',
-        bounds: [[-10.5, -25], [1021.5, 1023]],
-        crs: L.CRS.Simple,
-        stars: [
-            { name: 'Sol', lng: 175.2, lat: 145.0 },
-            { name: 'Mizar', lng: 41.6, lat: 130.1 },
-            { name: 'Krueger-Z', lng: 13.4, lat: 56.5 },
-            { name: 'Deneb', lng: 218.7, lat: 8.3 }
-         ],
+        width: 0,
+        height: 0,
+        x: 0,
+        y: 0,
         e1:1 ,
         menu :'',
         dialog2:false,
@@ -628,11 +641,22 @@ export default {
         
     },
     methods : {
+        close_map(){
+            this.dialog2 = !this.dialog2 ;
+            
+            html2canvas(this.$refs.fullmapss).then(function (canvas) {
+                const img = canvas.toDataURL("image/jpeg");
+                console.log(img)
+            });
+        },
+        onDragstop: function (x, y) {
+            console.log(x,y)
+        },
         open_map(){
             this.dialog2 = !this.dialog2 ;
-            this.get_container()
         },
         submit(){
+           
             this.$validator.validateAll().then(result => {
                 if (result){
                     this.$root.$confirm('Are you sure you want to save ?').then((result) => {
@@ -681,7 +705,7 @@ export default {
             axios.get('/companies', {})
             .then(response => {
                 response.data.forEach(element => {
-                    this.companies.push({'id' : element.id  ,'name' : element.name , 'paidprice' :'' , 'lat':'' , 'lang':'' , 'description': '', 'highlight':false , 'logo':element.logo ,'is_restaurant':false})
+                    this.companies.push({'id' : element.id  ,'name' : element.name , 'paidprice' :'' , 'x':'' , 'y':'' , 'description': '', 'highlight':false , 'logo':element.logo ,'is_restaurant':false,'model': false })
                     console.log(this.companies)
                 });
             });
@@ -787,14 +811,7 @@ export default {
                     this.event.highlights_image = ''  ;
                 }
         },
-        get_container(){
-            this.height = this.$refs.map_container ;
-            console.log(this.height)
-        }
 
-    },
-    mounted (){
-        this.get_container()
     },
 
     created() {
