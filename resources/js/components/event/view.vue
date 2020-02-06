@@ -3,6 +3,10 @@
         <v-toolbar flat color="white" class="mb-4">
             <v-toolbar-title class="text-uppercase title">view event</v-toolbar-title>
             <v-spacer></v-spacer>
+            <v-btn color="#078282FF" tile @click="map_dialog = !map_dialog" class="mr-3 custom_button">
+                <v-icon left>mdi-map</v-icon>
+               view map
+            </v-btn>
             <v-btn color="teal" tile @click="open_modal" class="mr-3 custom_button">
                 <v-icon left>mdi-eye</v-icon>
                view images used
@@ -278,6 +282,32 @@
                                 </v-container>
                             </v-card>
                         </v-dialog>
+                        <v-dialog v-model="map_dialog" width="50%" min-height="80%" >
+                            <v-card>
+                                <v-container grid-list-md>
+                                    <v-layout row wrap>
+                                        <v-flex xs12>
+                                            <v-toolbar flat color="white" >
+                                                <v-toolbar-title class="text-uppercase title">Map of this event</v-toolbar-title>
+                                                <v-spacer></v-spacer>
+                                                <v-btn color="teal" tile @click="map_dialog = !map_dialog" icon class="mr-3 custom_button" depressed>
+                                                    <v-icon left>mdi-close-circle</v-icon>
+                                                </v-btn>
+                                            </v-toolbar>
+                                            <v-divider></v-divider>
+                                            <v-card>
+                                                <v-layout row wrap>
+                                                    <v-flex xs12>
+                                                        <v-img :src="event.map" aspect-ratio="1.2" >
+                                                        </v-img>
+                                                    </v-flex>
+                                                </v-layout>
+                                            </v-card>
+                                        </v-flex>
+                                    </v-layout>
+                                </v-container>
+                            </v-card>
+                        </v-dialog>
                     </v-container>
                 </v-flex>
             </v-layout>
@@ -291,6 +321,7 @@ export default {
     mixins:[DateHelperVue],
     data: () => ({
         dialog2:false,
+        map_dialog:false,
         show: false ,
         data_loaded: true ,
         event: {

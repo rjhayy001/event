@@ -598,6 +598,7 @@ export default {
             dates: [],
             to:'',
             map:'',
+            fullmap:'',
             from:'',
             description:'',
             prices:[],

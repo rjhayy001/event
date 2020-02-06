@@ -76,6 +76,7 @@ class EventController extends Controller
         $event->plan_image =  upload_image($request->plan_image , 'event_images/' , 'plan_image') ;
         $event->image =  upload_image($request->image , 'event_images/' , 'image') ;
         $event->logo =  upload_image($request->logo , 'event_images/' , 'logo') ;
+        $event->map =  upload_image($request->map , 'event_images/' , 'map') ;
         $event->description = $request->description ;
         $event->save() ;
         if($event->id) {

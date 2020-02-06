@@ -129,7 +129,7 @@ class VisitorController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required',
-            'phone' => 'required',
+            'phone' => 'required|min:9',
             'email' => 'required|email|unique:visitors,email',
             'username' => 'required|unique:visitors,username',
             'password' => 'required|confirmed',

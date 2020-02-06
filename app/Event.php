@@ -96,4 +96,7 @@ class Event extends Model
     public function getImageAttribute($value){
         return $value ? asset('event_images/'. $value) : asset('Settings/Event_Logo.jpeg') ;
     }
+    public function getMapAttribute($value){
+        return $value ? asset('event_images/'. $value) :'' ;
+    }
 }
