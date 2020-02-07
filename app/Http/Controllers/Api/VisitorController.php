@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Visitor ;
+use App\Rule as Rules ;
 use App\Http\Resources\VisitorResource;
 use App\Http\Resources\Event as EventResource ;
 use Illuminate\Support\Facades\Hash;
 use Image;
 use Auth ;
+use Illuminate\Validation\Rule;
 
 class VisitorController extends Controller
 {
@@ -128,12 +130,29 @@ class VisitorController extends Controller
     public function register(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required',
-            'phone' => 'required|min:9',
-            'email' => 'required|email|unique:visitors,email',
-            'username' => 'required|unique:visitors,username',
-            'password' => 'required|confirmed',
-            // 'profile_pic' => 'nullable|image|mimes:jpeg,png,gif,svg'
+            'name' => Rule::requiredIf(function(){
+                return Rules::whereFields('Name')->where('required', 1)->get()->count()>0;
+            }),
+            'phone' => [ 'min:9',
+                Rule::requiredIf(function(){
+                    return Rules::whereFields('Phone')->where('required', 1)->get()->count()>0;
+                }),
+            ],
+            'email' =>  [ 'email', 'unique:visitors,email' ,
+                Rule::requiredIf(function(){
+                    return Rules::whereFields('Email')->where('required', 1)->get()->count()>0;
+                }),
+            ],
+            'username' => ['unique:visitors,username',
+                Rule::requiredIf(function(){
+                    return Rules::whereFields('Username')->where('required', 1)->get()->count()>0;
+                }),
+            ],
+            'password' => [ 'confirmed',
+                Rule::requiredIf(function(){
+                    return Rules::whereFields('Password')->where('required', 1)->get()->count()>0;
+                }),
+            ],
         ]);
 
         if($validatedData)
