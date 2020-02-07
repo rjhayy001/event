@@ -130,25 +130,25 @@ class VisitorController extends Controller
     public function register(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => Rule::requiredIf(function(){
+            'name' =>[ 'nullable',Rule::requiredIf(function(){
                 return Rules::whereFields('Name')->where('required', 1)->get()->count()>0;
-            }),
-            'phone' => [ 'min:9',
+            })],
+            'phone' => [ 'min:9', 'nullable' ,
                 Rule::requiredIf(function(){
                     return Rules::whereFields('Phone')->where('required', 1)->get()->count()>0;
                 }),
             ],
-            'email' =>  [ 'email', 'unique:visitors,email' ,
+            'email' =>  [ 'email', 'unique:visitors,email' , 'nullable' ,
                 Rule::requiredIf(function(){
                     return Rules::whereFields('Email')->where('required', 1)->get()->count()>0;
                 }),
             ],
-            'username' => ['unique:visitors,username',
+            'username' => ['unique:visitors,username', 'nullable' ,
                 Rule::requiredIf(function(){
                     return Rules::whereFields('Username')->where('required', 1)->get()->count()>0;
                 }),
             ],
-            'password' => [ 'confirmed',
+            'password' => [ 'confirmed', 'nullable' ,
                 Rule::requiredIf(function(){
                     return Rules::whereFields('Password')->where('required', 1)->get()->count()>0;
                 }),
