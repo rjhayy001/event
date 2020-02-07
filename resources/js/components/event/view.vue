@@ -100,7 +100,7 @@
                                             </template>
                                             <tr v-else>
                                                 <td colspan="3">
-                                                    <v-alert type="info" outlined dense class="ma-3 " >
+                                                    <v-alert type="info" outlined dense class="mx-3 " >
                                                         No data saved.
                                                     </v-alert>
                                                 </td>
@@ -132,7 +132,7 @@
                                             </template>
                                             <tr v-else>
                                                 <td colspan="3">
-                                                    <v-alert type="info" outlined dense class="ma-3 " >
+                                                    <v-alert type="info" outlined dense class="mx-3 " >
                                                         No data saved.
                                                     </v-alert>
                                                 </td>
@@ -169,7 +169,7 @@
                                             </template>
                                             <tr v-else>
                                                 <td colspan="3">
-                                                    <v-alert type="info" outlined dense class="ma-3 " >
+                                                    <v-alert type="info" outlined dense class="mx-3 " >
                                                          No data saved.
                                                     </v-alert>
                                                 </td>
@@ -199,7 +199,7 @@
                                             </template>
                                             <tr v-else>
                                                 <td colspan="3">
-                                                    <v-alert type="info" outlined dense class="ma-3 " >
+                                                    <v-alert type="info" outlined dense class="mx-3 " >
                                                         No data saved.
                                                     </v-alert>
                                                 </td>
