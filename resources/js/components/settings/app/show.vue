@@ -66,7 +66,8 @@
                                     <tbody>
                                         <tr v-for="(item,index) in rules" :key="index">
                                             <td>{{ item.fields }}</td>
-                                            <td> <v-switch v-model="item.required" @change="required_change(item)" color="teal"></v-switch></td>
+                                            <td v-if="item.fields != 'Username' && item.fields != 'Password'"> <v-switch v-model="item.required"  @change="required_change(item)" color="teal"></v-switch></td>
+                                            <td v-else>strictly required</td>
                                         </tr>
                                     </tbody>
                                     </template>
