@@ -49,7 +49,7 @@
                         <v-toolbar flat >
                             <v-toolbar-title class="font-weight-bold small" >Apps Access</v-toolbar-title>
                             <v-spacer></v-spacer>
-                        <v-switch v-model="private_access.required" label="Private Access" class="mt-4" @change="access_change"></v-switch>
+                        <v-switch v-model="private_access.required" label="Private Access" class="mt-4" @change="access_change" color="teal"></v-switch>
                         </v-toolbar>
                         <v-card class="elevation-2 mx-4" :disabled="!private_access.required">
                             <p class="font-weight-bold small px-4 pt-4" >Parameter Required</p>
@@ -66,7 +66,7 @@
                                     <tbody>
                                         <tr v-for="(item,index) in rules" :key="index">
                                             <td>{{ item.fields }}</td>
-                                            <td> <v-switch v-model="item.required" @change="required_change(item)"></v-switch></td>
+                                            <td> <v-switch v-model="item.required" @change="required_change(item)" color="teal"></v-switch></td>
                                         </tr>
                                     </tbody>
                                     </template>
