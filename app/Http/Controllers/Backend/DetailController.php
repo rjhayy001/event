@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Details ;
 
 class DetailController extends Controller
 {
@@ -14,6 +16,8 @@ class DetailController extends Controller
     public function index()
     {
         //
+        $details = Details::all();
+        return $details ;
     }
 
     /**
@@ -34,7 +38,20 @@ class DetailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data =[];
+        foreach ($request->toArray() as $key => $value) {
+            if($value['id']){
+                $detail = Details::findorfail($value['id']);
+            }
+            else {
+                $detail = new Details();
+            }     
+            $detail->fields = $value['fields'];
+            $detail->value = $value['value'];
+            $detail->save();
+        }
+        return $this->index() ;
+        // return $data ;
     }
 
     /**
@@ -80,5 +97,8 @@ class DetailController extends Controller
     public function destroy($id)
     {
         //
+        $detail = Details::findorfail($id);
+        $detail->delete();
+        return 'deleted';
     }
 }

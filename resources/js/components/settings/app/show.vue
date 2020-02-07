@@ -13,10 +13,80 @@
               <v-toolbar flat >
                 <v-toolbar-title class="font-weight-bold">Apps General Information</v-toolbar-title>
                 <v-spacer></v-spacer>
-                <v-btn color="teal" class="custom_button" @click="submit"  >
-                    <v-icon class="pr-2">mdi-content-save-edit-outline</v-icon> Save Changes
-                </v-btn>
             </v-toolbar>
+            <v-divider></v-divider>
+            <v-container class="px-8 py-5">
+                <v-layout row wrap>
+                    <v-flex xs12 sm5>
+                        <v-toolbar flat >
+                            <v-spacer></v-spacer>
+                            <v-btn color="primary" class="custom_button mr-3" small @click="dialog = !dialog">
+                                <v-icon left>mdi-plus</v-icon> Add Information
+                            </v-btn>
+                            <v-btn color="teal" class="custom_button" small @click="save_details">
+                                <v-icon left>mdi-content-save-edit-outline</v-icon> Save Changes
+                            </v-btn>
+                        </v-toolbar>
+                        <v-text-field
+                        v-for="(item, index) in details" :key="index"
+                            dense
+                            append-icon="mdi-delete"
+                            color="teal"
+                            @click:append='remove_info(index , item)'
+                            :label="item.fields"
+                            outlined
+                            v-model="item.value"
+                        ></v-text-field>
+                    </v-flex>
+                    <v-flex offset-sm1 xs12 sm6>
+                        asdas
+                    </v-flex>
+                </v-layout>
+            </v-container>
+              <v-dialog v-model="dialog" max-width="350">
+            <v-card>
+                <v-card-title class="headline">Add Information</v-card-title>
+                <v-card-text>
+                    <v-text-field
+                        dense
+                        color="teal"
+                        label="Fields"
+                        v-model="field"
+                        append-icon="mdi-information-outline"
+                        outlined
+                    ></v-text-field>
+                    <v-text-field
+                        dense
+                        append-icon="mdi-card-text-outline"
+                        color="teal"
+                        label="Value"
+                        v-model="value"
+                        outlined
+                    ></v-text-field>
+                </v-card-text>
+
+                <v-card-actions>
+                <v-spacer></v-spacer>
+
+                <v-btn
+                    color="green darken-1"
+                    text
+                    :disabled="!field"
+                    @click="add_info"
+                >
+                    Add
+                </v-btn>
+
+                <v-btn
+                    color="green darken-1"
+                    text
+                    @click="dialog = false"
+                >
+                    Cancel
+                </v-btn>
+                </v-card-actions>
+            </v-card>
+            </v-dialog>
           </div>
       </v-tab-item>
       <v-tab-item>
@@ -24,10 +94,11 @@
             <v-toolbar flat >
                 <v-toolbar-title class="font-weight-bold">Apps Default Images</v-toolbar-title>
                 <v-spacer></v-spacer>
-                <v-btn color="teal" class="custom_button" @click="submit"  >
+                <v-btn color="teal" class="custom_button" small @click="submit"  >
                     <v-icon class="pr-2">mdi-content-save-edit-outline</v-icon> Save Changes
                 </v-btn>
             </v-toolbar>
+            <v-divider></v-divider>
             <v-container>
                 <v-layout row wrap>
                     <v-flex xs12 sm3 v-for="(item, index) in generals" :key="index">
@@ -81,12 +152,15 @@ export default {
     },
     data: () => ({
         fab:'',
+        field:'',
+        value:'',
+        dialog:false,
         data_loaded : true ,
-    selectedFile: null,
-    isSelecting: false,
-    generals:[],
-    names: ['Meeting', 'Holiday', 'PTO', 'Travel', 'Event', 'Birthday', 'Conference', 'Party', 'test'],
-  }),
+        selectedFile: null,
+        isSelecting: false,
+        generals:[],
+        details:[]
+    }),
   computed: {
     buttonText() {
       return this.selectedFile ? this.selectedFile.name : this.defaultButtonText
@@ -94,8 +168,44 @@ export default {
   },
   created() {
       this.get_data()
+      this.get_details()
   },
-  methods: {
+    methods: {
+        remove_info(index , item){
+             this.$root.$confirm('Are you sure you want to Delete ?').then((result) => {
+                if(result) {
+                    if(item.id){
+                        axios.delete('/details/'+item.id, {})
+                        .then((response) =>  {
+                        console.log(response.data)
+                        this.$store.commit('setSnack', 'Information Deleted !')
+                    });
+                        this.details.splice(index,1)
+                        return
+                    }
+                    this.details.splice(index,1)
+                    this.$store.commit('setSnack', 'Information Deleted !')
+                }
+             });
+            
+        },
+        add_info(){
+            this.details.push({ 'fields' : this.field , 'value' :this.value , 'id':''})
+            this.dialog = !this.dialog
+            this.field = ''
+            this.value = ''
+        },
+        save_details(){
+            this.$root.$confirm('Are you sure you want to save ?').then((result) => {
+                if(result) {
+                    axios.post('/details', this.details )
+                    .then((response) =>  {
+                    this.$store.commit('setSnack', 'Information Saved !')
+                    this.details =response.data ;
+                    })
+                }
+            })
+        },
         submit(){
            this.$root.$confirm('Are you sure you want to save ?').then((result) => {
                 if(result) {
@@ -130,7 +240,14 @@ export default {
                 });
                 this.data_loaded = true ;
             });
-        console.log(this.companies)
+        },
+        get_details() {
+            this.data_loaded = false ;
+            axios.get('/details', {})
+            .then(response => {
+                console.log(response.data);
+                this.details = response.data;
+            });
         },
     onButtonClick(is_selected , uploader) {
       is_selected = true

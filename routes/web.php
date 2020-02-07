@@ -25,6 +25,7 @@ Route::middleware('auth:web')->group(function () {
         Route::resource('visitors', 'VisitorController');
         Route::resource('companies', 'CompanyController');
         Route::resource('generals', 'GeneralController');
+        Route::resource('details', 'DetailController');
         Route::get('logout', 'VisitorController@logout');
 
         Route::get('/{path}', 'PagesController@index')->where( 'path', "([A-z\d\-/_.]+)?" );
