@@ -99,10 +99,19 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr v-for="item in upcoming_event" :key="item.name" @click="to_event(item.id)">
-                                            <td>{{ item.name }}</td>
-                                            <td>{{ fulldate(item.fromdate) }}</td>
-                                            <td>{{ item.todate ? fulldate(item.todate): 'not set' }}</td>
+                                            <template v-if="upcoming_event.length">
+                                                <tr v-for="item in upcoming_event" :key="item.name" @click="to_event(item.id)">
+                                                    <td>{{ item.name }}</td>
+                                                    <td>{{ fulldate(item.fromdate) }}</td>
+                                                    <td>{{ item.todate ? fulldate(item.todate): 'not set' }}</td>
+                                                </tr>
+                                            </template>
+                                            <tr v-else>
+                                                <td colspan="3">
+                                                    <v-alert type="info" outlined dense class="mx-3  my-2" >
+                                                        No data saved.
+                                                    </v-alert>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </template>
@@ -122,10 +131,19 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr v-for="item in past_event" :key="item.name" @click="to_event(item.id)">
-                                            <td>{{ item.name }}</td>
-                                            <td>{{ fulldate(item.fromdate) }}</td>
-                                            <td>{{ item.todate ? fulldate(item.todate): 'not set' }}</td>
+                                            <template v-if="upcoming_event.length">
+                                                <tr v-for="item in past_event" :key="item.name" @click="to_event(item.id)">
+                                                    <td>{{ item.name }}</td>
+                                                    <td>{{ fulldate(item.fromdate) }}</td>
+                                                    <td>{{ item.todate ? fulldate(item.todate): 'not set' }}</td>
+                                                </tr>
+                                            </template>
+                                            <tr v-else>
+                                                <td colspan="3">
+                                                    <v-alert type="info" outlined dense class="mx-3  my-2" >
+                                                        No data saved.
+                                                    </v-alert>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </template>

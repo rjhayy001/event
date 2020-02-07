@@ -54,25 +54,25 @@
                         <v-card class="elevation-2 mx-4" :disabled="!private_access.required">
                             <p class="font-weight-bold small px-4 pt-4" >Parameter Required</p>
                             <v-divider></v-divider>
-                           <v-card-text>
-                                <v-simple-table>
-                                    <template v-slot:default>
-                                    <thead>
-                                        <tr>
-                                        <th class="text-left">Fields</th>
-                                        <th class="text-left">Required</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr v-for="(item,index) in rules" :key="index">
-                                            <td>{{ item.fields }}</td>
-                                            <td v-if="item.fields != 'Username' && item.fields != 'Password'"> <v-switch v-model="item.required"  @change="required_change(item)" color="teal"></v-switch></td>
-                                            <td v-else>strictly required</td>
-                                        </tr>
-                                    </tbody>
-                                    </template>
-                                </v-simple-table>
-                           </v-card-text>
+                            <v-card-text>
+                                    <v-simple-table>
+                                        <template v-slot:default>
+                                        <thead>
+                                            <tr>
+                                            <th class="text-left">Fields</th>
+                                            <th class="text-left">Required</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="(item,index) in rules" :key="index">
+                                                <td>{{ item.fields }}</td>
+                                                <td v-if="item.fields != 'Username' && item.fields != 'Password'"> <v-switch v-model="item.required"  @change="required_change(item)" color="teal"></v-switch></td>
+                                                <td v-else>strictly required</td>
+                                            </tr>
+                                        </tbody>
+                                        </template>
+                                    </v-simple-table>
+                            </v-card-text>
                         </v-card>
                     </v-flex>
                 </v-layout>
