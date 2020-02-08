@@ -12,6 +12,7 @@ import router from './router';
 import {LMap, LTileLayer, LMarker,LImageOverlay,LPopup} from 'vue2-leaflet';
 import { Icon } from 'leaflet';
 import { CRS } from "leaflet";
+import VDragged from 'v-dragged'
 import VueDraggableResizable from 'vue-draggable-resizable'
 delete Icon.Default.prototype._getIconUrl;
 
@@ -22,6 +23,7 @@ Icon.Default.mergeOptions({
 });
 
 Vue.use(Vuex);
+Vue.use(VDragged) 
 
 const store = new Vuex.Store(
     {

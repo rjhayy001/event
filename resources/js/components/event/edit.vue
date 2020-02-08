@@ -1,11 +1,11 @@
 <template>
     <div>
         <v-toolbar flat color="white" class="mb-3">
-            <v-toolbar-title class="text-uppercase title">Edit event</v-toolbar-title>
+            <v-toolbar-title class="text-uppercase title">add event</v-toolbar-title>
             <v-spacer></v-spacer>
             <v-btn color="teal" tile @click="submit" class="mr-2 custom_button">
                 <v-icon left>mdi-content-save</v-icon>
-            Edit Event
+            Create Event
             </v-btn>
             <v-btn color="primary" tile @click="$router.go(-1)">
                 <v-icon left>mdi-arrow-left-circle</v-icon>
@@ -38,7 +38,7 @@
                                                         <v-flex xs12 sm6>
                                                             <v-text-field 
                                                                 type="text"
-                                                                v-model="event2.name"
+                                                                v-model="event.name"
                                                                 v-validate="'required|min:3'" 
                                                                 :error-messages="errors.collect('Event Name')" 
                                                                 data-vv-name="Event Name" 
@@ -47,7 +47,7 @@
                                                         </v-flex>
                                                         <v-flex xs12 sm6>
                                                             <v-text-field 
-                                                                v-model="event2.place"
+                                                                v-model="event.place"
                                                                 type="text"
                                                                 label="Event Place" required>
                                                             </v-text-field>
@@ -78,7 +78,7 @@
                                                         </v-flex>
                                                         <v-flex xs12 sm12>
                                                             <div class="subheading pa-0 mb-2 font-weight-bold">Event Description</div>
-                                                            <text-editor v-model="event2.description"></text-editor>
+                                                            <text-editor v-model="event.description"></text-editor>
                                                         </v-flex>
                                                     </v-layout>
                                             </v-flex>
@@ -88,7 +88,7 @@
                                             <v-flex xs12  >
                                                 <v-select
                                                     :items="categories"
-                                                    v-model="event2.categories"
+                                                    v-model="event.prices"
                                                     item-text="name"
                                                     item-value="id"
                                                     outlined
@@ -99,15 +99,15 @@
                                                     label="Age Categories"
                                                 ></v-select>
                                                     <v-container>
-                                                        <v-layout row wrap v-if="event2.categories.length">
-                                                            <v-flex sm12 md3  v-for="(item, index) in event2.categories" :key="index" class="pr-4" >
+                                                        <v-layout row wrap v-if="event.prices.length">
+                                                            <v-flex sm12 md3  v-for="(item, index) in event.prices" :key="index" class="pr-4" >
                                                                 <transition name="fade">
                                                                     <v-text-field
                                                                         dense
                                                                         type="number"
                                                                         append-icon="mdi-currency-eur"
-                                                                        v-model="item.pivot.price"
-                                                                        :label="item.person"
+                                                                        v-model="item.price"
+                                                                        :label="item.name"
                                                                         outlined left
                                                                     ></v-text-field>
                                                                 </transition>
@@ -451,17 +451,17 @@
                                         <v-flex xs12 >
                                             <v-dialog v-model="dialog2" width="80%" min-height="80%" persistent >
                                                 <v-card > 
-                                                    <v-container grid-list-md >
+                                                    <v-container grid-list-md ref="fullmapss"  >
                                                         <v-layout row wrap>
                                                             <v-flex xs10 >
-                                                                <div ref="fullmapss"  style="height: 80vh; width: 100% ; " >
+                                                                <div  style="height: 80vh; width: 100% ; " >
                                                                     <v-img  color="white" height="100%" width="100%"  :src="event.map " contain ></v-img>
                                                                 </div>
-                                                                <div ref="test_image"></div>
+                                                                <canvas id="imageCanvas" ref="imageCanvas"></canvas>
                                                             </v-flex>
                                                             <template>
                                                             </template>
-                                                            <v-flex xs2 data-html2canvas-ignore="true" >
+                                                            <v-flex xs2 >
                                                                 <v-btn @click="close_map()" icon right class="float-right mb-5" color="teal">
                                                                     <v-icon>mdi-close-circle</v-icon>
                                                                 </v-btn>
@@ -487,19 +487,14 @@
                                                                         <template v-if="event.map">
                                                                             <v-flex xs6 sm3 v-for="(item, index) in event.companies"
                                                                                 :key="index" >
-                                                                                <div style="position:relative">
-                                                                                    <vue-draggable-resizable  :x="10" :y="20" :z="999" :w="100" :h="100"  @dragstop="onDragstop">
-                                                                                        <v-avatar color="white">
-                                                                                            <v-img
-                                                                                                contain
-                                                                                                aspect-ratio="1.4"
-                                                                                                :src="item.logo"
-                                                                                                :alt="item.name"
-                                                                                            >
-                                                                                            </v-img>
+                                                                                    <div v-draggable="draggableValue" :data="item" @click="test(item)">
+                                                                                        <v-avatar>
+                                                                                        <img
+                                                                                            :src="item.logo"
+                                                                                            :alt="item.name"
+                                                                                        >
                                                                                         </v-avatar>
-                                                                                    </vue-draggable-resizable>
-                                                                                </div>
+                                                                                    </div>
                                                                             </v-flex>
                                                                         </template>
                                                                         <template v-else>
@@ -585,12 +580,20 @@
     </div>
 </template>
 <script>
- import UploadButton from 'vuetify-upload-button';
+import UploadButton from 'vuetify-upload-button';
+import { Draggable } from 'draggable-vue-directive' ;
 export default {
     components: {
       'upload-btn': UploadButton,
     },
-    data: (v,) => ({
+    directives: {
+        Draggable,
+    },
+   data() {
+        return {
+        draggableValue: {
+            onDragEnd: this.onPosChanged
+        },
         width: 0,
         height: 0,
         x: 0,
@@ -604,7 +607,6 @@ export default {
         highlight:false ,
         img_preview:'',
         min_date : new Date().toJSON() ,
-        event2 :[],
         event : {
             image:'',
             name:'',
@@ -633,8 +635,10 @@ export default {
         },
         categories:[],
         companies:[],
-        select_categories: ''
-    }),
+        select_categories: '',
+        active: [],
+    }
+   },
     computed: {
         dateRangeText () {
             return this.event.dates.join(' ~ ')
@@ -642,18 +646,22 @@ export default {
         
     },
     methods : {
-      get_events_info() {
-            axios.get('/events/'+this.$route.params.id+'/edit', {})
-            .then(response => {
-                this.event2 = response.data.event ;
-            });
+        test(item){
+            this.active = item ;
+            console.log(this.active)
+        },
+         onPosChanged: function(positionDiff, absolutePosition, event) {
+             setTimeout(() => {
+                this.active.x =  absolutePosition.left 
+                this.active.y =  absolutePosition.top 
+              , 1000});
         },
         close_map(){
             this.dialog2 = !this.dialog2 ;
-            
+            let self = this;
             html2canvas(this.$refs.fullmapss).then(function (canvas) {
-                const img = canvas.toDataURL("image/jpeg");
-                console.log(img)
+                var img = canvas.toDataURL("image/jpeg");
+                self.event.fullmap = img ;
             });
         },
         onDragstop: function (x, y) {
@@ -671,7 +679,7 @@ export default {
                             .then((response) =>  {
                                 console.log(response.data)
                                 this.$store.commit('setSnack', 'Event Saved !')
-                                this.$router.push('/event');
+                                // this.$router.push('/event');
 
                             })
                         }
@@ -821,7 +829,6 @@ export default {
     },
 
     created() {
-        this.get_events_info();
         this.get_categories();
         this.get_companies();
     },

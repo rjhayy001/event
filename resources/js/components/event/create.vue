@@ -451,17 +451,17 @@
                                         <v-flex xs12 >
                                             <v-dialog v-model="dialog2" width="80%" min-height="80%" persistent >
                                                 <v-card > 
-                                                    <v-container grid-list-md >
+                                                    <v-container grid-list-md ref="fullmapss"  >
                                                         <v-layout row wrap>
                                                             <v-flex xs10 >
-                                                                <div ref="fullmapss"  style="height: 80vh; width: 100% ; " >
+                                                                <div  style="height: 80vh; width: 100% ; " >
                                                                     <v-img  color="white" height="100%" width="100%"  :src="event.map " contain ></v-img>
                                                                 </div>
-                                                                <div ref="test_image"></div>
+                                                                <canvas id="imageCanvas" ref="imageCanvas"></canvas>
                                                             </v-flex>
                                                             <template>
                                                             </template>
-                                                            <v-flex xs2 data-html2canvas-ignore="true" >
+                                                            <v-flex xs2 >
                                                                 <v-btn @click="close_map()" icon right class="float-right mb-5" color="teal">
                                                                     <v-icon>mdi-close-circle</v-icon>
                                                                 </v-btn>
@@ -487,19 +487,14 @@
                                                                         <template v-if="event.map">
                                                                             <v-flex xs6 sm3 v-for="(item, index) in event.companies"
                                                                                 :key="index" >
-                                                                                <div style="position:relative">
-                                                                                    <vue-draggable-resizable  :x="10" :y="20" :z="999" :w="100" :h="100"  @dragstop="onDragstop">
-                                                                                        <v-avatar color="white">
-                                                                                            <v-img
-                                                                                                contain
-                                                                                                aspect-ratio="1.4"
-                                                                                                :src="item.logo"
-                                                                                                :alt="item.name"
-                                                                                            >
-                                                                                            </v-img>
+                                                                                    <div v-draggable="draggableValue" :data="item" @click="test(item)">
+                                                                                        <v-avatar>
+                                                                                        <img
+                                                                                            :src="item.logo"
+                                                                                            :alt="item.name"
+                                                                                        >
                                                                                         </v-avatar>
-                                                                                    </vue-draggable-resizable>
-                                                                                </div>
+                                                                                    </div>
                                                                             </v-flex>
                                                                         </template>
                                                                         <template v-else>
@@ -585,12 +580,20 @@
     </div>
 </template>
 <script>
- import UploadButton from 'vuetify-upload-button';
+import UploadButton from 'vuetify-upload-button';
+import { Draggable } from 'draggable-vue-directive' ;
 export default {
     components: {
       'upload-btn': UploadButton,
     },
-    data: (v,) => ({
+    directives: {
+        Draggable,
+    },
+   data() {
+        return {
+        draggableValue: {
+            onDragEnd: this.onPosChanged
+        },
         width: 0,
         height: 0,
         x: 0,
@@ -632,8 +635,10 @@ export default {
         },
         categories:[],
         companies:[],
-        select_categories: ''
-    }),
+        select_categories: '',
+        active: [],
+    }
+   },
     computed: {
         dateRangeText () {
             return this.event.dates.join(' ~ ')
@@ -641,12 +646,22 @@ export default {
         
     },
     methods : {
+        test(item){
+            this.active = item ;
+            console.log(this.active)
+        },
+         onPosChanged: function(positionDiff, absolutePosition, event) {
+             setTimeout(() => {
+                this.active.x =  absolutePosition.left 
+                this.active.y =  absolutePosition.top 
+              , 1000});
+        },
         close_map(){
             this.dialog2 = !this.dialog2 ;
-            
+            let self = this;
             html2canvas(this.$refs.fullmapss).then(function (canvas) {
-                const img = canvas.toDataURL("image/jpeg");
-                console.log(img)
+                var img = canvas.toDataURL("image/jpeg");
+                self.event.fullmap = img ;
             });
         },
         onDragstop: function (x, y) {
@@ -656,7 +671,6 @@ export default {
             this.dialog2 = !this.dialog2 ;
         },
         submit(){
-           
             this.$validator.validateAll().then(result => {
                 if (result){
                     this.$root.$confirm('Are you sure you want to save ?').then((result) => {
@@ -665,7 +679,7 @@ export default {
                             .then((response) =>  {
                                 console.log(response.data)
                                 this.$store.commit('setSnack', 'Event Saved !')
-                                this.$router.push('/event');
+                                // this.$router.push('/event');
 
                             })
                         }

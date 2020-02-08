@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Event ;
 use App\Program;
 use App\Presentation;
+use Image ;
 
 class EventController extends Controller
 {
@@ -53,6 +54,8 @@ class EventController extends Controller
     public function store(Request $request)
     {
         //
+        
+       
         $valid =  [
             'name' => 'required|unique:events,name|max:255|min:3',
         ];
@@ -77,6 +80,15 @@ class EventController extends Controller
         $event->image =  upload_image($request->image , 'event_images/' , 'image') ;
         $event->logo =  upload_image($request->logo , 'event_images/' , 'logo') ;
         $event->map =  upload_image($request->map , 'event_images/' , 'map') ;
+        if($request['fullmap']) {
+            $image = $request['fullmap'];  // your base64 encoded
+            list($type, $image) = explode(';', $image);
+            list(, $image)      = explode(',', $image);
+            $data = base64_decode($image);
+            $imageName = date("YmdHis"). '_fullmap' . '.jpeg';
+            \Image::make($image)->crop(1230, 900, 25, 25)->save(public_path('/event_images/') . $imageName);
+            $event->fullmap = $imageName ;
+        }
         $event->description = $request->description ;
         $event->save() ;
         if($event->id) {
