@@ -99,4 +99,7 @@ class Event extends Model
     public function getMapAttribute($value){
         return $value ? asset('event_images/'. $value) :'' ;
     }
+    public function getFullmapAttribute($value){
+        return $value ? asset('event_images/'. $value) :'' ;
+    }
 }

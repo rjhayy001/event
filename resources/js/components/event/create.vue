@@ -679,7 +679,7 @@ export default {
                             .then((response) =>  {
                                 console.log(response.data)
                                 this.$store.commit('setSnack', 'Event Saved !')
-                                // this.$router.push('/event');
+                                this.$router.push('/event');
 
                             })
                         }

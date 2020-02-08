@@ -298,7 +298,7 @@
                                             <v-card>
                                                 <v-layout row wrap>
                                                     <v-flex xs12>
-                                                        <v-img cover :src="event.map " aspect-ratio="1.2" >
+                                                        <v-img cover :src="event.fullmap ? event.fullmap : event.map" aspect-ratio="1.2" >
                                                         </v-img>
                                                     </v-flex>
                                                 </v-layout>
