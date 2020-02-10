@@ -35,11 +35,11 @@
                                             </tr>
                                             <tr>
                                                 <td class="font-weight-bold text-capitalize">Start Date</td>
-                                                <td class="font-weight-bold">{{event.fromdate ? fulldate(event.fromdate) : 'not set'}}</td>
+                                                <td class="font-weight-bold">{{event.from ? fulldate(event.from) : 'not set'}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="font-weight-bold text-capitalize">End Date</td>
-                                                <td class="font-weight-bold">{{event.todate ? fulldate(event.todate) : 'not set'}}</td>
+                                                <td class="font-weight-bold">{{event.to ? fulldate(event.to) : 'not set'}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="font-weight-bold text-capitalize">Place</td>
@@ -47,7 +47,7 @@
                                             </tr>
                                             <tr>
                                                 <td class="font-weight-bold text-capitalize">Description</td>
-                                                <td class="font-weight-bold">{{event.description | striphtml}}</td>
+                                                <td class="font-weight-bold">{{event.description  | striphtml}}</td>
                                             </tr>
                                         </tbody>
                                 </v-simple-table>
@@ -56,11 +56,11 @@
                         </v-card-text>
                         <v-card-title>Price Information</v-card-title>
                        
-                        <v-simple-table v-if="event.categories.length ">
+                        <v-simple-table v-if="event.prices.length ">
                             <tbody >
-                                <tr v-for="(item,index) in event.categories" :key="index" >
-                                    <td class="font-weight-bold text-capitalize"> {{item.person}}</td>
-                                    <td class="font-weight-bold">{{item.pivot.price}}</td>
+                                <tr v-for="(item,index) in event.prices" :key="index" >
+                                    <td class="font-weight-bold text-capitalize"> {{item.name}}</td>
+                                    <td class="font-weight-bold">{{item.price}}</td>
                                 </tr>
                             </tbody>
                         </v-simple-table>
@@ -73,7 +73,6 @@
 
                     </v-card>
                 </v-flex>
-                    
                 <v-flex xs12 sm8 >
                     <v-container>
                         <v-layout row wrap >
@@ -126,8 +125,8 @@
                                             <template v-if="event.companies.length">
                                                 <tr v-for="(item,index) in event.companies" :key="index" >
                                                 <td>{{ item.name }}</td>
-                                                <td>{{ item.pivot.paidprice ? item.pivot.paidprice : 'not set'  }}</td>
-                                                <td >{{item.pivot.is_restaurant == 0 ? 'No' :'Yes'}}</td>
+                                                <td>{{ item.paidprice ? item.paidprice : 'not set'  }}</td>
+                                                <td >{{item.is_restaurant == 0 ? 'No' :'Yes'}}</td>
                                                 </tr>
                                             </template>
                                             <tr v-else>
@@ -307,7 +306,7 @@
                                     </v-layout>
                                 </v-container>
                             </v-card>
-                        </v-dialog>
+                        </v-dialog> 
                     </v-container>
                 </v-flex>
             </v-layout>
@@ -325,7 +324,7 @@ export default {
         show: false ,
         data_loaded: true ,
         event: {
-            categories:[],
+            prices:[],
             companies:[],
             programs:[],
         },
@@ -343,9 +342,9 @@ export default {
             this.data_loaded = false ;
             axios.get('/events/'+this.$route.params.id+'/edit', {})
             .then(response => {
-                console.log(response.data)
+                console.log(response.data.finalevent ,'event')
                 this.data_loaded = true ;
-                this.event = response.data.event ;
+                this.event = response.data.finalevent ;
                 this.program_highlight =response.data.program_highlight ;
                 this.company_highlight = response.data.company_highlight;
             });

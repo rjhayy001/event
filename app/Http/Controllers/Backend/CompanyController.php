@@ -150,18 +150,18 @@ class CompanyController extends Controller
     
             try {
                 if($request->logo){
-                $image = $request->logo;  // your base64 encoded
-                list($type, $image) = explode(';', $image);
-                list(, $image)      = explode(',', $image);
-                $data = base64_decode($image);
-                $imageName = date("YmdHis"). $request->name . '.jpeg';
-                file_put_contents(public_path() . '/' . 'company_logo/' . $imageName, $data);
-                $company->logo = $imageName ;
-            }
-            else{
-                return 'wara makasulod' ;
-            }
-            } catch (\Throwable $th) {
+                    $image = $request->logo;  // your base64 encoded
+                    list($type, $image) = explode(';', $image);
+                    list(, $image)      = explode(',', $image);
+                    $data = base64_decode($image);
+                    $imageName = date("YmdHis"). $request->name . '.jpeg';
+                    file_put_contents(public_path() . '/' . 'company_logo/' . $imageName, $data);
+                    $company->logo = $imageName ;
+                }
+                else{
+                    return 'wara makasulod' ;
+                }
+            }catch (\Throwable $th) {
                 // return $th ;
             }
             
@@ -172,10 +172,6 @@ class CompanyController extends Controller
             }
             return $company ;
             // return json_encode($this->is_base64($request->logo)) ;
-    }
-    function is_base64($s)
-    {
-          return (bool) preg_match('/^[a-zA-Z0-9\/\r\n+]*={0,2}$/', $s);
     }
 
     /**

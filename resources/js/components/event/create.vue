@@ -367,33 +367,38 @@
                                                 <v-icon left>mdi-map-check-outline</v-icon> manage map
                                             </v-btn>
                                             <p class="subheading font-weight-bold">Map Overview</p>
-                                            <v-img class="elevation-1" :src="event.map ? event.map : 'http://www.aclcbutuan.edu.ph/plugins/images/no-image.jpg'" contain aspect-ratio="1.5"></v-img>
+                                            <v-img class="elevation-1" :src="event.map ? event.map : 'http://www.aclcbutuan.edu.ph/plugins/images/no-image.jpg'" contain aspect-ratio="1.6"></v-img>
                                         </v-flex>
                                         <v-flex xs5 class="">
                                             <p class="subheading font-weight-bold">Companies</p>
-                                            <v-select
-                                                :items="companies"
+                                            <v-autocomplete
                                                 v-model="event.companies"
+                                                :items="companies"
+                                                placeholder="type or select companies"
+                                                deletable-chips
                                                 item-text="name"
                                                 item-value="id"
-                                                outlined
-                                                multiple
-                                                dense
-                                                :menu-props="{ maxHeight: '400' }"
                                                 return-object
+                                                chips
+                                                small-chips
                                                 label="Companies"
-                                            ></v-select>
-                                            <div v-if="event.companies.length"  d-flex>
-                                                <v-expansion-panels >
-                                                    <v-expansion-panel
-                                                    v-for="(item,index) in event.companies"
-                                                    :key="index"
-                                                    >
-                                                    <v-expansion-panel-header class=" py-4 font-weight-bold" >{{item.name ? item.name : 'Click to add details'}}
-                                                        <div>
-                                                            <v-btn icon color="error"  @click.native.stop="remove_company(index)" class="float-right" right="">
-                                                                    <v-icon>mdi-delete</v-icon>
-                                                                </v-btn>
+                                                multiple
+                                            ></v-autocomplete>
+                                                <div v-if="event.companies.length" class="elevation-1" style=" padding: 10px;  min-height: 500px;overflow-y: auto" >
+                                                   <v-text-field
+                                                        v-model="search"
+                                                       placeholder="Search Company.."
+                                                   ></v-text-field>
+                                                    <template v-for="(item,index) in filteredList">
+                                                        <v-card :key="index" class="mt-1" >
+                                                            <v-card-actions @click="item.model = !item.model">
+                                                            <v-btn
+                                                                text
+                                                                color="teal"
+                                                            >
+                                                                {{item.name}}
+                                                            </v-btn>
+                                                            <v-spacer></v-spacer>
                                                             <v-tooltip bottom>
                                                                 <template v-slot:activator="{ on }">
                                                                     <v-btn icon dark v-on="on" :color="item.highlight ? 'success' : 'warning'" @click.native.stop="item.highlight = !item.highlight" class="float-right" right="">
@@ -410,43 +415,51 @@
                                                                 </template>
                                                                 <span>{{item.is_restaurant ? 'removed as a restaurant' : 'add as a restaurant'}}</span>
                                                             </v-tooltip>
-                                                            
-                                                        </div>
-                                                    </v-expansion-panel-header>
-                                                    <v-divider></v-divider>
-                                                    <v-expansion-panel-content>
-                                                        <v-container grid-list-md>
-                                                            <v-layout row wrap>
-                                                                <v-flex xs12>
-                                                                    <v-text-field
-                                                                    outlined
-                                                                    prepend-icon="mdi-coin-outline"
-                                                                    dense
-                                                                        type="number"
-                                                                        v-model="item.paidprice"
-                                                                        label="Price to Paid"
-                                                                    ></v-text-field>
-                                                                </v-flex>
-                                                                <v-flex xs12 sm6>
-                                                                </v-flex>
-                                                                <v-flex xs12>
-                                                                    <v-textarea
-                                                                        v-model="item.description"
-                                                                        outlined
-                                                                        prepend-icon="mdi-card-text-outline"
-                                                                        dense
-                                                                        label="Details"
-                                                                    ></v-textarea>
-                                                                </v-flex>
-                                                            </v-layout>
-                                                        </v-container>
-                                                    </v-expansion-panel-content>
-                                                    </v-expansion-panel>
-                                                </v-expansion-panels>
-                                            </div>
-                                            <v-alert  v-else dense outlined type="info" >
-                                                No Companies added yet .
-                                            </v-alert>
+                                                            <v-btn icon color="error"  @click.native.stop="remove_company(index)" class="float-right" right="">
+                                                                <v-icon>mdi-delete</v-icon>
+                                                            </v-btn>
+                                                            </v-card-actions>
+                                                            <v-dialog v-model="item.model" max-width="600" >
+                                                                <v-card>
+                                                                  <v-card-title class="headline">Add Information for {{item.name}}</v-card-title>
+                                                                    <v-card-text>
+                                                                        <v-text-field
+                                                                            dense
+                                                                            type="number"
+                                                                            color="teal"
+                                                                            label="PaidPrice"
+                                                                            v-model="item.paidprice"
+                                                                            append-icon="mdi-currency-eur"
+                                                                            outlined
+                                                                        ></v-text-field>
+                                                                        <v-textarea
+                                                                            dense
+                                                                            append-icon="mdi-card-text-outline"
+                                                                            color="teal"
+                                                                            label="Description"
+                                                                            v-model="item.description"
+                                                                            outlined
+                                                                        ></v-textarea>
+                                                                    </v-card-text>
+
+                                                                    <v-card-actions>
+                                                                    <v-spacer></v-spacer>
+                                                                    <v-btn
+                                                                        color="green darken-1"
+                                                                        text
+                                                                        @click="item.model = false"
+                                                                    >
+                                                                        Save
+                                                                    </v-btn>
+                                                                    </v-card-actions>
+                                                                </v-card>
+                                                                </v-dialog>
+                                                        </v-card>
+                                                    </template>
+                                                </div>
+                                                <v-alert  v-else dense outlined type="info" >
+                                                    No Companies added yet .
+                                                </v-alert>
                                         </v-flex>
                                         <v-flex xs12 >
                                             <v-dialog v-model="dialog2" width="80%" min-height="80%" persistent >
@@ -594,6 +607,7 @@ export default {
         draggableValue: {
             onDragEnd: this.onPosChanged
         },
+        search:'',
         width: 0,
         height: 0,
         x: 0,
@@ -643,9 +657,17 @@ export default {
         dateRangeText () {
             return this.event.dates.join(' ~ ')
         },
+        filteredList() {
+            return this.event.companies.filter(companies => {
+            return companies.name.toLowerCase().includes(this.search.toLowerCase())
+      })
+    }
         
     },
     methods : {
+        add_details(item){
+            console.log(item)
+        },
         test(item){
             this.active = item ;
             console.log(this.active)
@@ -659,10 +681,13 @@ export default {
         close_map(){
             this.dialog2 = !this.dialog2 ;
             let self = this;
-            html2canvas(this.$refs.fullmapss).then(function (canvas) {
-                var img = canvas.toDataURL("image/jpeg");
-                self.event.fullmap = img ;
-            });
+            if(this.event.map){
+                html2canvas(this.$refs.fullmapss).then(function (canvas) {
+                    var img = canvas.toDataURL("image/jpeg");
+                    self.event.fullmap = img ;
+                    console.log(img)
+                });
+            }
         },
         onDragstop: function (x, y) {
             console.log(x,y)

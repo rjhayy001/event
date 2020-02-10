@@ -55,7 +55,7 @@ class EventController extends Controller
     {
         //
         
-       
+    //    return $request ;
         $valid =  [
             'name' => 'required|unique:events,name|max:255|min:3',
         ];
@@ -188,9 +188,64 @@ class EventController extends Controller
     {
         //
         $event = Event::with('companies','categories','programs','presentation')->findorfail($id);
+        $finalevent = [
+            'id' => $event->id,
+            'name' => $event->name ,
+            'place' => $event->place ,
+            'dates' => [$event->fromdate , $event->todate],
+            'description' =>$event->description,
+            'from' => $event->fromdate,
+            'to' => $event->todate ,
+            'logo' => $event->logo,
+            'image' => $event->image,
+            'presentation_image' => $event->presentation_image,
+            'programme_image' => $event->programme_image,
+            'tarifs_image' => $event->tarifs_image,
+            'plan_image' => $event->plan_image,
+            'restaurant_image' => $event->restaurant_image,
+            'highlights_image' => $event->highlights_image,
+            'map' => $event->map,
+            'fullmap' => $event->fullmap,
+            'prices' => collect($event->categories)->map(function ($category) {
+                return [
+                    'id' => $category->id,
+                    'name' => $category->person ,
+                    'price' => $category->pivot->price
+                ];
+            }),
+            'programs' => collect($event->programs)->map(function ($program) {
+                return [
+                    'id' => $program->id,
+                    'name' => $program->name ,
+                    'details' => $program->details,
+                    'time' => $program->time,
+                    'highlight' => $program->highlight == 1 ? true : false,
+                    'model' => false
+                ];
+            }),
+            'companies' => collect($event->companies)->map(function ($comp) {
+                return [
+                    'id' => $comp->id,
+                    'name' => $comp->name ,
+                    'paidprice' => $comp->pivot->paidprice,
+                    'x' => $comp->pivot->x,
+                    'y' => $comp->pivot->y,
+                    'description' => $comp->pivot->description,
+                    'highlight' => $comp->pivot->highlight,
+                    'is_restaurant' => $comp->pivot->is_restaurant,
+                    'model' => false,
+                    'logo' => $comp->logo,
+                ];
+            }),
+            'presentation' => [
+                'id' => $event->presentation->id,
+                'image' => $event->presentation->image,
+                'details' => $event->presentation->details,
+            ],
+        ];
         $program_highlight  = $event->programs()->where('highlight' , '1')->get();
         $company_highlight  = $event->companies()->where('highlight' , '1')->get();
-        return compact('event','program_highlight','company_highlight') ;
+        return compact('finalevent','program_highlight','company_highlight') ;
     }
 
     /**
@@ -202,7 +257,74 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // return $request ;
+        $valid =  [
+            'name' => 'required|max:255|min:3|unique:events,name,'.$id,
+        ];
+        $request->validate($valid);
+        $from = null; 
+        $to = null;
+        if($request->dates) {
+            $from = $request->dates[0] < $request->dates[1] ? $request->dates[0] : $request->dates[1];
+            $to = $request->dates[0] < $request->dates[1] ? $request->dates[1] : $request->dates[0];
+        }
+        $event = Event::findorfail($id);
+        $event->name = $request->name ;
+        $event->place = $request->place ;
+        $event->fromdate = $from ;
+        $event->todate = $to ;
+        $event->description = $request->description ;
+        if($request->presentation_image != $event->presentation_image){
+            $event->presentation_image = upload_image($request->presentation_image , 'event_images/' , 'presentation_image') ;
+        }
+        if($request->highlights_image != $event->highlights_image){
+            $event->highlights_image =  upload_image($request->highlights_image , 'event_images/' , 'highlights_image') ;
+        }
+        if($request->restaurant_image != $event->restaurant_image){
+            $event->restaurant_image =  upload_image($request->restaurant_image , 'event_images/' , 'restaurant_image') ;
+        }
+        if($request->programme_image != $event->programme_image){
+            $event->programme_image =  upload_image($request->programme_image , 'event_images/' , 'programme_image') ;
+        }
+        if($request->tarifs_image != $event->tarifs_image){
+            $event->tarifs_image =  upload_image($request->tarifs_image , 'event_images/' , 'tarifs_image') ;
+        }
+        if($request->plan_image != $event->plan_image){
+            $event->plan_image =  upload_image($request->plan_image , 'event_images/' , 'plan_image') ;
+        }
+        if($request->image != $event->image){
+            $event->image =  upload_image($request->image , 'event_images/' , 'image') ;
+        }
+        if($request->logo != $event->logo){
+            $event->logo =  upload_image($request->logo , 'event_images/' , 'logo') ;
+        }
+        if($request->map != $event->map){
+            $event->map = upload_image($request->map , 'event_images/' , 'map') ;
+        }
+        if($request['fullmap']) {
+            try {
+                $image = $request['fullmap'];  // your base64 encoded
+                list($type, $image) = explode(';', $image);
+                list(, $image)      = explode(',', $image);
+                $data = base64_decode($image);
+                $imageName = date("YmdHis"). '_fullmap' . '.jpeg';
+                \Image::make($image)->crop(1230, 900, 25, 25)->save(public_path('/event_images/') . $imageName);
+                $event->fullmap = $imageName ;
+            } catch (\Throwable $th) {
+                // return $th ;
+            }
+        }
+        $event->save();
+        return $request->map;
+        if($event->id) {
+            $this->format_pricing($request->prices , $event);
+            $this->format_Program($request->programs , $event);
+            $this->format_presentation($request->presentation , $event);
+            $this->format_company($request->companies , $event);
+
+        }
+
+        return $event ;
     }
 
     /**
@@ -218,4 +340,5 @@ class EventController extends Controller
         $event->delete();
         return $this->index();
     }
+  
 }

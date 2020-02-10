@@ -17,10 +17,10 @@ class CreateCompanyEventTable extends Migration
             $table->increments('id');
             $table->integer('paidprice')->nullable();
             $table->string('emplacement')->nullable();
-            $table->integer('is_restaurant')->nullable();
             $table->string('x')->nullable();
             $table->string('y')->nullable();
             $table->string('description')->nullable();
+            $table->integer('is_restaurant')->nullable();
             $table->integer('highlight')->nullable();
             $table->integer('company_id')->unsigned();
             $table->integer('event_id')->unsigned();

@@ -23,6 +23,7 @@ Route::middleware('auth:web')->group(function () {
         Route::resource('categories', 'CategoryController');
         Route::resource('events', 'EventController');
         Route::resource('visitors', 'VisitorController');
+        Route::resource('programs', 'ProgramController');
         Route::resource('companies', 'CompanyController');
         Route::resource('generals', 'GeneralController');
         Route::resource('details', 'DetailController');
