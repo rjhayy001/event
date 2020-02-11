@@ -500,14 +500,16 @@
                                                                         <template v-if="event.map">
                                                                             <v-flex xs6 sm3 v-for="(item, index) in event.companies"
                                                                                 :key="index" >
-                                                                                    <div v-draggable="draggableValue" :data="item" @click="test(item)">
-                                                                                        <v-avatar>
+                                                                                <div style="position:relative;">
+                                                                                    <vue-draggable-resizable  @activated="test(item)" :w="100" :h="100" @dragstop="onDragstop" :x="Number(item.x)" :y="Number(item.y)">
+                                                                                         <v-avatar>
                                                                                         <img
                                                                                             :src="item.logo"
                                                                                             :alt="item.name"
                                                                                         >
                                                                                         </v-avatar>
-                                                                                    </div>
+                                                                                    </vue-draggable-resizable>
+                                                                                </div>
                                                                             </v-flex>
                                                                         </template>
                                                                         <template v-else>
@@ -691,6 +693,10 @@ export default {
         },
         onDragstop: function (x, y) {
             console.log(x,y)
+             setTimeout(() => {
+                this.active.x =  Number(x) 
+                this.active.y =  Number(y)
+              , 1000});
         },
         open_map(){
             this.dialog2 = !this.dialog2 ;

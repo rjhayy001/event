@@ -467,7 +467,7 @@
                                                     <v-container grid-list-md ref="fullmapss"  >
                                                         <v-layout row wrap>
                                                             <v-flex xs10 >
-                                                                <div  style="height: 80vh; width: 100% ; " >
+                                                               <div  style="height: 80vh; width: 100% ; " >
                                                                     <v-img  color="white" height="100%" width="100%"  :src="event2.map " contain ></v-img>
                                                                 </div>
                                                                 <canvas id="imageCanvas" ref="imageCanvas"></canvas>
@@ -500,14 +500,16 @@
                                                                         <template v-if="event2.map">
                                                                             <v-flex xs6 sm3 v-for="(item, index) in event2.companies"
                                                                                 :key="index" >
-                                                                                    <div v-draggable="draggableValue" :data="item" @click="test(item)">
-                                                                                        <v-avatar>
+                                                                                <div style="position:relative;">
+                                                                                    <vue-draggable-resizable  @activated="test(item)" :w="100" :h="100" @dragstop="onDragstop" :x="Number(item.x)" :y="Number(item.y)">
+                                                                                         <v-avatar>
                                                                                         <img
                                                                                             :src="item.logo"
                                                                                             :alt="item.name"
                                                                                         >
                                                                                         </v-avatar>
-                                                                                    </div>
+                                                                                    </vue-draggable-resizable>
+                                                                                </div>
                                                                             </v-flex>
                                                                         </template>
                                                                         <template v-else>
@@ -664,12 +666,6 @@ export default {
             this.active = item ;
             console.log(this.active)
         },
-         onPosChanged: function(positionDiff, absolutePosition, event) {
-             setTimeout(() => {
-                this.active.x =  absolutePosition.left 
-                this.active.y =  absolutePosition.top 
-              , 1000});
-        },
         close_map(){
             this.dialog2 = !this.dialog2 ;
             let self = this;
@@ -683,6 +679,10 @@ export default {
         },
         onDragstop: function (x, y) {
             console.log(x,y)
+             setTimeout(() => {
+                this.active.x =  x
+                this.active.y =  y
+              , 1000});
         },
         open_map(){
             this.dialog2 = !this.dialog2 ;

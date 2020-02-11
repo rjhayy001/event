@@ -315,7 +315,6 @@ class EventController extends Controller
             }
         }
         $event->save();
-        return $request->map;
         if($event->id) {
             $this->format_pricing($request->prices , $event);
             $this->format_Program($request->programs , $event);
