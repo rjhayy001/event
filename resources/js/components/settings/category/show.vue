@@ -1,11 +1,14 @@
 <template>
     <div>
-        <v-toolbar>
-            <v-toolbar-title class="px-4">Age Categories</v-toolbar-title>
-            <v-spacer></v-spacer>
-        </v-toolbar>
+        
         <v-container grid-list-xs>
             <v-layout row wrap>
+                <v-flex xs12>
+                    
+                    <v-toolbar flat >
+        <v-toolbar-title class="font-weight-bold">Age Categories List</v-toolbar-title>
+        </v-toolbar>
+                </v-flex>
                 <v-flex xs12 sm8 >
                     <v-form ref="form">
                         <v-container  grid-list-md>
