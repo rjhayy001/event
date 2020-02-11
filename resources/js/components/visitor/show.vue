@@ -17,13 +17,19 @@
                     ></v-skeleton-loader>
                 </v-flex>
                 <v-flex xs12 class="pa-4" v-else>
+                    <v-layout row wrap justify-end class="mr-3">
+                        <v-flex xs3 >
+                            <v-text-field right class="mb-4" color="teal" v-model="search" append-icon="mdi-magnify" label="Search Visitor ..." single-line hide-details ></v-text-field>
+                        </v-flex>
+                    </v-layout>
                     <v-data-table
                         :headers="headers"
                         fixed-header
+                        :search="search"
                         :items="visitors"
+                        :items-per-page="10"
+                        :hide-default-footer="visitors.length < 10"
                         color="primary"
-                        hide-default-footer
-                        disable-pagination
                         class="elevation-1"
                         @click:row = "getrow"
                     >
@@ -73,16 +79,17 @@ export default {
     data: () => ({
         data_loaded : true ,
         visitors:[],
+        search:'',
         headers: [
             {
                 text: 'Visitor Name',
                 align: 'left',
                 value: 'name',
             },
-            { text: 'Contact', value: 'contact' },
-            { text: 'Email Address', value: 'email' },
-            { text: 'Registered at', value: 'created_at' },
-            { text: 'actions', value: 'action' },
+            { text: 'Contact', value: 'contact',sortable: false },
+            { text: 'Email Address', value: 'email',sortable: false },
+            { text: 'Registered at', value: 'created_at',sortable: false },
+            { text: 'actions', value: 'action',sortable: false },
         ],
     }),
 
@@ -92,7 +99,7 @@ export default {
             axios.get('/visitors', {})
             .then(response => {
                 this.visitors = response.data;
-                console.log(this.categories)
+                console.log(this.visitors)
                 this.data_loaded = true;
             });
         },

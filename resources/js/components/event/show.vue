@@ -26,10 +26,10 @@
                         :headers="headers"
                         fixed-header
                         :items="events"
-                        hide-default-footer
+                        :items-per-page="10"
                         :search="search"
+                        :hide-default-footer="events.length < 10"
                         color="primary"
-                        disable-pagination
                         class="elevation-1"
                         @click:row = "getrow"
                     >

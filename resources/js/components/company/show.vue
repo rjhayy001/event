@@ -17,13 +17,19 @@
                     ></v-skeleton-loader>
                 </v-flex>
                 <v-flex xs12 class="pa-4" v-else>
+                    <v-layout row wrap justify-end class="mr-3">
+                        <v-flex xs3 >
+                            <v-text-field right class="mb-4" color="teal" v-model="search" append-icon="mdi-magnify" label="Search Event" single-line hide-details ></v-text-field>
+                        </v-flex>
+                    </v-layout>
                     <v-data-table
                         :headers="headers"
                         fixed-header
                         :items="companies"
+                        :items-per-page="10"
+                        :hide-default-footer="companies.length < 10"
+                        :search="search"
                         color="primary"
-                        hide-default-footer
-                        disable-pagination
                         class="elevation-1"
                         @click:row = "getrow"
                     >
@@ -75,17 +81,18 @@ export default {
     data: () => ({
         data_loaded : true ,
         companies:[],
+        search:'',
         headers: [
             {
                 text: 'Company Name',
                 align: 'left',
                 value: 'name',
             },
-            { text: 'Contact Person', value: 'contact person' },
-            { text: 'Contact Number', value: 'contact number' },
-            { text: 'company email', value: 'company email' },
-            { text: 'Joined at', value: 'created_at' },
-            { text: 'actions', value: 'action' },
+            { text: 'Contact Person', value: 'contact person',sortable: false },
+            { text: 'Contact Number', value: 'contact number',sortable: false },
+            { text: 'company email', value: 'company email' ,sortable: false},
+            { text: 'Joined at', value: 'created_at',sortable: false},
+            { text: 'actions', value: 'action' ,sortable: false },
         ],
     }),
 
