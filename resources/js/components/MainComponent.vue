@@ -4,6 +4,7 @@
         <app-head></app-head>
         <app-confirm ref="app_confirm"></app-confirm>
         <app-alert ref="app_alert"></app-alert>
+        <app-overlay ref="app_overlay"></app-overlay>
         <!-- <app-alert ref="app_alert"></app-alert> -->
         <!-- <transition name="fade" mode="out-in">
             <v-alert color="primary" dark icon="mdi-bell" border="left" prominent v-model="snackbar_stat" id="notification" transition="slide-x-transition" dismissible>

@@ -31,11 +31,15 @@ const store = new Vuex.Store(
             drawer:null,
             snack: '',
             show: false,
+            overlay:false,
         },
         mutations: {
             setSnack (state, snack) {
                 state.snack = snack
                 state.show = true ;
+            },
+            setOverlay(state , condition){ 
+                state.overlay = condition ;
             }
         }
     } 
@@ -72,7 +76,7 @@ axios.interceptors.response.use( ( response ) => {
     }
 
     window.scroll({ top: 0, left: 0, behavior: 'smooth' })
-
+    store.commit('setOverlay' , false);
     alert(message)
     // store.commit('HIDE_LOADER')
     // store.commit('SHOW_BANNER', {visible:1, message:message, status:2})
@@ -83,6 +87,7 @@ Vue.use(VeeValidate);
 Vue.use(require('vue-moment'));
 Vue.component('app-confirm', require('./components/alerts/confirm.vue').default);
 Vue.component('app-alert', require('./components/alerts/sweetalert.vue').default);
+Vue.component('app-overlay', require('./components/alerts/overlay.vue').default);
 Vue.component('text-editor', VueEditor);
 Vue.component('time-selector', Timeselector);
 Vue.component('l-map', LMap);

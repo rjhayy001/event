@@ -119,6 +119,7 @@
                 let self = this;
                 this.$validator.validateAll().then(result => {
                     if (result){
+                         this.$store.commit('setOverlay' , true);
                         this.$root.$confirm('Are you sure you want to save ?').then((result) => {
                             if(result) {
                                 let dis = this ;
@@ -126,7 +127,8 @@
                                 if(id != '' ) {
                                     axios.put('/categories/'+id, this.category )
                                     .then((response) =>  {
-                                    this.$store.commit('setSnack', 'Category Updated !')
+                                        this.$store.commit('setOverlay' , false);
+                                        this.$store.commit('setSnack', 'Category Updated !')
                                         console.log(response.data)
                                         dis.get_categories()
                                         dis.clear()
@@ -136,6 +138,7 @@
                                 } else {
                                 axios.post('/categories', this.category )
                                .then((response) =>  {
+                                    this.$store.commit('setOverlay' , false);
                                     this.$store.commit('setSnack', 'Category Saved !')
                                     dis.get_categories()
                                     console.log(response.data , ' saved')

@@ -259,8 +259,10 @@ export default {
         submit(){
            this.$root.$confirm('Are you sure you want to save ?').then((result) => {
                 if(result) {
+                    this.$store.commit('setOverlay' , true);
                     axios.post('/generals', this.generals )
                     .then((response) =>  {
+                     this.$store.commit('setOverlay' , false);
                     this.$store.commit('setSnack', 'Configuration Saved !')
                     this.generals=response.data ;
                     console.log(response.data);

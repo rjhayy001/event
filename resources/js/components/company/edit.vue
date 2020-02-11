@@ -209,8 +209,10 @@
                     if (result){
                         this.$root.$confirm('Are you sure you want to save ?').then((result) => {
                             if(result) {
+                                this.$store.commit('setOverlay' , true);
                                  axios.put('/companies/'+this.$route.params.id, this.company )
                                 .then((response) =>  {
+                                this.$store.commit('setOverlay' , false);
                                 this.$store.commit('setSnack', 'Company Updated !')
                                 self.$router.push('/company');
                                 console.log(response.data);

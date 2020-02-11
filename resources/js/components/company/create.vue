@@ -201,9 +201,11 @@
                     if (result){
                         this.$root.$confirm('Are you sure you want to save ?').then((result) => {
                             if(result) {
+                                this.$store.commit('setOverlay' , true);
                                 axios.post('/companies', this.company )
                                 .then((response) =>  {
                                 this.$store.commit('setSnack', 'Company Saved !')
+                                this.$store.commit('setOverlay' , false);
                                 self.$router.push('/company');
                                 console.log(response.data);
                                 })

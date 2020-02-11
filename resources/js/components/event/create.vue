@@ -700,9 +700,11 @@ export default {
                 if (result){
                     this.$root.$confirm('Are you sure you want to save ?').then((result) => {
                         if(result) {
+                        this.$store.commit('setOverlay' , true);
                             axios.post('/events', this.event )
                             .then((response) =>  {
                                 console.log(response.data)
+                                this.$store.commit('setOverlay' , false);
                                 this.$store.commit('setSnack', 'Event Saved !')
                                 this.$router.push('/event');
 
