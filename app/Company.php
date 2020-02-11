@@ -26,16 +26,5 @@ class Company extends Model
     {
        return asset('company_logo/'.$value);
     }
-    public function getContactattribute($value)
-    {
-       return $value ? $value :'not set';
-    }
-    public function getNameattribute($value)
-    {
-       return $value ? $value :'not set';
-    }
-    public function getEmailattribute($value)
-    {
-       return $value ? $value :'not set';
-    }
+  
 }

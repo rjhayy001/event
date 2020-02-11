@@ -30,4 +30,16 @@ class Visitor extends Authenticatable
     public function getImageAttribute($value) {
         return $value ? asset('images/'.$value) : asset('images/test_profile.jpg') ; 
     }
+    public function getPhoneattribute($value)
+    {
+       return $value ? $value :'not set';
+    }
+    public function getNameattribute($value)
+    {
+       return $value ? ucfirst($value) :'not set';
+    }
+    public function getEmailattribute($value)
+    {
+       return $value ? $value :'not set';
+    }
 }
