@@ -21,10 +21,10 @@
                         <v-toolbar flat >
                             <v-toolbar-title class="font-weight-bold small" >Owner Details</v-toolbar-title>
                             <v-spacer></v-spacer>
-                            <v-btn color="primary" class="custom_button mr-3" small @click="dialog = !dialog">
+                            <v-btn tile color="primary" class="custom_button mr-3" small @click="dialog = !dialog">
                                 <v-icon left>mdi-plus</v-icon> Add Information
                             </v-btn>
-                            <v-btn color="teal" class="custom_button" small @click="save_details">
+                            <v-btn tile color="teal" class="custom_button" small @click="save_details">
                                 <v-icon left>mdi-content-save-edit-outline</v-icon> Save Changes
                             </v-btn>
                         </v-toolbar>

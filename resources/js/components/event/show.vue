@@ -6,7 +6,7 @@
                     <v-toolbar flat >
                     <v-toolbar-title class="font-weight-bold">Event's List</v-toolbar-title>
                     <v-spacer></v-spacer>
-                    <v-btn color="teal" class="custom_button" to="event/create" >
+                    <v-btn color="teal" tile class="custom_button" to="event/create" >
                        <v-icon class="pr-2">mdi-plus</v-icon> add event
                     </v-btn>
                     </v-toolbar>
@@ -16,12 +16,18 @@
                         type="table-tbody"
                     ></v-skeleton-loader>
                 </v-flex>
-                <v-flex xs12 class="pa-4" v-else>
+                <v-flex xs12 class="px-4 pb-4" v-else>
+                    <v-layout row wrap justify-end>
+                        <v-flex xs3 >
+                            <v-text-field right class="mb-4" color="teal" v-model="search" append-icon="mdi-magnify" label="Search Event" single-line hide-details ></v-text-field>
+                        </v-flex>
+                    </v-layout>
                     <v-data-table
                         :headers="headers"
                         fixed-header
                         :items="events"
                         hide-default-footer
+                        :search="search"
                         color="primary"
                         disable-pagination
                         class="elevation-1"
@@ -89,16 +95,17 @@ export default {
     data: () => ({
         data_loaded : true ,
         events:[],
+        search:'',
         headers: [
             {
                 text: 'Event Name',
                 align: 'left',
                 value: 'name',
             },
-            { text: 'Start Date', value: 'from' },
-            { text: 'End Date', value: 'to' },
-            { text: 'company attending', value: 'company_count' },
-            { text: 'expected visitors', value: 'visitor_count' },
+            { text: 'Start Date', value: 'from' ,sortable: false },
+            { text: 'End Date', value: 'to' ,sortable: false },
+            { text: 'company attending', value: 'company_count' ,sortable: false },
+            { text: 'expected visitors', value: 'visitor_count' ,sortable: false },
             { text: 'actions', value: 'action' },
         ],
     }),
