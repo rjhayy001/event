@@ -17,9 +17,9 @@
                     ></v-skeleton-loader>
                 </v-flex>
                 <v-flex xs12 class="px-4 pb-4" v-else>
-                    <v-layout row wrap justify-end>
+                    <v-layout row wrap justify-end class="mr-3">
                         <v-flex xs3 >
-                            <v-text-field right class="mb-4" color="teal" v-model="search" append-icon="mdi-magnify" label="Search Event" single-line hide-details ></v-text-field>
+                            <v-text-field right class="mb-4 mr-3" color="teal" v-model="search" append-icon="mdi-magnify" label="Search Event" single-line hide-details ></v-text-field>
                         </v-flex>
                     </v-layout>
                     <v-data-table
