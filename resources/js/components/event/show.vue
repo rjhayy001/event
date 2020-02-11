@@ -4,7 +4,6 @@
             <v-layout row wrap>
                 <v-flex xs12 class="px-3">
                     <v-toolbar flat >
-                    <v-toolbar-title class="font-weight-bold">Event's List</v-toolbar-title>
                     <v-spacer></v-spacer>
                     <v-btn color="teal" tile class="custom_button" to="event/create" >
                        <v-icon class="pr-2">mdi-plus</v-icon> add event
@@ -17,9 +16,15 @@
                     ></v-skeleton-loader>
                 </v-flex>
                 <v-flex xs12 class="px-4 pb-4" v-else>
-                    <v-layout row wrap justify-end class="mr-3">
-                        <v-flex xs3 >
-                            <v-text-field right class="mb-4" color="teal" v-model="search" append-icon="mdi-magnify" label="Search Event" single-line hide-details ></v-text-field>
+                    <v-layout row wrap  class="mr-3">
+                        <v-flex xs12 >
+                            <v-toolbar flat >
+                                <v-toolbar-title class="font-weight-bold">Event's List</v-toolbar-title>
+                                <v-spacer></v-spacer>
+                                <v-flex xs3>
+                                    <v-text-field right  color="teal" v-model="search" append-icon="mdi-magnify" label="Search Event" single-line hide-details ></v-text-field>
+                                </v-flex>
+                            </v-toolbar>
                         </v-flex>
                     </v-layout>
                     <v-data-table
