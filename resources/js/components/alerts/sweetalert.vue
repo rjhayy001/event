@@ -10,7 +10,7 @@
 export default {
   data () {
     return {
-        timeout:3000,
+        timeout:5000,
     }
   }
 }

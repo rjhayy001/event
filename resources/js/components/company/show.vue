@@ -4,7 +4,7 @@
             <v-layout row wrap>
                 <v-flex xs12 class="px-3">
                     <v-toolbar flat >
-                    <v-toolbar-title>Companies List</v-toolbar-title>
+                    <v-toolbar-title class="font-weight-bold">Companies List</v-toolbar-title>
                     <v-spacer></v-spacer>
                     <v-btn color="teal" class="custom_button" to="company/create" >
                        <v-icon class="pr-2">mdi-plus</v-icon> add company
