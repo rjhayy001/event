@@ -131,7 +131,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <template v-if="upcoming_event.length">
+                                            <template v-if="past_event.length">
                                                 <tr v-for="item in past_event" :key="item.name" @click="to_event(item.id)">
                                                     <td>{{ item.name }}</td>
                                                     <td>{{ fulldate(item.fromdate) }}</td>
