@@ -201,6 +201,8 @@ export default {
                     }
                 });
                 this.data_loaded = true ;
+                console.log(this.past_event , 'past')
+                console.log(this.upcoming_event , 'up')
             });
         },
     },
