@@ -89,19 +89,17 @@
                                             <th class="text-left">Description</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody class="font-weight-bold">
                                             <template v-if="event.programs.length">
                                                 <tr v-for="(item,index) in event.programs" :key="index" >
-                                                    <td class="width:30%">{{ item.name }}</td>
-                                                    <td>{{ item.time }}</td>
-                                                    <td>{{item.details | striphtml}}</td>
+                                                    <td class="width:30% ">{{ item.name }}</td>
+                                                    <td >{{ item.time }}</td>
+                                                    <td >{{item.details | striphtml}}</td>
                                                 </tr>
                                             </template>
                                             <tr v-else>
-                                                <td colspan="3">
-                                                    <v-alert type="info" outlined dense class="mx-3 my-2 " >
+                                                <td colspan="3" class="font-weight-bold text-center">
                                                         No data saved.
-                                                    </v-alert>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -121,7 +119,7 @@
                                             <th class="text-left">is Restaurant</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody class="font-weight-bold">
                                             <template v-if="event.companies.length">
                                                 <tr v-for="(item,index) in event.companies" :key="index" >
                                                 <td>{{ item.name }}</td>
@@ -130,10 +128,8 @@
                                                 </tr>
                                             </template>
                                             <tr v-else>
-                                                <td colspan="3">
-                                                    <v-alert type="info" outlined dense class="mx-3  my-2" >
+                                                <td colspan="3" class="font-weight-bold text-center">
                                                         No data saved.
-                                                    </v-alert>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -158,7 +154,7 @@
                                             <th class="text-left">Description</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody  class="font-weight-bold">
                                             <template v-if="program_highlight.length">
                                                 <tr v-for="(item,index) in program_highlight" :key="index" >
                                                     <td class="width:30%">{{ item.name }}</td>
@@ -167,10 +163,8 @@
                                                 </tr>
                                             </template>
                                             <tr v-else>
-                                                <td colspan="3">
-                                                    <v-alert type="info" outlined dense class="mx-3 my-2 " >
-                                                         No data saved.
-                                                    </v-alert>
+                                               <td colspan="3" class="font-weight-bold text-center">
+                                                        No data saved.
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -188,7 +182,7 @@
                                             <th class="text-left">is Restaurant</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody  class="font-weight-bold">
                                             <template v-if="company_highlight.length">
                                             <tr v-for="(item,index) in company_highlight" :key="index" >
                                             <td>{{ item.name }}</td>
@@ -197,10 +191,8 @@
                                             </tr>
                                             </template>
                                             <tr v-else>
-                                                <td colspan="3">
-                                                    <v-alert type="info" outlined dense class="mx-3 my-2 " >
+                                               <td colspan="3" class="font-weight-bold text-center">
                                                         No data saved.
-                                                    </v-alert>
                                                 </td>
                                             </tr>
                                         </tbody>
