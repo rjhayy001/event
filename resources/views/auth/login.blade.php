@@ -18,12 +18,12 @@
 </head>
 <style>
 	/* Coded with love by Mutiullah Samim */
-    body,
-		html {
-			margin: 0;
-			padding: 0;
-			height: 100%;
-			background: white !important;
+    body, html {
+		margin: 0 3% 0 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 100%;
+    background-image: url('');
 		}
 		.user_card {
 			height: 400px;
@@ -95,8 +95,8 @@
 		</style>
 <!--Coded with love by Mutiullah Samim-->
 <body>
-	<div class="container h-100">
-		<div class="d-flex justify-content-center h-100">
+	<div class= "h-100">
+		<div class="d-flex justify-content-end h-100">
 			<div class="user_card">
 				<div class="d-flex justify-content-center">
 					<div class="brand_logo_container">
