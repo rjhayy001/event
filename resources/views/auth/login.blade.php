@@ -18,27 +18,26 @@
 </head>
 <style>
 	/* Coded with love by Mutiullah Samim */
-    body, html {
-		margin: 0 3% 0 0;
-    background-size: contain;
-    background-repeat: no-repeat;
-    height: 100%;
-    background-image: url('');
+    body,
+		html {
+			margin: 0;
+			padding: 0;
+			height: 100%;
+			background-image: url('http://event-app.ohm-conception.com/images/background.jpg');
+			background-repeat: no-repeat;
 		}
 		.user_card {
 			height: 400px;
 			width: 350px;
+			margin-left: 10%;
 			margin-top: auto;
 			margin-bottom: auto;
-			background: #1565C0 ;
+			background: white ;
 			position: relative;
 			display: flex;
 			justify-content: center;
 			flex-direction: column;
 			padding: 10px;
-			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 			border-radius: 5px;
 
 		}
@@ -58,12 +57,10 @@
 			border-radius: 50%;
 			border: 2px solid white;
 		}
-		.form_container {
-			margin-top: 100px;
-		}
+		
 		.login_btn {
 			width: 100%;
-			background: #ff9f00 !important;
+			background: teal !important;
 			color: white !important;
 		}
 		.login_btn:focus {
@@ -72,6 +69,9 @@
 		}
 		.login_container {
 			padding: 0 2rem;
+		}
+		.input-group {
+			width: 373px !important;
 		}
 		.input-group-text {
 			background: white !important;
@@ -89,28 +89,20 @@
 		}
 		.my_title {
 			position: absolute;
-    		top: 28%;          
-			color: white;
+    		top: 9%;          
+			color: black;
 		}
 		</style>
 <!--Coded with love by Mutiullah Samim-->
 <body>
-	<div class= "h-100">
+	<div class="container h-100">
 		<div class="d-flex justify-content-end h-100">
 			<div class="user_card">
-				<div class="d-flex justify-content-center">
-					<div class="brand_logo_container">
-						<img src="{{asset('images/logo.png') }}" class="brand_logo" alt="Logo">
-					</div>
-				</div>
 				<div class="d-flex justify-content-center form_container">
-					<h4 class="my_title">Quimper Evenements</h4>
+					<h4 class="my_title">Welcome Back</h4>
 					<form method="POST" action="{{ route('login') }}">
 						@csrf
 						<div class="input-group mb-3">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-user"></i></span>
-							</div>
 							{{-- <input type="text" name="" class="form-control input_user" value="" placeholder="username"> --}}
 							<input id="email" type="email" class="form-control @error('email') is-invalid @enderror input_user" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="email">
                                 @error('email')
@@ -120,9 +112,6 @@
                                 @enderror
 						</div>
 						<div class="input-group mb-2">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
-							</div>
 							{{-- <input type="password" name="" class="form-control input_pass" value="" placeholder="password"> --}}
 							<input id="password" type="password" class="form-control @error('password') is-invalid @enderror input_pass" name="password" required autocomplete="current-password" placeholder="password">
 
@@ -132,7 +121,7 @@
                                     </span>
                                 @enderror
 						</div>
-							<div class="d-flex justify-content-center mt-3 login_container">
+							<div class="mt-3 ">
 				 	<button type="submit" name="button" class="btn login_btn">Login</button>
 				   </div>
 					</form>
