@@ -20,9 +20,11 @@
       chip
       item-text="name"
       item-value="symbol"
+      hide-selected
       label="Search anything on app..."
       color="white"
       solo
+      flat
     >
       <template v-slot:no-data>
         <v-list-item>
@@ -32,7 +34,6 @@
           </v-list-item-title>
         </v-list-item>
       </template>
-    
       <template v-slot:item="{ item }" >
           <v-list-item @click="$router.push({name: item.route , params: { id: item.id },})">
         <v-list-item-avatar
@@ -83,7 +84,7 @@ export default {
                 this.userData = setTimeout(() => 
                     axios.get('/search/'+val).then(({data}) => {
                         this.items = data
-                        console.log(this.items)
+                        // console.log(this.items)
                     })
                 , 1000);
             },

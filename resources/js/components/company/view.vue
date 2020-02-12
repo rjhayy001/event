@@ -189,7 +189,6 @@ export default {
             this.data_loaded = false ;
             axios.get('/companies/'+this.$route.params.id+'/edit', {})
             .then(response => {
-                console.log(response.data.events)
                 this.companies = response.data ;
                 response.data.events.forEach(element => {
                     if(element.fromdate != null) {
