@@ -6,6 +6,31 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
+
+
+    // Scope
+    public function scopeFindEvent($query, $name ='')
+    {
+       return $query->where('name', 'like', "%" . $name . "%");
+    }
+
+    public function format(){
+        return [
+            'id' => $this->id ,
+            'name'=>$this->name   ,
+            'from'=> $this->fromdate ?  date('d F Y', strtotime($this->fromdate)) : 'no given date' ,
+            'to'=> $this->todate ? date('d F Y', strtotime($this->todate)) : 'no given date',
+            'start' => $this->fromdate,
+            'end' => $this->todate,
+            'company_count'=> $this->companies->count() ,
+            'visitor_count' => $this->visitors->count(),
+            'logo' => $this->logo,
+            'subtitle' => 'event',
+            'icon' => 'mdi-history',
+            'route' => 'view_event'
+        ];
+    }
+    
     // RELATION
 
     public function programs(){

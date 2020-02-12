@@ -18,16 +18,7 @@ class VisitorController extends Controller
     public function index()
     {
         //
-        $visitors = Visitor::orderBy('created_at' , 'desc')->get();
-        $visitors = collect($visitors)->map(function ($visit) {
-            return [
-               'id' => $visit->id ,
-               'name'=>$visit->name ,
-               'contact'=>$visit->phone ,
-               'email'=>$visit->email,
-               'created_at'=> $visit->created_at
-           ];
-       });
+        $visitors = Visitor::orderBy('created_at' , 'desc')->get()->map->format();
         return $visitors ;
     }
 

@@ -17,18 +17,7 @@ class CompanyController extends Controller
     public function index()
     {
         //
-        $company = Company::orderBy('created_at' , 'desc')->get();
-        $company = collect($company)->map(function ($comp) {
-            return [
-                'id' => $comp->id ,
-                'name'=>$comp->name ,
-                'contact person'=> $comp->contacts['name'],
-                'contact number'=> $comp->contacts['phone']  ,
-                'company email'=> $comp->contacts['email'] ,
-                'logo'=> $comp->logo ,
-                'created_at' => $comp->created_at
-            ];
-        });
+        $company = Company::orderBy('created_at' , 'desc')->get()->map->format();
         return $company ;
 
     }

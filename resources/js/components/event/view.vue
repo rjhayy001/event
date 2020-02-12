@@ -350,6 +350,11 @@ export default {
             });
         },
     },
+    watch : {
+        $route(){
+            this.get_events_info();  
+        }
+    },
     created() {
         this.get_events_info();
     }

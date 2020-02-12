@@ -6,6 +6,28 @@ use Illuminate\Database\Eloquent\Model;
 
 class Company extends Model
 {
+
+    //Scope
+    public function scopeFindCompany($query, $name ='')
+    {
+       return $query->where('name', 'like', "%" . $name . "%");
+    }
+
+    public function format(){
+        return [
+            'id' => $this->id ,
+            'name'=>$this->name ,
+            'contact person'=> $this->contacts['name'],
+            'contact number'=> $this->contacts['phone']  ,
+            'company email'=> $this->contacts['email'] ,
+            'logo'=> $this->logo ,
+            'created_at' => $this->created_at,
+            'subtitle' => 'company',
+            'icon' => 'mdi-office',
+            'route' => 'view_company'
+        ];
+    }
+
     // RELATION
     public function events(){
         return $this->belongsToMany(Event::class)->withPivot(['paidprice','emplacement','is_restaurant','x','y','highlight','description']);
@@ -26,5 +48,4 @@ class Company extends Model
     {
        return asset('company_logo/'.$value);
     }
-  
 }

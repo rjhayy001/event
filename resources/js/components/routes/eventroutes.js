@@ -10,11 +10,6 @@ export default [
 	 	component: create_event,
 	  	name: 'create_event',
     },
-  	// {
-	// 	path : '/company/:id/edit',
-	//   	component: edit_company,
-	//   	name: 'edit_company',
-    // },
   	{
 		path : '/event/:id/edit',
 	  	component: edit_event,

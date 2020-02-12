@@ -2,31 +2,25 @@
     <div>
         <v-container>
             <v-layout row wrap>
-                <v-flex xs12 class="px-3">
-                    <v-toolbar flat >
+                <v-toolbar flat >
+                        <v-toolbar-title class="font-weight-bold">Visitor's List</v-toolbar-title>
+                            <v-icon depressed class="float-left mx-2"  @click="expand = !expand" >mdi-magnify</v-icon>
+                        <v-expand-x-transition >
+                            <v-text-field width="30" class="pt-5 pl-3" v-show="expand" dense filled color="teal" v-model="search" placeholder="Search Visitor..." ></v-text-field>
+                        </v-expand-x-transition>
+                     <v-flex sm2 xs6 flex >
+                    </v-flex>
                     <v-spacer></v-spacer>
-                    <v-btn color="teal" tile class="custom_button" to="visitor/create" >
-                       <v-icon left>mdi-plus</v-icon> add visitor
+                    <v-btn color="teal" tile class="custom_button" to="event/create" >
+                       <v-icon left >mdi-plus</v-icon> add event
                     </v-btn>
                     </v-toolbar>
-                </v-flex>
                  <v-flex xs12 v-if="!data_loaded">
                     <v-skeleton-loader
                         type="table-tbody"
                     ></v-skeleton-loader>
                 </v-flex>
                 <v-flex xs12 class="pa-4" v-else>
-                    <v-layout row wrap justify-end class="mr-3">
-                        <v-flex xs12 >
-                            <v-toolbar flat >
-                                <v-toolbar-title class="font-weight-bold">Visitor's List</v-toolbar-title>
-                                <v-spacer></v-spacer>
-                                <v-flex xs3>
-                                    <v-text-field right  color="teal" v-model="search" append-icon="mdi-magnify" label="Search Visitor" single-line hide-details ></v-text-field>
-                                </v-flex>
-                            </v-toolbar>
-                        </v-flex>
-                    </v-layout>
                     <v-data-table
                         :headers="headers"
                         fixed-header
@@ -83,6 +77,7 @@
 export default {
     data: () => ({
         data_loaded : true ,
+        expand:'',
         visitors:[],
         search:'',
         headers: [
@@ -122,6 +117,11 @@ export default {
                     });
                 }
             })
+        }
+    },
+    watch : {
+        $route(){
+            this.get_visitors();  
         }
     },
     created() {

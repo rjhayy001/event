@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Event ;
 use App\Program;
+use App\Visitor;
 use App\Presentation;
+use App\Company ;
 use Image ;
 
 class EventController extends Controller
@@ -19,20 +21,16 @@ class EventController extends Controller
     public function index()
     {
         //
-        $events = Event::orderBy('created_at' , 'desc')->get();
-        $events = collect($events)->map(function ($event) {
-            return [
-                'id' => $event->id ,
-                'name'=>$event->name   ,
-                'from'=> $event->fromdate ?  date('d F Y', strtotime($event->fromdate)) : 'no given date' ,
-                'to'=> $event->todate ? date('d F Y', strtotime($event->todate)) : 'no given date',
-                'start' => $event->fromdate,
-                'end' => $event->todate,
-                'company_count'=> $event->companies->count() ,
-                'visitor_count' => $event->visitors->count()
-            ];
-        });
+        $events = Event::orderBy('created_at' , 'desc')->get()->map->format();
         return $events ;
+    }
+
+    public function search($value= '') {
+        $events = Event::FindEvent($value)->orderBy('name')->get()->map->format();
+        $companies = Company::FindCompany($value)->orderBy('name')->get()->map->format();
+        $visitors = Visitor::FindVisitor($value)->orderBy('name')->get()->map->format();
+        $data = array_merge($events->toArray(), $companies->toArray(),$visitors->toArray());
+        return $data ;
     }
 
     /**

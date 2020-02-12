@@ -11,6 +11,25 @@ class Visitor extends Authenticatable
 {
     use Notifiable , HasApiTokens ;
 
+    // Scope
+    public function scopeFindVisitor($query, $name ='')
+    {
+       return $query->where('name', 'like', "%" . $name . "%");
+    }
+    public function format(){
+        return [
+            'id' => $this->id ,
+            'name'=>$this->name ,
+            'contact'=>$this->phone ,
+            'email'=>$this->email,
+            'created_at'=> $this->created_at,
+            'logo' => $this->image,
+            'subtitle' => 'visitor',
+            'icon' => 'mdi-account-group',
+            'route' => 'view_visitor'
+        ];
+    }
+
     //RELATIONS
     public function events(){
         return $this->belongstoMany(Event::class);

@@ -205,6 +205,11 @@ export default {
             });
         },
     },
+    watch : {
+        $route(){
+            this.get_company_info();  
+        }
+    },
     created() {
         this.get_company_info();
     }

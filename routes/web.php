@@ -30,6 +30,7 @@ Route::middleware('auth:web')->group(function () {
         Route::resource('rules', 'RuleController');
         Route::get('logout', 'VisitorController@logout');
         Route::get('access', 'RuleController@get_Access');
+        Route::get('search/{id?}', 'EventController@search');
 
         Route::get('/{path}', 'PagesController@index')->where( 'path', "([A-z\d\-/_.]+)?" );
     });
