@@ -148,7 +148,7 @@ class VisitorController extends Controller
                     return Rules::whereFields('Username')->where('required', 1)->get()->count()>0;
                 }),
             ],
-            'password' => [ 'confirmed', 'nullable' ,
+            'password' => [ 'confirmed', 'nullable' ,'min:4',
                 Rule::requiredIf(function(){
                     return Rules::whereFields('Password')->where('required', 1)->get()->count()>0;
                 }),
