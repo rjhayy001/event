@@ -11,7 +11,7 @@
                      <v-flex sm2 xs6 flex >
                     </v-flex>
                     <v-spacer></v-spacer>
-                    <v-btn color="teal" tile class="custom_button" to="event/create" >
+                    <v-btn color="teal" tile class="custom_button" to="visitor/create" >
                        <v-icon left >mdi-plus</v-icon> add visitor
                     </v-btn>
                     </v-toolbar>
