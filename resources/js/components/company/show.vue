@@ -13,7 +13,7 @@
                     </v-flex>
                     <v-spacer></v-spacer>
                     <v-btn color="teal" tile class="custom_button" to="event/create" >
-                       <v-icon left >mdi-plus</v-icon> add event
+                       <v-icon left >mdi-plus</v-icon> add company
                     </v-btn>
                     </v-toolbar>
                 </v-flex>
