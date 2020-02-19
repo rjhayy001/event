@@ -40,6 +40,7 @@ Route::namespace('Api')->group(function () {
         Route::get('remove_favorite/{id}' ,'VisitorController@remove_favorites');
         Route::get('attended_events' ,'VisitorController@attended_events');
     });
+    Route::get('owner_details' ,'DetailsController@owner');
     Route::post('register' ,'VisitorController@register');
     Route::post('login' ,'VisitorController@login');
     Route::post('logout' ,'VisitorController@logout');
