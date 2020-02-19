@@ -30,21 +30,21 @@
             <div class="input-group my-5">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 				<input id="email" type="email" class="form-control @error('email') is-invalid @enderror input_user" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="email">
-					@error('email')
-						<span class="invalid-feedback" role="alert">
-							<strong>{{ $message }}</strong>
-						</span>
-					@enderror
-			  </div>
+			</div>
+			@error('email')
+				<span class="invalid-feedback" role="alert">
+					<strong>{{ $message }}</strong>
+				</span>
+			@enderror
 			  <div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
 				<input id="password" type="password" class="form-control @error('password') is-invalid @enderror input_pass" name="password" required autocomplete="current-password" placeholder="password">
-					@error('password')
-						<span class="invalid-feedback" role="alert">
-							<strong>{{ $message }}</strong>
-						</span>
-					@enderror
 			  </div>
+			  @error('password')
+			  <span class="invalid-feedback" role="alert">
+				  <strong>{{ $message }}</strong>
+			  </span>
+		  @enderror
 			<button class="btn" type="submit">login</button>
 			</form>
           </div>
@@ -58,6 +58,9 @@
 </html>
 
 <style type="text/css">
+.form-control:focus {
+    border-color: #009688 !important;
+}
   
 .login {
   height: 100vh;
