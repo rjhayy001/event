@@ -70,7 +70,7 @@ export default {
     }),
     methods : {
         test(){
-            axios.get('/search/'+"").then(({data}) => {
+            axios.get('/search/').then(({data}) => {
                 this.items = data
                 console.log(this.items)
             })
