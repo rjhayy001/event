@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Details ;
 use App\Rule ;
+use App\Visitor ;
 
 class DetailsSeeder extends Seeder
 {
@@ -72,6 +73,14 @@ class DetailsSeeder extends Seeder
         Rule::create([
             'fields' => 'Private Access',
             'required' => true 
+        ]);
+
+        Visitor::create([
+            'name' => 'test',
+            'phone' => '123123123' ,
+            'email' => 'test@test.com',
+            'username' => 'test123',
+            'password' => '123123',
         ]);
         
     }
