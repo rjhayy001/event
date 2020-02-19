@@ -234,11 +234,9 @@ class VisitorController extends Controller
         $visitor->events()->detach($id);
         return 'event removed';
     }
-    public function update_profile(Request $request){
-
+    public function update_profile(Request $request) {
         $validatedData = $request->validate([
-            'id' => 'required',
-            // 'profile_pic' => 'nullable|image|mimes:jpeg,png,gif,svg'
+            'profile_pic' => 'required',
         ]);
 
         if($validatedData)
