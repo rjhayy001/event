@@ -1,10 +1,9 @@
 <template>
     <v-container >
         <v-layout row wrap>
-            <v-flex xs3>
+            <v-flex xs6 sm3 class="pa-4">
                     <v-card
                         class="mx-auto purple "
-                        max-width="344"
                         outlined color="teal"
                         dark
                     >
@@ -27,10 +26,9 @@
                         </v-card-actions>
                     </v-card>
                 </v-flex>
-            <v-flex xs3>
+            <v-flex xs6 sm3 class="pa-4">
                 <v-card
                     class="mx-auto purple "
-                    max-width="344"
                     outlined 
                     color="teal "
                     dark
@@ -54,10 +52,9 @@
                     </v-card-actions>
                 </v-card>
             </v-flex>
-            <v-flex xs3>
+            <v-flex xs6 sm3 class="pa-4">
                 <v-card
                     class="mx-auto purple "
-                    max-width="344"
                     outlined 
                     color="teal"
                     dark
@@ -73,7 +70,7 @@
                             size="80"
                                 color="white"
                         >
-                        <v-icon size="60" color="teal">mdi-history</v-icon>
+                        <v-icon size="60" color="teal">mdi-calendar</v-icon>
                         </v-list-item-avatar>
                     </v-list-item>
                     <v-card-actions >
@@ -81,7 +78,7 @@
                     </v-card-actions>
                 </v-card>
             </v-flex>
-            <v-flex xs6 class="ml-8 mt-8">
+            <v-flex sm6 xs12 class="ml-4 mt-8">
                 <vue-calendar></vue-calendar>
             </v-flex>
         </v-layout>

@@ -69,7 +69,7 @@
       drawer: null,
       items: [
         { icon: 'mdi-view-dashboard', text: 'Tableau de bord' ,url:'/dashboard' },
-        { icon: 'mdi-history', text: 'Evènements' ,url:'/event' },
+        { icon: 'mdi-calendar', text: 'Evènements' ,url:'/event' },
         { icon: 'mdi-office', text: 'Sociétés' ,url:'/company' },
         { icon: 'mdi-account-group', text: 'Visiteurs' ,url:'/visitor' },
         {

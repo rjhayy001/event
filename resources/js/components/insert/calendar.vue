@@ -32,6 +32,7 @@
         :events="events_range"
         :event-color="getEventColor"
         @change="getEvents"
+        @click:event="showEvent"
       ></v-calendar>
     </v-sheet>
   </div>
@@ -64,7 +65,7 @@
                 this.events = response.data;
                 response.data.forEach(element => {
                     if(element.start != null) {
-                        let range = {'name' : element.name , 'start' : element.start , color: this.colors[this.rnd(0, this.colors.length - 1)]};
+                        let range = {'name' : element.name , 'start' : element.start , color: this.colors[this.rnd(0, this.colors.length - 1)] , 'id': element.id};
                         if(element.end != null) {
                             range.end = element.end;
                         }
@@ -73,6 +74,10 @@
                 });
                 console.log(this.events_range , 'calendar')
             });
+        },
+        showEvent(event){
+          console.log(event)
+          this.$router.push({name: 'view_event', params: { id: event.event.id },})
         },
       getEventColor (event) {
         return event.color
