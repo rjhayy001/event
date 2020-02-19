@@ -26,7 +26,7 @@ class Event extends Model
             'visitor_count' => $this->visitors->count(),
             'logo' => $this->logo,
             'subtitle' => 'event',
-            'icon' => 'mdi-history',
+            'icon' => 'mdi-calendar',
             'route' => 'view_event'
         ];
     }

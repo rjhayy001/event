@@ -25,16 +25,16 @@
       color="white"
       solo
       flat
-      @click="test"
+      @focus="test"
     >
-      <template v-slot:no-data>
+      <!-- <template v-slot:no-data>
         <v-list-item>
           <v-list-item-title>
             Search for Anything
             <strong>Events, Companies, Visitors!</strong>
           </v-list-item-title>
         </v-list-item>
-      </template>
+      </template> -->
       <template v-slot:item="{ item }" >
           <v-list-item @click="$router.push({name: item.route , params: { id: item.id },})">
         <v-list-item-avatar
@@ -70,7 +70,7 @@ export default {
     }),
     methods : {
         test(){
-            axios.get('/search/'+'').then(({data}) => {
+            axios.get('/search/'+"").then(({data}) => {
                 this.items = data
                 console.log(this.items)
             })
