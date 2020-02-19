@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Details ;
 use App\Rule ;
+use Illuminate\Support\Facades\Hash;
 use App\Visitor ;
 
 class DetailsSeeder extends Seeder
@@ -80,7 +81,7 @@ class DetailsSeeder extends Seeder
             'phone' => '123123123' ,
             'email' => 'test@test.com',
             'username' => 'test123',
-            'password' => '123123',
+            'password' => Hash::make('123123'),
         ]);
         
     }
