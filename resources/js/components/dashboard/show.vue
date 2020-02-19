@@ -78,9 +78,20 @@
                     </v-card-actions>
                 </v-card>
             </v-flex>
-            <v-flex sm6 xs12 class="ml-4 mt-8">
+             <v-flex sm6 xs12 class="px-4 pt-8">
+                <v-card>
+                    <v-card-title>
+                    Upcoming Event
+                    <v-spacer></v-spacer>
+                    </v-card-title>
+                    <Upcoming :events="upcoming"/>
+                </v-card>
+                <!-- <BarChart/> -->
+            </v-flex>
+            <v-flex sm6 xs12 class="px-4 pt-8">
                 <vue-calendar></vue-calendar>
             </v-flex>
+           
         </v-layout>
     </v-container>
 
@@ -88,17 +99,25 @@
 <script>
 import fullCalendar from 'vue-fullcalendar';
 import VueCalendar from '../insert/calendar';
+import Upcoming from '../insert/Upcoming';
+import BarChart from "../insert/BarChart.vue";
+import DateHelperVue from '../mixins/DateHelper.vue';
+import moment from 'moment';
+
 export default {
     components:{
          'full-calendar' : fullCalendar,
-         'vue-calendar' : VueCalendar
+         'vue-calendar' : VueCalendar,
+         BarChart,
+         Upcoming,
 
     },
-   
+    mixins:[DateHelperVue],
     data: () => ({
         companies: [],
         visitors: [],
         events: [],
+        upcoming:[],
         
     }),
     methods: {
@@ -117,9 +136,23 @@ export default {
             });
         },
         get_events(){
-            axios.get('/events', {})
+            axios.get('/upcoming', {})
             .then(response => {
+                console.log( response.data , 'events')
                 this.events = response.data;
+                response.data.forEach(element => {
+                    if(element.from != 'no given date') {
+                        if(this.fulldate(new Date()) <= this.fulldate(element.from)) {
+                            this.upcoming.push({
+                                'id':element.id,
+                                'name':element.name ,
+                                'from': this.fulldate(element.from),
+                                'to': this.fulldate(element.to),
+                                'duration' : (moment(element.to).diff(moment(element.from), 'day', true)+1) ,
+                            })
+                        }
+                    }
+                })
             });
         },
        

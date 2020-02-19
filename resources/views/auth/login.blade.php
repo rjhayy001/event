@@ -74,6 +74,7 @@ h1 {
     font-size: 36px;
     text-transform: uppercase;
     font-weight: 600;
+	color: #009688;
 	margin-bottom: 22px;
 }
 

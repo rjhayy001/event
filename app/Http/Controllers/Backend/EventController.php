@@ -24,6 +24,12 @@ class EventController extends Controller
         $events = Event::orderBy('created_at' , 'desc')->get()->map->format();
         return $events ;
     }
+    public function upcoming()
+    {
+        //
+        $events = Event::orderBy('fromdate')->get()->map->format();
+        return $events ;
+    }
 
     public function search($value= '') {
         $events = Event::FindEvent($value)->orderBy('name')->get()->map->format();
