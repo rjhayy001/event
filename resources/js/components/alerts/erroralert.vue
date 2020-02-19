@@ -1,15 +1,15 @@
 <template>
     <div>
-    <v-alert
-        color="#C51162"
-        dark
-        icon="mdi-material-design"
-        border="right"
-        dismissible
-        transition="scale-transition"
-        :value="$store.state.error"
-        >
-        {{$store.state.error_message}}
-    </v-alert>
+        <v-alert
+            color="#C51162"
+            dark
+            icon="mdi-material-design"
+            border="right"
+            dismissible
+            transition="scale-transition"
+            :value="$store.state.error"
+            >
+            {{$store.state.error_message}}
+        </v-alert>
     </div>
 </template>

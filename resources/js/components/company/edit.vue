@@ -114,17 +114,17 @@
                                     </v-text-field>
                                 </v-flex>
                                 <v-flex xs12 sm6>
-                                     <v-file-input small-chips 
+                                    <v-file-input small-chips 
                                         accept="image/*"  
                                         label="Company Logo" 
                                         @change="onFileChange"
                                         v-validate="'image'" 
                                         :error-messages="errors.collect('Company Logo')" 
                                         data-vv-name="Company Logo">
-                                        </v-file-input>
+                                    </v-file-input>
                                 </v-flex>
                                 <v-flex xs12 sm12>
-                                     <div class="subheading pa-0 mb-2 font-weight-bold">Description</div>
+                                    <div class="subheading pa-0 mb-2 font-weight-bold">Description</div>
                                     <text-editor v-model="company.description"></text-editor>
                                 </v-flex>
                             </v-layout>

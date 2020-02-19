@@ -25,6 +25,7 @@
       color="white"
       solo
       flat
+      @click="test"
     >
       <template v-slot:no-data>
         <v-list-item>
@@ -68,8 +69,11 @@ export default {
       userData :''
     }),
     methods : {
-        redirection(){
-            alert('test')
+        test(){
+            axios.get('/search/'+'').then(({data}) => {
+                this.items = data
+                console.log(this.items)
+            })
         },
         logout() {
             let self = this;

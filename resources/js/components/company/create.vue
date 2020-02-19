@@ -109,22 +109,22 @@
                                     </v-text-field>
                                 </v-flex>
                                 <v-flex xs12 sm6>
-                                     <v-file-input small-chips 
+                                    <v-file-input small-chips 
                                         accept="image/*"  
                                         label="Company Logo" 
                                         @change="onFileChange"
                                         v-validate="'image'" 
                                         :error-messages="errors.collect('Company Logo')" 
                                         data-vv-name="Company Logo">
-                                        </v-file-input>
+                                    </v-file-input>
                                 </v-flex>
                                 <v-flex xs12 sm12>
-                                     <div class="subheading pa-0 mb-2 font-weight-bold">Description</div>
+                                    <div class="subheading pa-0 mb-2 font-weight-bold">Description</div>
                                     <text-editor v-model="company.description"></text-editor>
                                 </v-flex>
                             </v-layout>
                             <v-layout row wrap mb-3 justify-end>
-                                 <v-flex xs12 class="text-right">
+                                <v-flex xs12 class="text-right">
                                     <v-btn color="teal" class="custom_button" tile @click="submit" >
                                         <v-icon left>mdi-content-save-edit-outline</v-icon>
                                         save company
@@ -133,7 +133,7 @@
                                         <v-icon left>mdi-lock-reset</v-icon>
                                         reload form
                                     </v-btn>
-                                 </v-flex>
+                                </v-flex>
                             </v-layout>
                         </v-card>
                     </v-flex>
@@ -170,7 +170,7 @@
 </template>
 <script>
   export default {
-      $_veeValidate: {
+        $_veeValidate: {
             validator: 'new'
         },
         mounted () {
