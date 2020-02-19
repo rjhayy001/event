@@ -17,6 +17,7 @@ class CreateDetailsTable extends Migration
             $table->bigIncrements('id');
             $table->string('fields')->nullable();
             $table->string('value')->nullable();
+            $table->string('details')->nullable();
             $table->timestamps();
         });
     }

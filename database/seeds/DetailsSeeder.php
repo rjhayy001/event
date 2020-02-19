@@ -16,11 +16,38 @@ class DetailsSeeder extends Seeder
         //
         Details::create([
             'fields' => 'Owner',
-            'value' => 'Quimper Evenements' ,
+            'value' => '' ,
+            'details' => 'static'
         ]);
         Details::create([
-            'fields' => 'Place',
-            'value' => 'France' ,
+            'fields' => 'Address',
+            'value' => '' ,
+            'details' => 'static'
+        ]);
+        Details::create([
+            'fields' => 'Zip Code',
+            'value' => '' ,
+            'details' => 'static'
+        ]);
+        Details::create([
+            'fields' => 'City',
+            'value' => '' ,
+            'details' => 'static'
+        ]);
+        Details::create([
+            'fields' => 'Country',
+            'value' => '' ,
+            'details' => 'static'
+        ]);
+        Details::create([
+            'fields' => 'Phone Number',
+            'value' => '' ,
+            'details' => 'static'
+        ]);
+        Details::create([
+            'fields' => 'Email',
+            'value' => '' ,
+            'details' => 'static'
         ]);
         Rule::create([
             'fields' => 'Name',

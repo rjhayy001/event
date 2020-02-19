@@ -33,7 +33,7 @@
                             class="mx-4"
                             v-for="(item, index) in details" :key="index"
                                 dense
-                                append-icon="mdi-delete"
+                                :append-icon="item.details != 'static' ? 'mdi-delete' : ''"
                                 color="teal"
                                 @click:append='remove_info(index , item)'
                                 :label="item.fields"
@@ -248,8 +248,10 @@ export default {
         save_details(){
             this.$root.$confirm('Are you sure you want to save ?').then((result) => {
                 if(result) {
+                     this.$store.commit('setOverlay' , true);
                     axios.post('/details', this.details )
                     .then((response) =>  {
+                    this.$store.commit('setOverlay' , false);
                     this.$store.commit('setSnack', 'Information Saved !')
                     this.details =response.data ;
                     })
