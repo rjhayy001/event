@@ -8,13 +8,20 @@
   >
     <template v-slot:item.duration="{ item }">
         <v-chip 
+        class="ma-2"
+        color="pink"
+      label
+      text-color="white"
             >
             {{item.duration}} day(s)
         </v-chip>
     </template>
     <template v-slot:item.details="{ item }">
         <v-chip
-            color="error"
+            class="ma-2"
+        color="primary"
+      label
+      text-color="white"
             >
             {{item.details}}
         </v-chip>

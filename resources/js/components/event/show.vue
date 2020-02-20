@@ -72,6 +72,9 @@
                         <template v-slot:item.from="{ item }">
                                 <v-chip v-if="item.from != 'no given date'"
                                     color="primary"
+                                    class="ma-2"
+                                    label
+                                    text-color="white"
                                     >
                                     {{item.from}}
                                 </v-chip>
@@ -80,6 +83,9 @@
                         <template v-slot:item.to="{ item }">
                                 <v-chip v-if="item.to != 'no given date'"
                                     color="error"
+                                    class="ma-2"
+                                    label
+                                    text-color="white"
                                     >
                                     {{item.to}}
                                 </v-chip>
