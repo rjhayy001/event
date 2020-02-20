@@ -1,9 +1,9 @@
 <template>
   <v-data-table
     :headers="headers"
-    :items="events"
+    :items="ongoing"
     :items-per-page="5"
-    :hide-default-footer="events.length < 5"
+    :hide-default-footer="ongoing.length < 5"
     @click:row = "getrow"
   >
     <template v-slot:item.duration="{ item }">
@@ -24,7 +24,7 @@
 <script>
   export default {
        props:{
-           events:{}
+           ongoing:{}
     },
     data () {
       return {
@@ -38,7 +38,7 @@
           { text: 'Start Date', value: 'from' },
           { text: 'End Date', value: 'to' },
           { text: 'Duration', value: 'duration' },
-          { text: 'Will Start', value: 'details' },
+          { text: 'Started', value: 'details' },
         ],
       }
     },

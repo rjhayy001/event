@@ -79,6 +79,13 @@
                 </v-card>
             </v-flex>
              <v-flex sm6 xs12 class="px-4 pt-8">
+                <v-card class="mb-4">
+                    <v-card-title>
+                    Ongoing Event
+                    <v-spacer></v-spacer>
+                    </v-card-title>
+                    <Ongoing :ongoing="ongoing"/>
+                </v-card>
                 <v-card>
                     <v-card-title>
                     Upcoming Event
@@ -100,6 +107,7 @@
 import fullCalendar from 'vue-fullcalendar';
 import VueCalendar from '../insert/calendar';
 import Upcoming from '../insert/Upcoming';
+import Ongoing from '../insert/Ongoing';
 import BarChart from "../insert/BarChart.vue";
 import DateHelperVue from '../mixins/DateHelper.vue';
 import moment from 'moment';
@@ -109,7 +117,7 @@ export default {
          'full-calendar' : fullCalendar,
          'vue-calendar' : VueCalendar,
          BarChart,
-         Upcoming,
+         Upcoming, Ongoing
 
     },
     mixins:[DateHelperVue],
@@ -118,6 +126,7 @@ export default {
         visitors: [],
         events: [],
         upcoming:[],
+        ongoing:[],
         
     }),
     methods: {
@@ -139,11 +148,10 @@ export default {
             let today = this.fulldate(new Date())
             axios.get('/upcoming', {})
             .then(response => {
-                console.log(today)
                 this.events = response.data;
                 response.data.forEach(element => {
                     if(element.from != 'no given date') {
-                        if(this.fulldate(new Date()) <= this.fulldate(element.from)) {
+                        if( moment() < moment(element.from)) {
                             this.upcoming.push({
                                 'id':element.id,
                                 'name':element.name ,
@@ -154,8 +162,19 @@ export default {
                             })
                         }
                     }
+                    // if(moment().isBetween(moment(element.start),moment(element.end)) || moment().isSame(moment(element.start)) || moment().isSame(moment(element.end)) ){
+                    if(moment().isBetween(moment(element.start),moment(element.end),null,'[]') || moment(element.from).isSame(moment(), 'day')  || moment(element.to).isSame(moment(), 'day')){
+                        this.ongoing.push({
+                            'id':element.id,
+                            'name':element.name ,
+                            'from': this.fulldate(element.from),
+                            'to': this.fulldate(element.to),
+                            'duration' : (moment(element.to).diff(moment(element.from), 'day', true)+1) ,
+                            'details' : this.daysRemaining(element.from),
+                        })
+                    }
                 })
-            });
+            }); 
         },
         daysRemaining(date) {
             // var eventdate = moment(date);
