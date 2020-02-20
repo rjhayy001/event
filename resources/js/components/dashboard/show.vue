@@ -136,9 +136,10 @@ export default {
             });
         },
         get_events(){
+            let today = this.fulldate(new Date())
             axios.get('/upcoming', {})
             .then(response => {
-                console.log( response.data , 'events')
+                console.log(today)
                 this.events = response.data;
                 response.data.forEach(element => {
                     if(element.from != 'no given date') {
@@ -149,12 +150,19 @@ export default {
                                 'from': this.fulldate(element.from),
                                 'to': this.fulldate(element.to),
                                 'duration' : (moment(element.to).diff(moment(element.from), 'day', true)+1) ,
+                                'details' : this.daysRemaining(element.from),
                             })
                         }
                     }
                 })
             });
         },
+        daysRemaining(date) {
+            // var eventdate = moment(date);
+            // var todaysdate = moment();
+            // return eventdate.diff(todaysdate, 'days' , true)+1;
+            return new moment().to(moment(date));
+        }
        
     },
     created: function () {

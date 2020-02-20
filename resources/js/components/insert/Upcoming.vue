@@ -13,10 +13,10 @@
         </v-chip>
     </template>
     <template v-slot:item.details="{ item }">
-        <v-chip v-if="item.duration == '1'"
+        <v-chip
             color="error"
             >
-            today
+            {{item.details}}
         </v-chip>
     </template>
     </v-data-table>
@@ -38,7 +38,7 @@
           { text: 'Start Date', value: 'from' },
           { text: 'End Date', value: 'to' },
           { text: 'Duration', value: 'duration' },
-          { text: 'Remarks', value: 'details' },
+          { text: 'Started', value: 'details' },
         ],
       }
     },
