@@ -126,6 +126,7 @@ h1 {
 
 .login .right-login-form input {
   width: 100%;
+  padding: 22px !important;
 }
 
 .login .right-login-form span {

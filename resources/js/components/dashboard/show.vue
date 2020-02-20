@@ -91,10 +91,14 @@
                     </v-toolbar>
                     <Upcoming :events="upcoming"/>
                 </v-card>
-                <!-- <BarChart/> -->
             </v-flex>
             <v-flex sm6 xs12 class="px-4 pt-8">
                 <vue-calendar></vue-calendar>
+            </v-flex>
+            <v-flex sm12 class="px-4 pt-8" > 
+                <v-card>
+                    <!-- <BarChart/> -->
+                </v-card>
             </v-flex>
            
         </v-layout>
