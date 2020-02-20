@@ -77,7 +77,7 @@
                     <v-container>
                         <v-layout row wrap >
                             <v-flex xs12 sm6>
-                                <v-toolbar flat color="white">
+                                <v-toolbar flat color="#E0E0E0">
                                     <v-toolbar-title class="text-uppercase title">Programs saved</v-toolbar-title>
                                 </v-toolbar>
                                 <v-simple-table class="elevation-1">
@@ -107,7 +107,7 @@
                                 </v-simple-table>
                             </v-flex>
                             <v-flex xs12 sm6 class="pl-4">
-                                <v-toolbar flat color="white">
+                                <v-toolbar flat color="#E0E0E0">
                                     <v-toolbar-title class="text-uppercase title">Companies attached</v-toolbar-title>
                                 </v-toolbar>
                                 <v-simple-table class="elevation-1">
@@ -138,7 +138,7 @@
                             </v-flex>
                             <v-flex xs12 class="my-4">
                             <v-divider></v-divider>
-                                <v-toolbar flat color="white">
+                                <v-toolbar flat color="#E0E0E0">
                                     <v-toolbar-title class="text-uppercase title">Highlights of this EVent</v-toolbar-title>
                                 </v-toolbar>
                                 <v-layout row wrap>
@@ -207,7 +207,7 @@
                                 <v-container grid-list-md>
                                     <v-layout row wrap>
                                         <v-flex xs12>
-                                            <v-toolbar flat color="white" >
+                                            <v-toolbar flat color="#E0E0E0" >
                                                 <v-toolbar-title class="text-uppercase title">images used</v-toolbar-title>
                                                 <v-spacer></v-spacer>
                                                 <v-btn color="teal" tile @click="dialog2 = !dialog2" icon class="mr-3 custom_button" depressed>
@@ -278,7 +278,7 @@
                                 <v-container grid-list-md>
                                     <v-layout row wrap>
                                         <v-flex xs12>
-                                            <v-toolbar flat color="white" >
+                                            <v-toolbar flat color="#E0E0E0" >
                                                 <v-toolbar-title class="text-uppercase title">Map of this event</v-toolbar-title>
                                                 <v-spacer></v-spacer>
                                                 <v-btn color="teal" tile @click="map_dialog = !map_dialog" icon class="mr-3 custom_button" depressed>

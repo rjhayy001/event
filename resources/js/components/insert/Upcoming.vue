@@ -2,7 +2,7 @@
   <v-data-table
     :headers="headers"
     :items="events"
-    :items-per-page="8"
+    :items-per-page="7"
     :hide-default-footer="events.length < 5"
     @click:row = "getrow"
   >

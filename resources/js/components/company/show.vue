@@ -69,6 +69,9 @@
                                 </v-list>
                             </v-menu>
                         </template>
+                          <template v-slot:item.created_at="{ item }">
+                              {{ fulldate(item.created_at)}}
+                          </template>
                     </v-data-table>
                 </v-flex>
             </v-layout>

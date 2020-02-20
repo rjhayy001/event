@@ -80,17 +80,15 @@
             </v-flex>
              <v-flex sm6 xs12 class="px-4 pt-8">
                 <v-card class="mb-4">
-                    <v-card-title>
-                    Ongoing Event
-                    <v-spacer></v-spacer>
-                    </v-card-title>
+                    <v-toolbar flat color="#E0E0E0" class="my-2">
+                        <v-toolbar-title class="text-uppercase title">ongoing events</v-toolbar-title>
+                    </v-toolbar>
                     <Ongoing :ongoing="ongoing"/>
                 </v-card>
                 <v-card>
-                    <v-card-title>
-                    Upcoming Event
-                    <v-spacer></v-spacer>
-                    </v-card-title>
+                    <v-toolbar flat color="#E0E0E0" class="my-2">
+                        <v-toolbar-title class="text-uppercase title">upcoming events</v-toolbar-title>
+                    </v-toolbar>
                     <Upcoming :events="upcoming"/>
                 </v-card>
                 <!-- <BarChart/> -->

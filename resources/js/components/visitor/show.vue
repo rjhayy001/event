@@ -32,6 +32,9 @@
                         class="elevation-1"
                         @click:row = "getrow"
                     >
+                    <template v-slot:item.created_at="{ item }">
+                              {{ fulldate(item.created_at)}}
+                          </template>
                         <template v-slot:item.action="{ item }">
                              <v-menu bottom origin="right center" transition="scale-transition">
                                 <template v-slot:activator="{ on }">
@@ -74,7 +77,9 @@
     </div>
 </template>
 <script>
+import DateHelperVue from '../mixins/DateHelper.vue';
 export default {
+    mixins:[DateHelperVue],
     data: () => ({
         data_loaded : true ,
         expand:'',
