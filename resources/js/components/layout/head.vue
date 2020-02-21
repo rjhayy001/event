@@ -55,9 +55,16 @@
       <v-btn icon class="white--text"  >
         <v-icon>mdi-apps</v-icon>
       </v-btn>
-      <v-btn class="white--text" icon @click="logout">
+     
+    <v-tooltip bottom>
+      <template v-slot:activator="{ on }">
+          
+           <v-btn class="white--text" v-on="on" icon @click="logout">
         <v-icon>mdi-logout</v-icon>
       </v-btn>
+      </template>
+      <span>Logout</span>
+  </v-tooltip>
     </v-app-bar>
 </template>
 <script>
