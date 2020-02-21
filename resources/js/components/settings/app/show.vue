@@ -18,7 +18,28 @@
             <v-container class="px-8 py-5">
                 <v-layout row wrap>
                     <v-flex xs12 sm5 >
-                        <v-toolbar flat >
+                        <v-toolbar flat>
+                            <v-toolbar-title>Owner Details</v-toolbar-title>
+
+                            <v-spacer></v-spacer>
+                            <v-tooltip bottom>
+                                <template v-slot:activator="{ on }">
+                                    <v-btn icon dark v-on="on" color="primary"  @click="dialog = !dialog">
+                                        <v-icon>mdi-plus</v-icon>
+                                    </v-btn>
+                                </template>
+                                <span>add information</span>
+                            </v-tooltip>
+                            <v-tooltip bottom>
+                                <template v-slot:activator="{ on }">
+                                    <v-btn icon v-on="on" color="teal"  @click="save_details">
+                                        <v-icon>mdi-content-save-edit-outline</v-icon>
+                                    </v-btn>
+                                </template>
+                                <span>Save changes</span>
+                            </v-tooltip>
+                            </v-toolbar>
+                        <!-- <v-toolbar flat >
                             <v-toolbar-title class="font-weight-bold small" >Owner Details</v-toolbar-title>
                             <v-spacer></v-spacer>
                             <v-btn tile color="primary" class="custom_button mr-3" small @click="dialog = !dialog">
@@ -27,7 +48,7 @@
                             <v-btn tile color="teal" class="custom_button" small @click="save_details">
                                 <v-icon left>mdi-content-save-edit-outline</v-icon> Save Changes
                             </v-btn>
-                        </v-toolbar>
+                        </v-toolbar> -->
                         <template v-if="details.length" >
                             <v-text-field
                             class="mx-4"
