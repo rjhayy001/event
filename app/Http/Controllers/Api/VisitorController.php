@@ -153,6 +153,7 @@ class VisitorController extends Controller
                     return Rules::whereFields('Password')->where('required', 1)->get()->count()>0;
                 }),
             ],
+            'fcmtoken' => 'required',
         ]);
 
         if($validatedData)
@@ -161,6 +162,7 @@ class VisitorController extends Controller
         $visitor->name = $request->input('name');
         $visitor->phone = $request->input('phone');
         $visitor->username = $request->input('username');
+        $visitor->fcmtoken = $request->input('fcmtoken');
 
         if($request->profile_pic){
             $image = $request->profile_pic;  // your base64 encoded

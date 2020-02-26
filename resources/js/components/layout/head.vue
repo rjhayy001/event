@@ -105,8 +105,6 @@ export default {
         if (val != null) this.tab = 0
         else this.tab = null
       },
-     
-        
     }  
 }
 </script>

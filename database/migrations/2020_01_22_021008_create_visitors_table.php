@@ -21,6 +21,7 @@ class CreateVisitorsTable extends Migration
             $table->string('username')->unique()->nullable();
             $table->string('password')->nullable();
             $table->string('image')->nullable();
+            $table->string('fcmtoken')->nullable();
             $table->timestamps();
         });
     }
