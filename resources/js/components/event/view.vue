@@ -70,12 +70,22 @@
                         </v-alert>
                         </div>
                         <v-divider></v-divider>
-
                     </v-card>
                 </v-flex>
-                <v-flex xs12 sm8 >
+               
+                <v-flex xs12 sm9 >
                     <v-container>
                         <v-layout row wrap >
+                            <v-flex sm12 xs12>
+                                <v-toolbar flat >
+                                    <!-- <v-toolbar-title class="text-uppercase title">notification details</v-toolbar-title> -->
+                                    <v-spacer></v-spacer>
+                                    <v-btn color="success" tile  class="custom_button">
+                                        <v-icon left>mdi-map</v-icon>
+                                    send notification
+                                    </v-btn>
+                                </v-toolbar>
+                            </v-flex>
                             <v-flex xs12 sm6>
                                 <v-toolbar flat color="#E0E0E0">
                                     <v-toolbar-title class="text-uppercase title">Programs saved</v-toolbar-title>

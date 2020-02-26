@@ -78,7 +78,14 @@
                                     >
                                     {{item.from}}
                                 </v-chip>
-                                <p v-else>{{item.from}}</p>
+                                 <v-chip v-else
+                                    color="grey"
+                                    class="ma-2"
+                                    label
+                                    text-color="white"
+                                    >
+                                    {{item.from}}
+                                </v-chip>
                         </template>
                         <template v-slot:item.to="{ item }">
                                 <v-chip v-if="item.to != 'no given date'"
@@ -89,7 +96,14 @@
                                     >
                                     {{item.to}}
                                 </v-chip>
-                                <p v-else>{{item.to}}</p>
+                                 <v-chip v-else
+                                    color="grey"
+                                    class="ma-2"
+                                    label
+                                    text-color="white"
+                                    >
+                                    {{item.to}}
+                                </v-chip>
                         </template>
                     </v-data-table>
                 </v-flex>
