@@ -63,7 +63,8 @@ class NotificationController extends Controller
             $serverKey = 'AAAAf9lPnKM:APA91bH035-_L3lCbPRbasyUKz7LqRUMe5KEevmgnn843nPY71O4pSnmvO4Y5UuoVLTuVEBPpSbSzF7Ds-tuYSCHLecqhgG1VG_KcNioyQZ7yLz2g95Ide7z3UBXRFIP0ASJYfPgv9dp';
             $title = "Event App";
             $body = $request->name;
-            $notification = array('title' =>$title , 'text' => $body, 'sound' => 'default', 'badge' => '1');
+            $image = $request->image;
+            $notification = array('title' =>$title , 'text' => $body, 'sound' => 'default', 'badge' => '1' , 'image'=> $image);
             $arrayToSend = array('registration_ids' => $iostoken, 'notification' => $notification,'priority'=>'high');
             $json = json_encode($arrayToSend);
             $headers = array();
