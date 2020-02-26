@@ -22,6 +22,7 @@ class CreateVisitorsTable extends Migration
             $table->string('password')->nullable();
             $table->string('image')->nullable();
             $table->string('fcmtoken')->nullable();
+            $table->string('iostoken')->nullable();
             $table->timestamps();
         });
     }
