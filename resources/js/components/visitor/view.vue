@@ -75,7 +75,7 @@
                     <v-container>
                         <v-layout row wrap >
                             <v-flex xs12 sm6>
-                                <v-toolbar flat color="#E0E0E0">
+                                <v-toolbar flat color="#E0E0E0" dense>
                                     <v-toolbar-title class="text-uppercase title">upcoming events</v-toolbar-title>
                                 </v-toolbar>
                                 <v-simple-table class="elevation-1">
@@ -105,7 +105,7 @@
                                 </v-simple-table>
                             </v-flex>
                             <v-flex xs12 sm6>
-                                <v-toolbar flat color="#E0E0E0">
+                                <v-toolbar flat color="#E0E0E0" dense>
                                     <v-toolbar-title class="text-uppercase title">past events</v-toolbar-title>
                                 </v-toolbar>
                                 <v-simple-table class="elevation-1">
