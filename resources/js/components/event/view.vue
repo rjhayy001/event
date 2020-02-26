@@ -340,7 +340,9 @@ export default {
             axios.post('/notify', this.event )
             .then((response) =>  {
                 console.log(response.data)
+                this.$store.commit('setSnack', 'Notification Sent !')
                 this.loading = false ;
+                this.get_events_info()
             })
         },
         open_modal(){

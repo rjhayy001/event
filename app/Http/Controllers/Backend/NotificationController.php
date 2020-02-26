@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Visitor;
+use App\Event;
 
 class NotificationController extends Controller
 {
     //
     public function send_notification(Request $request){
         // return $request ;
+        $this->change_notify($request);
         $fcmtoken =[];
         $iostoken=[];
         if($androidtoken = Visitor::where('fcmtoken','!=',null)->select('fcmtoken')->get()){
@@ -89,5 +91,11 @@ class NotificationController extends Controller
             curl_close($ch);
         }
         return $responseData;
+    }
+
+    public function change_notify($event) {
+        $event = Event::findorfail($event->id);
+        $event->notify = 1 ;
+        $event->save();
     }
 }
