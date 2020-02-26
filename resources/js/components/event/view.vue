@@ -77,12 +77,12 @@
                     <v-container>
                         <v-layout row wrap >
                             <v-flex sm12 xs12>
-                                <v-toolbar flat color="error" dense>
-                                    <v-toolbar-title class="text-uppercase title custom_button" >notification not sent</v-toolbar-title>
+                                <v-toolbar flat :color="event.notify == 1 ? 'success' : 'error'" dense>
+                                    <v-toolbar-title class="text-uppercase title custom_button" > {{event.notify == 1 ? 'notification sent' : 'notification not sent' }}</v-toolbar-title>
                                     <v-spacer></v-spacer>
-                                    <v-btn color="success" @click="send_notification" small tile :loading="loading"  class="custom_button">
+                                    <v-btn :color="event.notify == 1 ? 'teal' : 'success'" @click="send_notification" small tile :loading="loading"  class="custom_button">
                                         <v-icon left>mdi-map</v-icon>
-                                    send notification
+                                     {{event.notify == 1 ? 'resend notification' : 'send notification' }}
                                     </v-btn>
                                 </v-toolbar>
                             </v-flex>
@@ -337,7 +337,7 @@ export default {
     methods: {
         send_notification(){
             this.loading = true ;
-            axios.post('/notify', '' )
+            axios.post('/notify', this.event )
             .then((response) =>  {
                 console.log(response.data)
                 this.loading = false ;

@@ -210,6 +210,7 @@ class EventController extends Controller
             'highlights_image' => $event->highlights_image,
             'map' => $event->map,
             'fullmap' => $event->fullmap,
+            'notify' => $event->notify , 
             'prices' => collect($event->categories)->map(function ($category) {
                 return [
                     'id' => $category->id,

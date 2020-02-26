@@ -30,6 +30,7 @@ class CreateEventsTable extends Migration
             $table->string('restaurant_image')->nullable();
             $table->string('highlights_image')->nullable();
             $table->string('logo')->nullable();
+            $table->boolean('notify')->default(false);
             $table->timestamps();
         });
     }
