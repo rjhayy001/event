@@ -26135,6 +26135,10 @@ thead .v-data-table__checkbox > .v-icon {
           transition-timing-function: ease;
 }
 
+.teal {
+  color: white !important;
+}
+
 .custom_button {
   color: white !important;
 }
