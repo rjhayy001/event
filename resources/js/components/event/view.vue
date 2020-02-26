@@ -355,7 +355,7 @@ export default {
             this.data_loaded = false ;
             axios.get('/events/'+this.$route.params.id+'/edit', {})
             .then(response => {
-                console.log(response.data.finalevent ,'event')
+                // console.log(response.data.finalevent ,'event')
                 this.data_loaded = true ;
                 this.event = response.data.finalevent ;
                 this.program_highlight =response.data.program_highlight ;

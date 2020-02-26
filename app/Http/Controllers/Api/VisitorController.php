@@ -189,11 +189,16 @@ class VisitorController extends Controller
     {
         $loginData = $request->validate([
             'username' => 'required',
-            'password' => 'required'
+            'password' => 'required',
+            'fcmtoken' => 'nullable',
+            'iostoken' => 'nullable',
         ]);
         if($loginData){
              $visitor = Visitor::where('username',$request->username)->first();
             if ( ($visitor != null) && Hash::check($request->password, $visitor->password) ){
+                $visitor->fcmtoken = $request->input('fcmtoken');
+                $visitor->iostoken = $request->input('iostoken');
+                $visitor->save();
                 $accessToken = $visitor->createToken('authToken')->accessToken;
                 return response(['user' => new VisitorResource($visitor) , 'accessToken' => $accessToken ]);
             }
