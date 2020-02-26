@@ -77,17 +77,17 @@
                     <v-container>
                         <v-layout row wrap >
                             <v-flex sm12 xs12>
-                                <v-toolbar flat >
-                                    <!-- <v-toolbar-title class="text-uppercase title">notification details</v-toolbar-title> -->
+                                <v-toolbar flat color="error" dense>
+                                    <v-toolbar-title class="text-uppercase title custom_button" >notification not sent</v-toolbar-title>
                                     <v-spacer></v-spacer>
-                                    <v-btn color="success" tile  class="custom_button">
+                                    <v-btn color="success" @click="send_notification" small tile :loading="loading"  class="custom_button">
                                         <v-icon left>mdi-map</v-icon>
                                     send notification
                                     </v-btn>
                                 </v-toolbar>
                             </v-flex>
                             <v-flex xs12 sm6>
-                                <v-toolbar flat color="#E0E0E0">
+                                <v-toolbar flat color="#E0E0E0" dense>
                                     <v-toolbar-title class="text-uppercase title">Programs saved</v-toolbar-title>
                                 </v-toolbar>
                                 <v-simple-table class="elevation-1">
@@ -116,8 +116,8 @@
                                     </template>
                                 </v-simple-table>
                             </v-flex>
-                            <v-flex xs12 sm6 class="pl-4">
-                                <v-toolbar flat color="#E0E0E0">
+                            <v-flex xs12 sm6 class="pl-4" >
+                                <v-toolbar flat color="#E0E0E0" dense>
                                     <v-toolbar-title class="text-uppercase title">Companies attached</v-toolbar-title>
                                 </v-toolbar>
                                 <v-simple-table class="elevation-1">
@@ -148,7 +148,7 @@
                             </v-flex>
                             <v-flex xs12 class="my-4">
                             <v-divider></v-divider>
-                                <v-toolbar flat color="#E0E0E0">
+                                <v-toolbar flat color="#E0E0E0" dense>
                                     <v-toolbar-title class="text-uppercase title">Highlights of this EVent</v-toolbar-title>
                                 </v-toolbar>
                                 <v-layout row wrap>
@@ -217,7 +217,7 @@
                                 <v-container grid-list-md>
                                     <v-layout row wrap>
                                         <v-flex xs12>
-                                            <v-toolbar flat color="#E0E0E0" >
+                                            <v-toolbar flat color="#E0E0E0" dense >
                                                 <v-toolbar-title class="text-uppercase title">images used</v-toolbar-title>
                                                 <v-spacer></v-spacer>
                                                 <v-btn color="teal" tile @click="dialog2 = !dialog2" icon class="mr-3 custom_button" depressed>
@@ -288,7 +288,7 @@
                                 <v-container grid-list-md>
                                     <v-layout row wrap>
                                         <v-flex xs12>
-                                            <v-toolbar flat color="#E0E0E0" >
+                                            <v-toolbar flat color="#E0E0E0" dense >
                                                 <v-toolbar-title class="text-uppercase title">Map of this event</v-toolbar-title>
                                                 <v-spacer></v-spacer>
                                                 <v-btn color="teal" tile @click="map_dialog = !map_dialog" icon class="mr-3 custom_button" depressed>
@@ -321,6 +321,7 @@ import DateHelperVue from '../mixins/DateHelper.vue';
 export default {
     mixins:[DateHelperVue],
     data: () => ({
+        loading:false,
         dialog2:false,
         map_dialog:false,
         show: false ,
@@ -334,6 +335,14 @@ export default {
         company_highlight:[],
     }),
     methods: {
+        send_notification(){
+            this.loading = true ;
+            axios.post('/notify', '' )
+            .then((response) =>  {
+                console.log(response.data)
+                this.loading = false ;
+            })
+        },
         open_modal(){
            this.dialog2 = true ;
         },
