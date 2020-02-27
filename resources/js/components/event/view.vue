@@ -17,7 +17,14 @@
             </v-btn>
         </v-toolbar>
         <v-divider></v-divider>
-        <v-container grid-list-md>
+        <template v-if="!data_loaded"> 
+            <v-flex xs12 >
+                    <v-skeleton-loader
+                        type="table-tbody"
+                    ></v-skeleton-loader>
+                </v-flex>
+                </template>
+        <v-container grid-list-md v-else>
             <v-layout row wrap>
                 <v-flex xs12 sm3>
                     <v-card>
@@ -72,7 +79,6 @@
                         <v-divider></v-divider>
                     </v-card>
                 </v-flex>
-               
                 <v-flex xs12 sm9 >
                     <v-container>
                         <v-layout row wrap >
@@ -80,10 +86,16 @@
                                 <v-toolbar flat :color="event.notify == 1 ? 'success' : 'error'" dense>
                                     <v-toolbar-title class="text-uppercase title custom_button" > {{event.notify == 1 ? 'notification sent' : 'notification not sent' }}</v-toolbar-title>
                                     <v-spacer></v-spacer>
-                                    <v-btn :color="event.notify == 1 ? 'teal' : 'success'" @click="send_notification" small tile :loading="loading"  class="custom_button">
+                                    
+                                     <v-tooltip bottom>
+                                    <template v-slot:activator="{ on }">
+                                        <v-btn v-on="on" :color="event.notify == 1 ? 'teal' : 'success'" @click="send_notification" small tile :loading="loading"  class="custom_button">
                                         <v-icon left>mdi-map</v-icon>
-                                     {{event.notify == 1 ? 'resend notification' : 'send notification' }}
+                                        {{event.notify == 1 ? 'resend notification' : 'send notification' }}
                                     </v-btn>
+                                    </template>
+                                    <span>  {{event.notify == 1 ? 'Resend notification to all user ' : 'Send notification to all user ' }}</span>
+                                    </v-tooltip>
                                 </v-toolbar>
                             </v-flex>
                             <v-flex xs12 sm6>
