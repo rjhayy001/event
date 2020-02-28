@@ -90,7 +90,7 @@
                                      <v-tooltip bottom>
                                     <template v-slot:activator="{ on }">
                                         <v-btn v-on="on" :color="event.notify == 1 ? 'teal' : 'success'" @click="send_notification" small tile :loading="loading"  class="custom_button">
-                                        <v-icon left>mdi-map</v-icon>
+                                        <v-icon left>mdi-alert-box-outline</v-icon>
                                         {{event.notify == 1 ? 'resend notification' : 'send notification' }}
                                     </v-btn>
                                     </template>
@@ -295,6 +295,30 @@
                                 </v-container>
                             </v-card>
                         </v-dialog>
+                        <v-dialog v-model="notification_dialog" width="50%" min-height="80%" >
+                            <v-card>
+                                <v-container grid-list-md>
+                                    <v-layout row wrap>
+                                        <v-flex xs12>
+                                            <v-toolbar flat color="#E0E0E0" dense >
+                                                <v-toolbar-title class="text-uppercase title">Map of this event</v-toolbar-title>
+                                                <v-spacer></v-spacer>
+                                                <v-btn color="teal" tile @click="map_dialog = !map_dialog" icon class="mr-3 custom_button" depressed>
+                                                    <v-icon left>mdi-close-circle</v-icon>
+                                                </v-btn>
+                                            </v-toolbar>
+                                            <v-divider></v-divider>
+                                            <v-card>
+                                                <v-layout row wrap>
+                                                    test
+                                                    <v-btn color="success"></v-btn>
+                                                </v-layout>
+                                            </v-card>
+                                        </v-flex>
+                                    </v-layout>
+                                </v-container>
+                            </v-card>
+                        </v-dialog> 
                         <v-dialog v-model="map_dialog" width="50%" min-height="80%" >
                             <v-card>
                                 <v-container grid-list-md>
@@ -336,6 +360,7 @@ export default {
         loading:false,
         dialog2:false,
         map_dialog:false,
+        notification_dialog:false,
         show: false ,
         data_loaded: true ,
         event: {
