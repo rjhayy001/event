@@ -26188,3 +26188,7 @@ thead .v-data-table__checkbox > .v-icon {
   color: #009688 !important;
 }
 
+.v-data-table__wrapper table tr:hover {
+  cursor: pointer !important;
+}
+

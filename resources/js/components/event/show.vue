@@ -35,14 +35,14 @@
                         @click:row = "getrow"
                     >
                         <template v-slot:item.action="{ item }">
-                             <v-menu bottom origin="right center" transition="scale-transition">
+                                <v-menu bottom origin="right center" transition="scale-transition">
                                 <template v-slot:activator="{ on }">
                                     <v-btn text color="teal" dark v-on="on" @click.stop>
                                         <v-icon>mdi-dots-vertical</v-icon>
                                     </v-btn>
                                 </template>
                                 <v-list class="pa-0">
-                                     <v-list-item @click="$router.push({name: 'view_event', params: { id: item.id },})" >
+                                        <v-list-item @click="$router.push({name: 'view_event', params: { id: item.id },})" >
                                         <v-list-item-icon class="mr-0">
                                             <v-icon size="20" color="primary">mdi-eye</v-icon>
                                         </v-list-item-icon>
@@ -78,7 +78,7 @@
                                     >
                                     {{item.from}}
                                 </v-chip>
-                                 <v-chip v-else
+                                    <v-chip v-else
                                     color="grey"
                                     class="ma-2"
                                     label
@@ -96,7 +96,7 @@
                                     >
                                     {{item.to}}
                                 </v-chip>
-                                 <v-chip v-else
+                                    <v-chip v-else
                                     color="grey"
                                     class="ma-2"
                                     label
@@ -106,6 +106,14 @@
                                 </v-chip>
                         </template>
                     </v-data-table>
+                    <!-- <div class="text-center mt-5">
+                        <v-pagination
+                            v-model="page"
+                            :length="15"
+                            :total-visible="7"
+                        >
+                        </v-pagination>
+                    </div> -->
                 </v-flex>
             </v-layout>
         </v-container>
@@ -116,6 +124,7 @@ export default {
     data: () => ({
         data_loaded : true ,
         events:[],
+        page:1,
         expand:'',
         search:'',
         headers: [

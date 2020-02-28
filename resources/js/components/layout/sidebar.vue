@@ -70,7 +70,7 @@
       items: [
         { icon: 'mdi-view-dashboard', text: 'Tableau de bord' ,url:'/dashboard' },
         { icon: 'mdi-calendar', text: 'Evènements' ,url:'/event' },
-        { icon: 'mdi-office', text: 'Sociétés' ,url:'/company' },
+        { icon: 'mdi-office-building', text: 'Sociétés' ,url:'/company' },
         { icon: 'mdi-account-group', text: 'Visiteurs' ,url:'/visitor' },
         {
           icon: 'mdi-settings',

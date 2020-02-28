@@ -23,7 +23,7 @@ class Company extends Model
             'logo'=> $this->logo ,
             'created_at' => $this->created_at,
             'subtitle' => 'company',
-            'icon' => 'mdi-office',
+            'icon' => 'mdi-office-building',
             'route' => 'view_company'
         ];
     }

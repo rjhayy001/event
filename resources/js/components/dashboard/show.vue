@@ -2,6 +2,32 @@
     <v-container >
         <v-layout row wrap>
             <v-flex xs6 sm3 class="pa-4">
+                <v-card
+                    class="mx-auto purple "
+                    outlined 
+                    color="teal"
+                    dark
+                >
+                    <v-list-item three-line>
+                        <v-list-item-content>
+                            <div class="overline mb-4">events</div>
+                            <v-list-item-title class="headline mb-1">{{events.length}}</v-list-item-title>
+                            <v-list-item-subtitle>Events Registered</v-list-item-subtitle>
+                        </v-list-item-content>
+                        <v-list-item-avatar
+                            tile
+                            size="80"
+                                color="white"
+                        >
+                        <v-icon size="60" color="teal">mdi-calendar</v-icon>
+                        </v-list-item-avatar>
+                    </v-list-item>
+                    <v-card-actions >
+                        <v-btn @click="$router.push({name: 'event'})" text>view</v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-flex>
+            <v-flex xs6 sm3 class="pa-4">
                     <v-card
                         class="mx-auto purple "
                         outlined color="teal"
@@ -18,7 +44,7 @@
                                 size="80"
                                  color="white"
                             >
-                            <v-icon size="60" color="teal">mdi-office</v-icon>
+                            <v-icon size="60" color="teal">mdi-office-building</v-icon>
                             </v-list-item-avatar>
                         </v-list-item>
                         <v-card-actions >
@@ -52,32 +78,7 @@
                     </v-card-actions>
                 </v-card>
             </v-flex>
-            <v-flex xs6 sm3 class="pa-4">
-                <v-card
-                    class="mx-auto purple "
-                    outlined 
-                    color="teal"
-                    dark
-                >
-                    <v-list-item three-line>
-                        <v-list-item-content>
-                            <div class="overline mb-4">events</div>
-                            <v-list-item-title class="headline mb-1">{{events.length}}</v-list-item-title>
-                            <v-list-item-subtitle>Events Registered</v-list-item-subtitle>
-                        </v-list-item-content>
-                        <v-list-item-avatar
-                            tile
-                            size="80"
-                                color="white"
-                        >
-                        <v-icon size="60" color="teal">mdi-calendar</v-icon>
-                        </v-list-item-avatar>
-                    </v-list-item>
-                    <v-card-actions >
-                        <v-btn @click="$router.push({name: 'event'})" text>view</v-btn>
-                    </v-card-actions>
-                </v-card>
-            </v-flex>
+            
              <v-flex sm6 xs12 class="px-4 pt-8">
                 <v-card class="mb-4">
                     <v-toolbar flat color="#E0E0E0" class="mb-2" dense>
