@@ -16,7 +16,9 @@ class NotificationController extends Controller
         $this->change_notify($request);
         $fcmtoken =[];
         $iostoken=[];
-        if($androidtoken = Visitor::where('fcmtoken','!=',null)->select('fcmtoken')->get()){
+        if( $androidtoken = $request->notification['status'] == 1 ?  Visitor::where('fcmtoken','!=',null)->select('fcmtoken')->get() : Visitor::where('fcmtoken','!=',null)->whereHas('events' ,function($query) use($request){
+            $query->where('event_id' , $request->id);
+        })->select('fcmtoken')->get()){
             foreach ($androidtoken as $key => $value) 
             {
                 $fcmtoken[] = $value->fcmtoken;
@@ -25,7 +27,7 @@ class NotificationController extends Controller
             $msg = array
             (
                 'body'  => $request->notification['bodies'],
-                'title' => $request->name,
+                'title' => $request->notification['title'],
                 'image' => $request->image,
                 'subtitle' => $request->dates,
                 'sound' => 'default',
@@ -59,7 +61,10 @@ class NotificationController extends Controller
             $responseData['android'] =[ "result" =>$result ];
             curl_close( $ch );
         }
-        if($appletoken = Visitor::where('iostoken','!=',null)->select('iostoken')->get()){
+        if($appletoken =  $request->notification['status'] == 1 ? Visitor::where('iostoken','!=',null)->select('iostoken')->get() :
+            Visitor::where('iostoken','!=',null)->whereHas('events' ,function($query) use($request){
+                $query->where('event_id' , $request->id);
+            })->select('iostoken')->get()){
             foreach ($appletoken as $key => $value) 
             {
                 $iostoken[] = $value->iostoken;
@@ -102,6 +107,7 @@ class NotificationController extends Controller
         if($events->save()){
             $notice = Notification::findOrNew($event->notification['id']);
             $notice->body = $event->notification['bodies'];
+            $notice->title = $event->notification['title'];
             $notice->event_id = $event->id;
             $notice->save();
         }

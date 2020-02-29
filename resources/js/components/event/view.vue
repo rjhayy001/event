@@ -95,7 +95,7 @@
                                         {{event.notify == 1 ? 'resend notification' : 'send notification' }}
                                     </v-btn>
                                     </template>
-                                    <span>  {{event.notify == 1 ? 'Resend notification to all user ' : 'Send notification to all user ' }}</span>
+                                    <span>  {{event.notify == 1 ? 'Resend notification ' : 'Send notification ' }}</span>
                                     </v-tooltip>
                                 </v-toolbar>
                             </v-flex>
@@ -312,15 +312,32 @@
                                             <v-card>
                                                 <v-layout row wrap>
                                                     <v-flex xs12 class="pa-4">
+                                                        <v-text-field
+                                                            label="Notification Title"
+                                                            v-model="event.notification.title"
+                                                            filled
+                                                        ></v-text-field>
                                                         <v-textarea
                                                         v-model="event.notification.bodies"
                                                         filled
                                                         label="Notification Details"
                                                     ></v-textarea>
-                                                    <v-btn color="success float-right" @click="send_notification" right>
-                                                        <v-icon left>mdi-alert-box-outline</v-icon>
-                                                        Send Notification
-                                                        </v-btn>
+                                                    <v-tooltip right>
+                                                        <template v-slot:activator="{ on }">
+                                                            <v-btn v-on="on" color="teal float-right" @click="send_notification_to_all" >
+                                                                <v-icon >mdi-account-group</v-icon>
+                                                            </v-btn>
+                                                        </template>
+                                                        <span>Send to all Users</span>
+                                                    </v-tooltip>
+                                                    <v-tooltip left>
+                                                        <template v-slot:activator="{ on }">
+                                                            <v-btn class="mr-2" v-on="on" color="success float-right"  @click="send_notification_by_event" right>
+                                                                <v-icon>mdi-account-check</v-icon>
+                                                            </v-btn>
+                                                        </template>
+                                                        <span>Send to attending Users</span>
+                                                    </v-tooltip>
                                                     </v-flex>
                                                 </v-layout>
                                             </v-card>
@@ -382,7 +399,20 @@ export default {
         company_highlight:[],
     }),
     methods: {
-        send_notification(){
+        send_notification_to_all(){
+            this.event.notification.status = 1 ;
+            this.loading = true ;
+            this.notification_dialog = false ;
+            axios.post('/notify', this.event )
+            .then((response) =>  {
+                console.log(response.data)
+                this.$store.commit('setSnack', 'Notification Sent !')
+                this.loading = false ;
+                this.get_events_info()
+            })
+        },
+        send_notification_by_event(){
+            this.event.notification.status = 0 ;
             this.loading = true ;
             this.notification_dialog = false ;
             axios.post('/notify', this.event )

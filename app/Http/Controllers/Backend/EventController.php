@@ -249,6 +249,8 @@ class EventController extends Controller
             ],
             'notification' => [
                 'id' => $event->notification['id'] ? $event->notification['id'] : null ,
+                'title' => $event->notification['title'] ? $event->notification['title'] : $event->name, 
+                'status' => 1 ,
                 'bodies' => $event->notification['body'] ? $event->notification['body'] : 'this is notification' ,
             ]
         ];
