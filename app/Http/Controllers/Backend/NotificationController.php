@@ -6,12 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Visitor;
 use App\Event;
+use App\Notification ;
 
 class NotificationController extends Controller
 {
     //
     public function send_notification(Request $request){
-        // return $request ;
+        // return $request->notification['bodies'];
         $this->change_notify($request);
         $fcmtoken =[];
         $iostoken=[];
@@ -23,8 +24,8 @@ class NotificationController extends Controller
             define('AAAAf9lPnKM:APA91bH035-_L3lCbPRbasyUKz7LqRUMe5KEevmgnn843nPY71O4pSnmvO4Y5UuoVLTuVEBPpSbSzF7Ds-tuYSCHLecqhgG1VG_KcNioyQZ7yLz2g95Ide7z3UBXRFIP0ASJYfPgv9dp', 'AAAAf9lPnKM:APA91bH035-_L3lCbPRbasyUKz7LqRUMe5KEevmgnn843nPY71O4pSnmvO4Y5UuoVLTuVEBPpSbSzF7Ds-tuYSCHLecqhgG1VG_KcNioyQZ7yLz2g95Ide7z3UBXRFIP0ASJYfPgv9dp' );
             $msg = array
             (
-                'body'  => $request->name,
-                'title' => 'Event App',
+                'body'  => $request->notification['bodies'],
+                'title' => $request->name,
                 'image' => $request->image,
                 'subtitle' => $request->dates,
                 'sound' => 'default',
@@ -96,8 +97,13 @@ class NotificationController extends Controller
     }
 
     public function change_notify($event) {
-        $event = Event::findorfail($event->id);
-        $event->notify = 1 ;
-        $event->save();
+        $events = Event::findorfail($event->id);
+        $events->notify = 1 ;
+        if($events->save()){
+            $notice = Notification::findOrNew($event->notification['id']);
+            $notice->body = $event->notification['bodies'];
+            $notice->event_id = $event->id;
+            $notice->save();
+        }
     }
 }

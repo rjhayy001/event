@@ -48,6 +48,9 @@ class Event extends Model
     public function presentation(){
         return $this->hasOne(Presentation::class);
     }
+    public function notification(){
+        return $this->hasOne(Notification::class);
+    }
     public function visitor_fav(){
         return $this->belongsToMany(Visitor::class , 'favorites' , 'event_id' , 'visitor_id' );
     }

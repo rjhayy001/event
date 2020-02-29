@@ -176,7 +176,7 @@
         mounted () {
             this.$validator.localize('en', this.dictionary)
         },
-      data: () => ({
+        data: () => ({
             company: {
                 name: '',
                 contacts:

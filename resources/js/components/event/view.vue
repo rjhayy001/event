@@ -89,7 +89,8 @@
                                     
                                      <v-tooltip bottom>
                                     <template v-slot:activator="{ on }">
-                                        <v-btn v-on="on" :color="event.notify == 1 ? 'teal' : 'success'" @click="send_notification" small tile :loading="loading"  class="custom_button">
+                                        <!-- @click="send_notification" -->
+                                        <v-btn v-on="on" :color="event.notify == 1 ? 'teal' : 'success'" @click="notification_dialog = !notification_dialog"  small tile :loading="loading"  class="custom_button">
                                         <v-icon left>mdi-alert-box-outline</v-icon>
                                         {{event.notify == 1 ? 'resend notification' : 'send notification' }}
                                     </v-btn>
@@ -232,7 +233,7 @@
                                             <v-toolbar flat color="#E0E0E0" dense >
                                                 <v-toolbar-title class="text-uppercase title">images used</v-toolbar-title>
                                                 <v-spacer></v-spacer>
-                                                <v-btn color="teal" tile @click="dialog2 = !dialog2" icon class="mr-3 custom_button" depressed>
+                                                <v-btn color="teal" tile @click="dialog2 = !dialog2" icon class=" custom_button" depressed>
                                                     <v-icon left>mdi-close-circle</v-icon>
                                                 </v-btn>
                                             </v-toolbar>
@@ -301,17 +302,26 @@
                                     <v-layout row wrap>
                                         <v-flex xs12>
                                             <v-toolbar flat color="#E0E0E0" dense >
-                                                <v-toolbar-title class="text-uppercase title">Map of this event</v-toolbar-title>
+                                                <v-toolbar-title class="text-uppercase title">Notification Details</v-toolbar-title>
                                                 <v-spacer></v-spacer>
-                                                <v-btn color="teal" tile @click="map_dialog = !map_dialog" icon class="mr-3 custom_button" depressed>
+                                                <v-btn color="teal" tile @click="notification_dialog = !notification_dialog" icon class="custom_button" depressed>
                                                     <v-icon left>mdi-close-circle</v-icon>
                                                 </v-btn>
                                             </v-toolbar>
                                             <v-divider></v-divider>
                                             <v-card>
                                                 <v-layout row wrap>
-                                                    test
-                                                    <v-btn color="success"></v-btn>
+                                                    <v-flex xs12 class="pa-4">
+                                                        <v-textarea
+                                                        v-model="event.notification.bodies"
+                                                        filled
+                                                        label="Notification Details"
+                                                    ></v-textarea>
+                                                    <v-btn color="success float-right" @click="send_notification" right>
+                                                        <v-icon left>mdi-alert-box-outline</v-icon>
+                                                        Send Notification
+                                                        </v-btn>
+                                                    </v-flex>
                                                 </v-layout>
                                             </v-card>
                                         </v-flex>
@@ -327,7 +337,7 @@
                                             <v-toolbar flat color="#E0E0E0" dense >
                                                 <v-toolbar-title class="text-uppercase title">Map of this event</v-toolbar-title>
                                                 <v-spacer></v-spacer>
-                                                <v-btn color="teal" tile @click="map_dialog = !map_dialog" icon class="mr-3 custom_button" depressed>
+                                                <v-btn color="teal" tile @click="map_dialog = !map_dialog" icon class="custom_button" depressed>
                                                     <v-icon left>mdi-close-circle</v-icon>
                                                 </v-btn>
                                             </v-toolbar>
@@ -374,6 +384,7 @@ export default {
     methods: {
         send_notification(){
             this.loading = true ;
+            this.notification_dialog = false ;
             axios.post('/notify', this.event )
             .then((response) =>  {
                 console.log(response.data)

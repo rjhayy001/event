@@ -247,6 +247,10 @@ class EventController extends Controller
                 'image' => $event->presentation->image,
                 'details' => $event->presentation->details,
             ],
+            'notification' => [
+                'id' => $event->notification['id'] ? $event->notification['id'] : null ,
+                'bodies' => $event->notification['body'] ? $event->notification['body'] : 'this is notification' ,
+            ]
         ];
         $program_highlight  = $event->programs()->where('highlight' , '1')->get();
         $company_highlight  = $event->companies()->where('highlight' , '1')->get();
