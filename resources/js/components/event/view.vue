@@ -320,7 +320,7 @@
                                                         <v-textarea
                                                         v-model="event.notification.bodies"
                                                         filled
-                                                        label="Notification Details"
+                                                        label="Notification Body"
                                                     ></v-textarea>
                                                     <v-tooltip right>
                                                         <template v-slot:activator="{ on }">
