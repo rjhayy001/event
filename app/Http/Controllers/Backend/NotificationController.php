@@ -29,9 +29,9 @@ class NotificationController extends Controller
                 'body'  => $request->notification['bodies'],
                 'title' => $request->notification['title'],
                 'image' => $request->image,
-                'subtitle' => $request->dates,
+                'subtitle' => $request->id,
                 'sound' => 'default',
-                'badge' => '1' 
+                'badge' =>    $request->notification['status'] == 1 ? '1' : '2'
             );
 
             $fields = array
@@ -74,7 +74,7 @@ class NotificationController extends Controller
             $title = "Event App";
             $body = $request->name;
             $image = $request->image;
-            $notification = array('title' =>$title , 'text' => $body, 'sound' => 'default', 'badge' => '1' , 'image'=> $image , 'subtitle' => $request->dates);
+            $notification = array('title' =>$title , 'text' => $body, 'sound' => 'default', 'badge' => $request->notification['status'] == 1 ? '1' : '2' , 'image'=> $image , 'subtitle' => $request->id);
             $arrayToSend = array('registration_ids' => $iostoken, 'notification' => $notification,'priority'=>'high');
             $json = json_encode($arrayToSend);
             $headers = array();
