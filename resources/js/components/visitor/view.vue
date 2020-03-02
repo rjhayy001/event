@@ -184,7 +184,6 @@ export default {
                     }
                 });
                 this.data_loaded = true ;
-
             });
         },
         getrow(e) {

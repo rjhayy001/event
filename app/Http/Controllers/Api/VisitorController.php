@@ -194,7 +194,7 @@ class VisitorController extends Controller
             'iostoken' => 'nullable',
         ]);
         if($loginData){
-             $visitor = Visitor::where('username',$request->username)->first();
+             $visitor = Visitor::where('username',$request->username)->where('active','1')->first();
             if ( ($visitor != null) && Hash::check($request->password, $visitor->password) ){
                 $visitor->fcmtoken = $request->input('fcmtoken');
                 $visitor->iostoken = $request->input('iostoken');

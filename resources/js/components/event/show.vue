@@ -4,16 +4,16 @@
             <v-layout row wrap>
                 <v-flex xs12 class="px-3">
                     <v-toolbar flat >
-                        <v-toolbar-title class="font-weight-bold">Event's List</v-toolbar-title>
+                        <v-toolbar-title class="font-weight-bold">Liste des événements</v-toolbar-title>
                             <v-icon depressed class="float-left mx-2"  @click="expand = !expand" >mdi-magnify</v-icon>
                         <v-expand-x-transition >
-                            <v-text-field width="30" class="pt-5 pl-3" v-show="expand" dense filled color="teal" v-model="search" placeholder="Search Event..." ></v-text-field>
+                            <v-text-field width="30" class="pt-5 pl-3" v-show="expand" dense filled color="teal" v-model="search" placeholder="Rechercher un événement..." ></v-text-field>
                         </v-expand-x-transition>
                      <v-flex sm2 xs6 flex >
                     </v-flex>
                     <v-spacer></v-spacer>
                     <v-btn color="teal" tile class="custom_button" to="event/create" >
-                       <v-icon left >mdi-plus</v-icon> add event
+                       <v-icon left >mdi-plus</v-icon> ajouter 
                     </v-btn>
                     </v-toolbar>
                 </v-flex>
@@ -129,14 +129,14 @@ export default {
         search:'',
         headers: [
             {
-                text: 'Event Name',
+                text: "nom de l'événement",
                 align: 'left',
                 value: 'name',
             },
-            { text: 'Start Date', value: 'from' ,sortable: false },
-            { text: 'End Date', value: 'to' ,sortable: false },
-            { text: 'company attending', value: 'company_count' ,sortable: false },
-            { text: 'expected visitors', value: 'visitor_count' ,sortable: false },
+            { text: 'date de début', value: 'from' ,sortable: false },
+            { text: 'date de fin', value: 'to' ,sortable: false },
+            { text: 'entreprise participant', value: 'company_count' ,sortable: false },
+            { text: 'visiteurs attendus', value: 'visitor_count' ,sortable: false },
             { text: 'actions', value: 'action' },
         ],
     }),

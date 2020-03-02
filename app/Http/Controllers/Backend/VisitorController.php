@@ -66,6 +66,13 @@ class VisitorController extends Controller
         return $visitor;
     }
 
+    public function activate_controller(Request $request) {
+        $visitor = Visitor::findorfail($request->id);
+        $visitor->active = $request->active ;
+        $visitor->save() ;
+        return $this->index();
+    }
+
     /**
      * Display the specified resource.
      *

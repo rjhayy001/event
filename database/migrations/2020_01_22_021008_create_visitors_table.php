@@ -23,6 +23,7 @@ class CreateVisitorsTable extends Migration
             $table->string('image')->nullable();
             $table->string('fcmtoken')->nullable();
             $table->string('iostoken')->nullable();
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }

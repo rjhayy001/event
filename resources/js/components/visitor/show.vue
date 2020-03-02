@@ -32,9 +32,12 @@
                         class="elevation-1"
                         @click:row = "getrow"
                     >
-                    <template v-slot:item.created_at="{ item }">
+                            <template v-slot:item.created_at="{ item }">
                               {{ fulldate(item.created_at)}}
-                          </template>
+                            </template>
+                            <template v-slot:item.active="{ item }">
+                              <v-switch v-model="item.active"   @click.stop="required_change(item)"  color="teal"></v-switch>
+                            </template>
                         <template v-slot:item.action="{ item }">
                              <v-menu bottom origin="right center" transition="scale-transition">
                                 <template v-slot:activator="{ on }">
@@ -94,11 +97,19 @@ export default {
             { text: 'Contact', value: 'contact',sortable: false },
             { text: 'Email Address', value: 'email',sortable: false },
             { text: 'Registered at', value: 'created_at',sortable: false },
+            { text: 'Active', value: 'active',sortable: false },
             { text: 'actions', value: 'action',sortable: false },
         ],
     }),
 
     methods : {
+        required_change(item) {
+            item.active = item.active == 1 ? 0 : 1 ;
+            axios.post('/activate',item)
+            .then((response) =>  {
+            console.log(response.data);
+            })
+        },
         get_visitors() {
             this.data_loaded = false ;
             axios.get('/visitors', {})

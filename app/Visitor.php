@@ -25,6 +25,7 @@ class Visitor extends Authenticatable
             'created_at'=> $this->created_at,
             'logo' => $this->image,
             'subtitle' => 'visitor',
+            'active' => $this->active,
             'icon' => 'mdi-account-group',
             'route' => 'view_visitor'
         ];
