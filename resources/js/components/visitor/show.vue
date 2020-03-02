@@ -107,7 +107,7 @@ export default {
             item.active = item.active == 1 ? 0 : 1 ;
             axios.post('/activate',item)
             .then((response) =>  {
-            console.log(response.data);
+            this.visitors = response.data ;
             })
         },
         get_visitors() {

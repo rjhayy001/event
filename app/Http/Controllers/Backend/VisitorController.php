@@ -69,8 +69,50 @@ class VisitorController extends Controller
     public function activate_controller(Request $request) {
         $visitor = Visitor::findorfail($request->id);
         $visitor->active = $request->active ;
-        $visitor->save() ;
-        return $this->index();
+
+        if($visitor->save() && $visitor->fcmtoken != null ) {
+            $this->send_deactivate_notification_android($visitor);
+        }
+        return $this->index() ;
+    }
+
+    public function send_deactivate_notification_android($visitor) {
+        $tokens[] = $visitor->fcmtoken ;
+        define('AAAAf9lPnKM:APA91bH035-_L3lCbPRbasyUKz7LqRUMe5KEevmgnn843nPY71O4pSnmvO4Y5UuoVLTuVEBPpSbSzF7Ds-tuYSCHLecqhgG1VG_KcNioyQZ7yLz2g95Ide7z3UBXRFIP0ASJYfPgv9dp', 'AAAAf9lPnKM:APA91bH035-_L3lCbPRbasyUKz7LqRUMe5KEevmgnn843nPY71O4pSnmvO4Y5UuoVLTuVEBPpSbSzF7Ds-tuYSCHLecqhgG1VG_KcNioyQZ7yLz2g95Ide7z3UBXRFIP0ASJYfPgv9dp' );
+        $msg = array
+        (
+            'body'  => $visitor->active == 0 ? 'youre account has been deactivated !' : 'youre account has been activated !',
+            'title' =>$visitor->active == 0 ? 'Deactivation Notice' : 'Activation Notice',
+            'sound' => 'default',
+            'badge' =>  '3' 
+        );
+
+        $fields = array
+        (
+            'registration_ids'  => $tokens,
+            'notification'  => $msg
+        );
+
+        $headers = array
+        (
+        'Authorization: key=' . 'AAAAf9lPnKM:APA91bH035-_L3lCbPRbasyUKz7LqRUMe5KEevmgnn843nPY71O4pSnmvO4Y5UuoVLTuVEBPpSbSzF7Ds-tuYSCHLecqhgG1VG_KcNioyQZ7yLz2g95Ide7z3UBXRFIP0ASJYfPgv9dp',
+        'Content-Type: application/json'
+        );
+
+        $ch = curl_init();
+        curl_setopt( $ch,CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send' );
+        curl_setopt( $ch,CURLOPT_POST, true );
+        curl_setopt( $ch,CURLOPT_HTTPHEADER, $headers );
+        curl_setopt( $ch,CURLOPT_RETURNTRANSFER, true );
+        curl_setopt( $ch,CURLOPT_SSL_VERIFYPEER, false );
+        curl_setopt( $ch,CURLOPT_POSTFIELDS, json_encode( $fields ) );
+        $result = curl_exec($ch );
+        if ($result === FALSE) {
+            die('FCM Send Error: ' . curl_error($ch));
+        }
+        $result = json_decode($result,true);
+        $responseData['android'] =[ "result" =>$result ];
+        curl_close( $ch );
     }
 
     /**
