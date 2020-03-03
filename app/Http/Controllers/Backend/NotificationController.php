@@ -31,7 +31,8 @@ class NotificationController extends Controller
                 'image' => $request->image,
                 'subtitle' => $request->id,
                 'sound' => 'default',
-                'badge' =>    $request->notification['status'] == 1 ? '1' : '2'
+                'badge' =>    $request->notification['status'] == 1 ? '1' : '2',
+                'time' => date('H:i:s')
             );
 
             $fields = array

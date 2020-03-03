@@ -87,7 +87,8 @@ class VisitorController extends Controller
             'body'  => $visitor->active == 0 ? 'youre account has been deactivated !' : 'youre account has been activated !',
             'title' =>$visitor->active == 0 ? 'Deactivation Notice' : 'Activation Notice',
             'sound' => 'default',
-            'badge' =>  '3' 
+            'badge' =>  '3' ,
+            'time' => date('H:i:s')
         );
 
         $fields = array
