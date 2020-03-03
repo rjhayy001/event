@@ -26,20 +26,19 @@ class NotificationController extends Controller
             define('AAAAf9lPnKM:APA91bH035-_L3lCbPRbasyUKz7LqRUMe5KEevmgnn843nPY71O4pSnmvO4Y5UuoVLTuVEBPpSbSzF7Ds-tuYSCHLecqhgG1VG_KcNioyQZ7yLz2g95Ide7z3UBXRFIP0ASJYfPgv9dp', 'AAAAf9lPnKM:APA91bH035-_L3lCbPRbasyUKz7LqRUMe5KEevmgnn843nPY71O4pSnmvO4Y5UuoVLTuVEBPpSbSzF7Ds-tuYSCHLecqhgG1VG_KcNioyQZ7yLz2g95Ide7z3UBXRFIP0ASJYfPgv9dp' );
             $msg = array
             (
-                'data' => [
-                    'body'  => $request->notification['bodies'],
-                    'title' => $request->notification['title'],
-                    'image' => $request->image,
-                    'subtitle' => $request->id,
-                    'sound' => 'default',
-                    'badge' =>    $request->notification['status'] == 1 ? '1' : '2'
-                ]
+                'body'  => $request->notification['bodies'],
+                'title' => $request->notification['title'],
+                'image' => $request->image,
+                'subtitle' => $request->id,
+                'sound' => 'default',
+                'badge' =>    $request->notification['status'] == 1 ? '1' : '2'
             );
 
             $fields = array
             (
                 'registration_ids'  => $fcmtoken,
-                'notification'  => $msg
+                'notification'  => $msg,
+                'data' => $msg
             );
 
             $headers = array
