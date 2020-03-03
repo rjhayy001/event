@@ -120,6 +120,8 @@
     </div>
 </template>
 <script>
+import Repository from "@/js/repositories/RepositoryFactory";
+const EventRepository = Repository.get("events");
 export default {
     data: () => ({
         data_loaded : true ,
@@ -144,10 +146,10 @@ export default {
     methods : {
         get_events() {
             this.data_loaded = false ;
-            axios.get('/events', {})
-            .then(response => {
-                this.events = response.data;
-                console.log(response.data)
+            EventRepository.getEvents()
+            .then(({data}) => {
+                this.events = data;
+                console.log(data , 'events')
                 this.data_loaded = true;
             });
         },
@@ -157,10 +159,10 @@ export default {
         destroy(id) {
             this.$root.$confirm('Are you sure you want to delete ?').then((result) => {
                 if(result) {
-                    axios.delete('/events/'+id, {})
-                     .then((response) =>  {
-                         console.log(response.data)
-                         this.events = response.data;
+                    EventRepository.delete(id)
+                     .then(({data}) =>  {
+                         console.log(data)
+                         this.events = data;
                         this.$store.commit('setSnack', 'Event Deleted !')
                     });
                 }
