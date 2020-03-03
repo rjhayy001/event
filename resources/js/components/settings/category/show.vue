@@ -1,6 +1,5 @@
 <template>
     <div>
-        
         <v-container grid-list-xs>
             <v-layout row wrap>
                 <v-flex xs12>
@@ -91,6 +90,8 @@
     </div>
 </template>
 <script>
+import Repository from "@/js/repositories/RepositoryFactory";
+const CategoryRepository = Repository.get("categories");
     export default {
         $_veeValidate: {
             validator: 'new'
@@ -121,29 +122,29 @@
                 let self = this;
                 this.$validator.validateAll().then(result => {
                     if (result){
-                         this.$store.commit('setOverlay' , true);
+                        this.$store.commit('setOverlay' , true);
                         this.$root.$confirm('Are you sure you want to save ?').then((result) => {
                             if(result) {
                                 let dis = this ;
                                 let id = this.category.id ;
                                 if(id != '' ) {
-                                    axios.put('/categories/'+id, this.category )
-                                    .then((response) =>  {
+                                    CategoryRepository.update(this.category ,id)
+                                    .then(({data}) => {
                                         this.$store.commit('setOverlay' , false);
                                         this.$store.commit('setSnack', 'Category Updated !')
-                                        console.log(response.data)
+                                        console.log(data)
                                         dis.get_categories()
                                         dis.clear()
                                         dis.category.id= ''
 
                                     })
                                 } else {
-                                axios.post('/categories', this.category )
-                               .then((response) =>  {
+                                CategoryRepository.create(this.category)
+                                .then(({data}) => {
                                     this.$store.commit('setOverlay' , false);
                                     this.$store.commit('setSnack', 'Category Saved !')
                                     dis.get_categories()
-                                    console.log(response.data , ' saved')
+                                    console.log(data , ' saved')
                                     dis.clear()
                                 })
                                 }
@@ -155,10 +156,10 @@
             destroy(id){
                 this.$root.$confirm('Are you sure you want to delete ?').then((result) => {
                     if(result) {
-                        axios.delete('/categories/'+id, {})
-			            .then((response) =>  {
+                        CategoryRepository.delete(id)
+			            .then(({data}) => {
                             this.$store.commit('setSnack', 'Category Deleted !')
-                            console.log(response.data)
+                            console.log(data)
                             this.get_categories()
                             this.clear()
 			            });
@@ -166,11 +167,11 @@
                 })
             },
             get_category_edit(id) {
-                axios.get('/categories/'+id+'/edit', {})
-			    .then(response => {
-                    console.log(response.data)
-                    this.category.name = response.data.person ;
-                    this.category.id = response.data.id ;
+                CategoryRepository.getCategory(id)
+			    .then(({data}) => {
+                    console.log(data)
+                    this.category.name = data.person ;
+                    this.category.id = data.id ;
 			    });
             },
             clear () {
@@ -178,9 +179,10 @@
                 this.$refs.form.reset()
             },
             get_categories() {
-                axios.get('/categories', {})
-			    .then(response => {
-                    this.categories = response.data;
+                // axios.get('/categories', {})
+                CategoryRepository.get()
+			    .then(({data}) => {
+                    this.categories = data;
                     console.log(this.categories)
                     this.data_loaded = true;
                 });
