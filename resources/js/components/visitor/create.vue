@@ -99,6 +99,8 @@
     </div>
 </template>
 <script>
+import Repository from "@/js/repositories/RepositoryFactory";
+const VisitorRepository = Repository.get("visitors");
   export default {
       $_veeValidate: {
             validator: 'new'
@@ -124,12 +126,13 @@
                         this.$root.$confirm('Are you sure you want to save ?').then((result) => {
                             if(result) {
                                 this.$store.commit('setOverlay' , true);
-                                axios.post('/visitors', this.visitor)
-                                .then((response) =>  {
+                                VisitorRepository.create(this.visitor)
+                                // axios.post('/visitors', this.visitor)
+                                .then(({data}) =>  {
                                 this.$store.commit('setOverlay' , false);
                                 this.$store.commit('setSnack', 'Visitor Saved !')
                                 self.$router.push('/visitor');
-                                console.log(response.data);
+                                console.log(data);
                                 })
                             }
                         })

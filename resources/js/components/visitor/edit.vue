@@ -115,6 +115,8 @@
     </div>
 </template>
 <script>
+import Repository from "@/js/repositories/RepositoryFactory";
+const VisitorRepository = Repository.get("visitors");
   export default {
       $_veeValidate: {
             validator: 'new'
@@ -143,11 +145,12 @@
                         this.$root.$confirm('Are you sure you want to save ?').then((result) => {
                             if(result) {
                                 this.$store.commit('setOverlay' , true);
-                                axios.put('/visitors/'+this.$route.params.id, this.visitor )
-                                .then((response) =>  {
+                                VisitorRepository.update(this.visitor,this.$route.params.id)
+                                // axios.put('/visitors/'+this.$route.params.id, this.visitor )
+                                 .then(({data}) => {
                                 this.$store.commit('setOverlay' , false);
                                 this.$store.commit('setSnack', 'Visitor Updated !')
-                                    console.log(response.data)
+                                    console.log(data)
                                     self.$router.push('/visitor');
                                 })
                             }
@@ -161,10 +164,11 @@
             },
             get_visitors_info() {
                 this.data_loaded = false ;
-                axios.get('/visitors/'+this.$route.params.id+'/edit', {})
-			    .then(response => {
-                    console.log(response.data)
-                    this.visitor = response.data ;
+                 VisitorRepository.getVisitor(this.$route.params.id)
+                // axios.get('/visitors/'+this.$route.params.id+'/edit', {})
+			   .then(({data}) => {
+                    console.log(data ,'visitors_info')
+                    this.visitor = data ;
                 this.data_loaded = true ;
 
 			    });

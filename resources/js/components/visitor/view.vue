@@ -143,6 +143,8 @@
 </template>
 <script>
 import DateHelperVue from '../mixins/DateHelper.vue';
+import Repository from "@/js/repositories/RepositoryFactory";
+const VisitorRepository = Repository.get("visitors");
 export default {
     mixins:[DateHelperVue],
     data: () => ({
@@ -169,7 +171,7 @@ export default {
         },
         get_visitors_info() {
             this.data_loaded = false ;
-            axios.get('/visitors/'+this.$route.params.id+'/edit', {})
+            VisitorRepository.getVisitor(this.$route.params.id)
             .then(response => {
                 console.log(response.data)
                 this.visitor = response.data ;

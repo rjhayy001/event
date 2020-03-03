@@ -83,6 +83,8 @@
 </template>
 <script>
 import DateHelperVue from '../mixins/DateHelper.vue';
+import Repository from "@/js/repositories/RepositoryFactory";
+const VisitorRepository = Repository.get("visitors");
 export default {
     mixins:[DateHelperVue],
     data: () => ({
@@ -107,17 +109,17 @@ export default {
     methods : {
         required_change(item) {
             item.active = item.active == 1 ? 0 : 1 ;
-            axios.post('/activate',item)
-            .then((response) =>  {
-            this.visitors = response.data ;
+            VisitorRepository.activate(item)
+            .then(({data}) => {
+            this.visitors = data ;
             })
         },
         get_visitors() {
             this.data_loaded = false ;
-            axios.get('/visitors', {})
-            .then(response => {
-                this.visitors = response.data;
-                console.log(this.visitors)
+            VisitorRepository.get()
+            .then(({data}) => {
+                this.visitors = data;
+                console.log(data , 'visitors')
                 this.data_loaded = true;
             });
         },
@@ -127,11 +129,11 @@ export default {
         destroy(id) {
             this.$root.$confirm('Are you sure you want to delete ?').then((result) => {
                 if(result) {
-                    axios.delete('/visitors/'+id, {})
-                    .then((response) =>  {
+                    VisitorRepository.delete(id)
+                    .then(({data}) =>  {
                         this.$store.commit('setSnack', 'Visitor Deleted !')
-                        console.log(response.data)
-                        this.visitors = response.data;
+                        console.log(data)
+                        this.visitors = data;
                     });
                 }
             })
