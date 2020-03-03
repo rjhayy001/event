@@ -1,8 +1,9 @@
 import EventRepository from './EventRepository';
-// import UserRepository from './UserRepository';
+import CompanyRepository from './CompanyRepository';
 
 const repositories = {
     'events': EventRepository,
+    'companies': CompanyRepository,
 }
 export default {
     get: name => repositories[name]

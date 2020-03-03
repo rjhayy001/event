@@ -80,6 +80,8 @@
 </template>
 <script>
 import DateHelperVue from '../mixins/DateHelper.vue';
+import Repository from "@/js/repositories/RepositoryFactory";
+const CompanyRepository = Repository.get("companies");
 export default {
     mixins:[DateHelperVue],
     data: () => ({
@@ -104,10 +106,10 @@ export default {
     methods : {
         get_company() {
             this.data_loaded = false ;
-            axios.get('/companies', {})
-            .then(response => {
-                this.companies = response.data;
-                console.log(response.data)
+            CompanyRepository.get()
+            .then(({data}) => {
+                this.companies = data;
+                console.log(data , 'companies')
                 this.data_loaded = true;
             });
         },
@@ -117,10 +119,10 @@ export default {
         destroy(id) {
             this.$root.$confirm('Are you sure you want to delete ?').then((result) => {
                 if(result) {
-                    axios.delete('/companies/'+id, {})
-                     .then((response) =>  {
-                         console.log(response.data)
-                         this.companies = response.data;
+                    CompanyRepository.delete(id)
+                    .then(({data}) => {
+                        console.log(data)
+                        this.companies = data;
                         this.$store.commit('setSnack', 'Company Deleted !')
                     });
                 }

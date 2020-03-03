@@ -174,7 +174,9 @@
     </div>
 </template>
 <script>
-  export default {
+    import Repository from "@/js/repositories/RepositoryFactory";
+    const CompanyRepository = Repository.get("companies");
+    export default {
       $_veeValidate: {
             validator: 'new'
         },
@@ -210,7 +212,8 @@
                         this.$root.$confirm('Are you sure you want to save ?').then((result) => {
                             if(result) {
                                 this.$store.commit('setOverlay' , true);
-                                 axios.put('/companies/'+this.$route.params.id, this.company )
+                                CompanyRepository.update(this.company,this.$route.params.id)
+                                //  axios.put('/companies/'+this.$route.params.id, this.company )
                                 .then((response) =>  {
                                 this.$store.commit('setOverlay' , false);
                                 this.$store.commit('setSnack', 'Company Updated !')
@@ -244,10 +247,11 @@
             },
             get_company_info() {
                 this.data_loaded = false ;
-                axios.get('/companies/'+this.$route.params.id+'/edit', {})
-			    .then(response => {
-                    console.log(response.data)
-                    this.company = response.data ;
+                CompanyRepository.getCompany(this.$route.params.id)
+                // axios.get('/companies/'+this.$route.params.id+'/edit', {})
+			    .then(({data}) => {
+                    console.log(data)
+                    this.company =data ;
                     this.data_loaded = true ;
 
 			    });

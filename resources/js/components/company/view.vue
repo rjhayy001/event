@@ -155,6 +155,8 @@
 
 <script>
 import DateHelperVue from '../mixins/DateHelper.vue';
+import Repository from "@/js/repositories/RepositoryFactory";
+const CompanyRepository = Repository.get("companies");
 export default {
     mixins:[DateHelperVue],
     data: () => ({
@@ -183,7 +185,7 @@ export default {
         },
          get_company_info() {
             this.data_loaded = false ;
-            axios.get('/companies/'+this.$route.params.id+'/edit', {})
+            CompanyRepository.getCompany(this.$route.params.id)
             .then(response => {
                 this.companies = response.data ;
                 response.data.events.forEach(element => {

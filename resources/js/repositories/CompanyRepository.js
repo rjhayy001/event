@@ -1,20 +1,20 @@
 const resource = '/companies';
 
 export default {
-    get_companies() {
+    get() {
         return axios.get(`${resource}`);
     },
-    getPost(id) {
-        return Client.get(`${resource}/${id}`);
+    getCompany(id) {
+        return axios.get(`${resource}/${id}/edit`);
     },
     create(payload) {
-        return Client.post(`${resource}`, payload);
+        return axios.post(`${resource}`, payload);
     },
     update(payload, id) {
-        return Client.put(`${resource}/${id}`, payload);
+        return axios.put(`${resource}/${id}`, payload);
     },
     delete(id) {
-        return axios .delete(`${resource}/${id}`)
+        return axios.delete(`${resource}/${id}`)
     },
 
     // MANY OTHER ENDPOINT RELATED STUFFS

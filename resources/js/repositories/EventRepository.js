@@ -14,7 +14,7 @@ export default {
         return Client.put(`${resource}/${id}`, payload);
     },
     delete(id) {
-        return axios .delete(`${resource}/${id}`)
+        return axios.delete(`${resource}/${id}`)
     },
 
     // MANY OTHER ENDPOINT RELATED STUFFS

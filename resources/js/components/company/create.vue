@@ -169,6 +169,8 @@
     </div>
 </template>
 <script>
+import Repository from "@/js/repositories/RepositoryFactory";
+const CompanyRepository = Repository.get("companies");
   export default {
         $_veeValidate: {
             validator: 'new'
@@ -202,12 +204,12 @@
                         this.$root.$confirm('Are you sure you want to save ?').then((result) => {
                             if(result) {
                                 this.$store.commit('setOverlay' , true);
-                                axios.post('/companies', this.company )
-                                .then((response) =>  {
+                                CompanyRepository.create(this.company)
+                                .then(({data}) =>  {
                                 this.$store.commit('setSnack', 'Company Saved !')
                                 this.$store.commit('setOverlay' , false);
                                 self.$router.push('/company');
-                                console.log(response.data);
+                                console.log(data);
                                 })
                             }
                         })
