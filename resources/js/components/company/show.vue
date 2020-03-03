@@ -4,16 +4,16 @@
             <v-layout row wrap>
                 <v-flex xs12 class="px-3">
                     <v-toolbar flat >
-                        <v-toolbar-title class="font-weight-bold">Companies List</v-toolbar-title>
+                        <v-toolbar-title class="font-weight-bold">Liste des entreprises</v-toolbar-title>
                             <v-icon depressed class="float-left mx-2"  @click="expand = !expand" >mdi-magnify</v-icon>
                         <v-expand-x-transition >
-                            <v-text-field width="30" class="pt-5 pl-3" v-show="expand" dense filled color="teal" v-model="search" placeholder="Search Company..." ></v-text-field>
+                            <v-text-field width="30" class="pt-5 pl-3" v-show="expand" dense filled color="teal" v-model="search" placeholder="Rechercher une entreprise..." ></v-text-field>
                         </v-expand-x-transition>
                      <v-flex sm2 xs6 flex >
                     </v-flex>
                     <v-spacer></v-spacer>
                     <v-btn color="teal" tile class="custom_button" to="company/create" >
-                       <v-icon left >mdi-plus</v-icon> add company
+                       <v-icon left >mdi-plus</v-icon> ajouter
                     </v-btn>
                     </v-toolbar>
                 </v-flex>
@@ -89,14 +89,14 @@ export default {
         search:'',
         headers: [
             {
-                text: 'Company Name',
+                text: 'Nom de la société',
                 align: 'left',
                 value: 'name',
             },
-            { text: 'Contact Person', value: 'contact person',sortable: false },
-            { text: 'Contact Number', value: 'contact number',sortable: false },
-            { text: 'company email', value: 'company email' ,sortable: false},
-            { text: 'Joined at', value: 'created_at',sortable: false},
+            { text: 'Personne de contact', value: 'contact person',sortable: false },
+            { text: 'Numéro de contact', value: 'contact number',sortable: false },
+            { text: "e-mail de l'entreprise", value: 'company email' ,sortable: false},
+            { text: 'Rejoint à', value: 'created_at',sortable: false},
             { text: 'actions', value: 'action' ,sortable: false },
         ],
     }),

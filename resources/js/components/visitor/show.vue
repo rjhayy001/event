@@ -2,19 +2,21 @@
     <div>
         <v-container>
             <v-layout row wrap>
-                <v-toolbar flat >
-                        <v-toolbar-title class="font-weight-bold">Visitor's List</v-toolbar-title>
+                <v-flex xs12 class="px-3">
+                    <v-toolbar flat >
+                        <v-toolbar-title class="font-weight-bold">Liste des visiteurs</v-toolbar-title>
                             <v-icon depressed class="float-left mx-2"  @click="expand = !expand" >mdi-magnify</v-icon>
                         <v-expand-x-transition >
-                            <v-text-field width="30" class="pt-5 pl-3" v-show="expand" dense filled color="teal" v-model="search" placeholder="Search Visitor..." ></v-text-field>
+                            <v-text-field width="30" class="pt-5 pl-3" v-show="expand" dense filled color="teal" v-model="search" placeholder="Rechercher un visiteur..." ></v-text-field>
                         </v-expand-x-transition>
                      <v-flex sm2 xs6 flex >
                     </v-flex>
                     <v-spacer></v-spacer>
                     <v-btn color="teal" tile class="custom_button" to="visitor/create" >
-                       <v-icon left >mdi-plus</v-icon> add visitor
+                       <v-icon left >mdi-plus</v-icon> ajouter
                     </v-btn>
                     </v-toolbar>
+                </v-flex>
                  <v-flex xs12 v-if="!data_loaded">
                     <v-skeleton-loader
                         type="table-tbody"
@@ -90,14 +92,14 @@ export default {
         search:'',
         headers: [
             {
-                text: 'Visitor Name',
+                text: 'Nom du visiteur',
                 align: 'left',
                 value: 'name',
             },
-            { text: 'Contact', value: 'contact',sortable: false },
-            { text: 'Email Address', value: 'email',sortable: false },
-            { text: 'Registered at', value: 'created_at',sortable: false },
-            { text: 'Active', value: 'active',sortable: false },
+            { text: 'Contactez', value: 'contact',sortable: false },
+            { text: 'Adresse électronique', value: 'email',sortable: false },
+            { text: 'Enregistré à', value: 'created_at',sortable: false },
+            { text: 'actif', value: 'active',sortable: false },
             { text: 'actions', value: 'action',sortable: false },
         ],
     }),
