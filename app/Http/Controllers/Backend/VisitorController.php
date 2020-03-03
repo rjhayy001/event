@@ -67,6 +67,7 @@ class VisitorController extends Controller
     }
 
     public function activate_controller(Request $request) {
+        
         $visitor = Visitor::findorfail($request->id);
         $visitor->active = $request->active ;
 
@@ -125,7 +126,7 @@ class VisitorController extends Controller
         $serverKey = 'AAAAf9lPnKM:APA91bH035-_L3lCbPRbasyUKz7LqRUMe5KEevmgnn843nPY71O4pSnmvO4Y5UuoVLTuVEBPpSbSzF7Ds-tuYSCHLecqhgG1VG_KcNioyQZ7yLz2g95Ide7z3UBXRFIP0ASJYfPgv9dp';
         $title = $visitor->active == 0 ? 'Deactivation Notice' : 'Activation Notice';
         $body = $visitor->active == 0 ? 'youre account has been deactivated !' : 'youre account has been activated !';
-        $notification = array('title' =>$title , 'text' => $body, 'sound' => 'default', 'badge' => '3' );
+        $notification = array('title' =>$title , 'text' => $body, 'sound' => 'default', 'badge' => '3' ,'time' => date('H:i:s'));
         $arrayToSend = array('registration_ids' => $tokens, 'notification' => $notification,'priority'=>'high');
         $json = json_encode($arrayToSend);
         $headers = array();
