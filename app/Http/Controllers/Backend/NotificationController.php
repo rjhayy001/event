@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Visitor;
 use App\Event;
 use App\Notification ;
-use Carbon ;
 
 class NotificationController extends Controller
 {
@@ -32,8 +31,7 @@ class NotificationController extends Controller
                 'image' => $request->image,
                 'subtitle' => $request->id,
                 'sound' => 'default',
-                'badge' =>    $request->notification['status'] == 1 ? '1' : '2',
-                'time' => Carbon::now()->format('H:i:s') ,
+                'badge' =>    $request->notification['status'] == 1 ? '1' : '2'
             );
 
             $fields = array
