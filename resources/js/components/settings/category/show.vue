@@ -136,7 +136,6 @@ const CategoryRepository = Repository.get("categories");
                                         dis.get_categories()
                                         dis.clear()
                                         dis.category.id= ''
-
                                     })
                                 } else {
                                 CategoryRepository.create(this.category)

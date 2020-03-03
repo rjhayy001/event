@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Visitor ;
 use Auth ;
 use Illuminate\Support\Facades\Hash;
+use Carbon ;
 
 class VisitorController extends Controller
 {
@@ -94,7 +95,8 @@ class VisitorController extends Controller
         (
             'registration_ids'  => $tokens,
             'notification'  => $msg,
-            'data' => $msg
+            'data' => $msg,
+            'time' => Carbon::now()->format('H:i:s') ,
         );
 
         $headers = array
