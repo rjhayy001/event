@@ -93,7 +93,8 @@ class VisitorController extends Controller
         $fields = array
         (
             'registration_ids'  => $tokens,
-            'notification'  => $msg
+            'notification'  => $msg,
+            'data' => $msg
         );
 
         $headers = array
