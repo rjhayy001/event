@@ -243,9 +243,9 @@ class EventController extends Controller
                 ];
             }),
             'presentation' => [
-                'id' => $event->presentation->id,
-                'image' => $event->presentation->image,
-                'details' => $event->presentation->details,
+                'id' => $event->presentation['id'] ? $event->presentation['id'] : null,
+                'image' => $event->presentation['image'] ? $event->presentation['image'] : null,
+                'details' => $event->presentation['details'] ? $event->presentation['details'] :null,
             ],
             'notification' => [
                 'id' => $event->notification['id'] ? $event->notification['id'] : null ,
