@@ -2,6 +2,7 @@
   <v-data-table
     :headers="headers"
     :items="events"
+    :no-data-text="loadingText"
     :items-per-page="7"
     :hide-default-footer="events.length < 5"
     @click:row = "getrow"
@@ -13,7 +14,7 @@
       label
       text-color="white"
             >
-            {{item.duration}} day(s)
+            {{item.duration}} jour(s)
         </v-chip>
     </template>
     <template v-slot:item.details="{ item }">
@@ -35,6 +36,7 @@
     },
     data () {
       return {
+         loadingText:'Aucune donnée disponible',
         headers: [
           {
             text: 'Event Name',

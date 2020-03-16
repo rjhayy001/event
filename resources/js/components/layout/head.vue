@@ -21,7 +21,7 @@
       item-text="name"
       item-value="symbol"
       hide-selected
-      label="Search anything on app..."
+      label="Recherche ... "
       color="white"
       solo
       flat

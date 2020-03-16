@@ -33,6 +33,7 @@
         :event-color="getEventColor"
         @change="getEvents"
         @click:event="showEvent"
+        locale="fr"
       ></v-calendar>
     </v-sheet>
   </div>

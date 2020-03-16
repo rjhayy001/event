@@ -4,8 +4,10 @@
     :items="ongoing"
     :items-per-page="5"
     :hide-default-footer="ongoing.length < 5"
+    :no-data-text="loadingText"
     @click:row = "getrow"
   >
+   
     <template v-slot:item.duration="{ item }">
         <v-chip 
          class="ma-2"
@@ -13,7 +15,7 @@
       label
       text-color="white"
             >
-            {{item.duration}} day(s)
+            {{item.duration}} jour(s)
         </v-chip>
     </template>
     <template v-slot:item.details="{ item }">
@@ -35,17 +37,18 @@
     },
     data () {
       return {
+        loadingText:'Aucune donnée disponible',
         headers: [
           {
-            text: 'Event Name',
+            text: 'Nom',
             align: 'left',
             sortable: false,
             value: 'name',
           },
-          { text: 'Start Date', value: 'from' },
-          { text: 'End Date', value: 'to' },
-          { text: 'Duration', value: 'duration' },
-          { text: 'Started', value: 'details' },
+          { text: 'Date de début', value: 'from' },
+          { text: 'Date de fin', value: 'to' },
+          { text: 'Durée', value: 'duration' },
+          { text: 'Démarré depuis', value: 'details' },
         ],
       }
     },

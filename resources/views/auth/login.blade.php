@@ -24,7 +24,7 @@
 
         <div class="right-login-form">
           <div class="login-box">
-			<h1>welcome back</h1>
+			<h1>BIENVENUE</h1>
 			<form method="POST" action="{{ route('login') }}">
 				@csrf
             <div class="input-group my-5">
@@ -38,14 +38,14 @@
 			@enderror
 			  <div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-				<input id="password" type="password" class="form-control @error('password') is-invalid @enderror input_pass" name="password" required autocomplete="current-password" placeholder="password">
+				<input id="password" type="password" class="form-control @error('password') is-invalid @enderror input_pass" name="password" required autocomplete="current-password" placeholder="mot de passe">
 			  </div>
 			  @error('password')
 			  <span class="invalid-feedback" role="alert">
 				  <strong>{{ $message }}</strong>
 			  </span>
 		  @enderror
-			<button class="btn" type="submit">login</button>
+			<button class="btn" type="submit">Se connecter</button>
 			</form>
           </div>
         </div>

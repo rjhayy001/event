@@ -10,9 +10,9 @@
                 >
                     <v-list-item three-line>
                         <v-list-item-content>
-                            <div class="overline mb-4">events</div>
+                            <div class="overline mb-4">Événement</div>
                             <v-list-item-title class="headline mb-1">{{events.length}}</v-list-item-title>
-                            <v-list-item-subtitle>Events Registered</v-list-item-subtitle>
+                            <v-list-item-subtitle>Événement enregistré</v-list-item-subtitle>
                         </v-list-item-content>
                         <v-list-item-avatar
                             tile
@@ -23,7 +23,7 @@
                         </v-list-item-avatar>
                     </v-list-item>
                     <v-card-actions >
-                        <v-btn @click="$router.push({name: 'event'})" text>view</v-btn>
+                        <v-btn @click="$router.push({name: 'event'})" text>VOIR</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-flex>
@@ -35,9 +35,9 @@
                     >
                         <v-list-item three-line>
                             <v-list-item-content>
-                                <div class="overline mb-4">companies</div>
+                                <div class="overline mb-4">Sociétés </div>
                                 <v-list-item-title class="headline mb-1">{{companies.length}}</v-list-item-title>
-                                <v-list-item-subtitle>Companies</v-list-item-subtitle>
+                                <v-list-item-subtitle>Sociétés </v-list-item-subtitle>
                             </v-list-item-content>
                             <v-list-item-avatar
                                 tile
@@ -48,7 +48,7 @@
                             </v-list-item-avatar>
                         </v-list-item>
                         <v-card-actions >
-                            <v-btn @click="$router.push({name: 'company'})"  text>view</v-btn>
+                            <v-btn @click="$router.push({name: 'company'})"  text>VOIR</v-btn>
                         </v-card-actions>
                     </v-card>
                 </v-flex>
@@ -61,9 +61,9 @@
                 >
                     <v-list-item three-line>
                         <v-list-item-content>
-                            <div class="overline mb-4">visitors</div>
+                            <div class="overline mb-4">Visiteurs</div>
                             <v-list-item-title class="headline mb-1">{{visitors.length}}</v-list-item-title>
-                            <v-list-item-subtitle>Visitors</v-list-item-subtitle>
+                            <v-list-item-subtitle>Visiteurs</v-list-item-subtitle>
                         </v-list-item-content>
                         <v-list-item-avatar
                             tile
@@ -74,7 +74,7 @@
                         </v-list-item-avatar>
                     </v-list-item>
                     <v-card-actions >
-                        <v-btn @click="$router.push({name: 'visitor'})"  text>view</v-btn>
+                        <v-btn @click="$router.push({name: 'visitor'})"  text>VOIR</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-flex>
@@ -82,13 +82,13 @@
              <v-flex sm6 xs12 class="px-4 pt-8">
                 <v-card class="mb-4">
                     <v-toolbar flat color="#E0E0E0" class="mb-2" dense>
-                        <v-toolbar-title class="text-uppercase title">ongoing events</v-toolbar-title>
+                        <v-toolbar-title class="text-uppercase title">Événement en cours</v-toolbar-title>
                     </v-toolbar>
                     <Ongoing :ongoing="ongoing"/>
                 </v-card>
                 <v-card>
                     <v-toolbar flat color="#E0E0E0" class="my-2" dense>
-                        <v-toolbar-title class="text-uppercase title">upcoming events</v-toolbar-title>
+                        <v-toolbar-title class="text-uppercase title">Événement à venir</v-toolbar-title>
                     </v-toolbar>
                     <Upcoming :events="upcoming"/>
                 </v-card>
@@ -114,6 +114,7 @@ import Ongoing from '../insert/Ongoing';
 import BarChart from "../insert/BarChart.vue";
 import DateHelperVue from '../mixins/DateHelper.vue';
 import moment from 'moment';
+moment.locale('fr');
 
 export default {
     components:{
