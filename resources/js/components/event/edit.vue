@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-toolbar flat color="white" class="mb-3">
-            <v-toolbar-title class="text-uppercase title">edit event</v-toolbar-title>
+            <v-toolbar-title class="text-uppercase title">Modifier l’événement </v-toolbar-title>
             <v-spacer></v-spacer>
             <v-btn color="teal" tile @click="submit" class="mr-2 custom_button">
                 <v-icon left>mdi-content-save</v-icon>
@@ -17,13 +17,13 @@
                 <v-flex xs12 sm9>
                     <v-stepper v-model="e1">
                         <v-stepper-header>
-                            <v-stepper-step :complete="e1 > 1" step="1" editable>Event Details and Pricing</v-stepper-step>
+                            <v-stepper-step :complete="e1 > 1" step="1" editable>Détails et prix de l’événement</v-stepper-step>
                             <v-divider></v-divider>
-                            <v-stepper-step :complete="e1 > 2" step="2" editable>Programs and Presentation</v-stepper-step>
+                            <v-stepper-step :complete="e1 > 2" step="2" editable>Programme et présentation</v-stepper-step>
                             <v-divider></v-divider>
-                            <v-stepper-step :complete="e1 > 3" step="3" editable>Event Images</v-stepper-step>
+                            <v-stepper-step :complete="e1 > 3" step="3" editable>Images de l’événement </v-stepper-step>
                             <v-divider></v-divider>
-                            <v-stepper-step :complete="e1 > 4" step="4" editable>Event Map</v-stepper-step>
+                            <v-stepper-step :complete="e1 > 4" step="4" editable>Carte de l’événement</v-stepper-step>
                         </v-stepper-header>
                         <v-stepper-items>
                             <v-stepper-content step="1"> <!-- step 1 -->
@@ -33,7 +33,7 @@
                                             <v-flex xs12 md12>
                                                     <v-layout row wrap mb-3 class="text-capitalize">
                                                         <v-flex xs12>
-                                                            <p class="subheading pa-0 font-weight-bold">Event Details</p>
+                                                            <p class="subheading pa-0 font-weight-bold">Détails de l’événement</p>
                                                         </v-flex>
                                                         <v-flex xs12 sm6>
                                                             <v-text-field 
@@ -42,14 +42,14 @@
                                                                 v-validate="'required|min:3'" 
                                                                 :error-messages="errors.collect('Event Name')" 
                                                                 data-vv-name="Event Name" 
-                                                                label="Event Name" required>
+                                                                label="Nom de l’événement" required>
                                                             </v-text-field>
                                                         </v-flex>
                                                         <v-flex xs12 sm6>
                                                             <v-text-field 
                                                                 v-model="event2.place"
                                                                 type="text"
-                                                                label="Event Place" required>
+                                                                label="Lieu de l’événement" required>
                                                             </v-text-field>
                                                         </v-flex>
                                                         <v-flex xs12>
@@ -64,7 +64,7 @@
                                                                 <template v-slot:activator="{ on }">
                                                                 <v-text-field
                                                                    v-model="dateRangeText"
-                                                                    label="event date range"
+                                                                    label="Date de début / Date de fin"
                                                                     readonly
                                                                     v-on="on"
                                                                 ></v-text-field>
@@ -77,13 +77,13 @@
                                                             </v-menu>
                                                         </v-flex>
                                                         <v-flex xs12 sm12>
-                                                            <div class="subheading pa-0 mb-2 font-weight-bold">Event Description</div>
+                                                            <div class="subheading pa-0 mb-2 font-weight-bold">Description</div>
                                                             <text-editor v-model="event2.description"></text-editor>
                                                         </v-flex>
                                                     </v-layout>
                                             </v-flex>
                                             <v-flex xs12>
-                                                <p class="subheading pa-0 font-weight-bold">Event Pricing</p>
+                                                <p class="subheading pa-0 font-weight-bold">Prix</p>
                                             </v-flex>
                                             <v-flex xs12  >
                                                 <v-select
@@ -96,7 +96,7 @@
                                                     dense
                                                     :menu-props="{ maxHeight: '400' }"
                                                     return-object
-                                                    label="Age Categories"
+                                                    label="Catégorie d'âge"
                                                 ></v-select>
                                                     <v-container>
                                                         <v-layout row wrap v-if="event2.prices.length">
@@ -122,7 +122,7 @@
                                         </v-layout>
                                     </v-container>
                                 </v-form>
-                                <v-btn class="float-right" color="primary" @click.native="e1 = 2">Continue</v-btn>
+                                <v-btn class="float-right" color="primary" @click.native="e1 = 2">CONTINUER</v-btn>
                             </v-stepper-content>
                              <v-stepper-content step="2"> <!-- step 2 -->
                                 <v-form ref="seller_form">
@@ -132,9 +132,9 @@
                                                     <v-layout row wrap mb-3 class="text-capitalize">
                                                         <v-flex xs12>
                                                                 <v-btn small color="success" class="float-right" dense @click="add_programs">
-                                                                    <v-icon left>mdi-plus</v-icon> add programs
+                                                                    <v-icon left>mdi-plus</v-icon> Ajouter un programme
                                                                 </v-btn>
-                                                                <p class="subheading font-weight-bold">Event Programs</p>
+                                                                <p class="subheading font-weight-bold">Programme de l’événement</p>
                                                         </v-flex>
                                                         <v-flex xs12>
                                                             <div v-if="event2.programs.length"  d-flex>
@@ -210,13 +210,13 @@
                                                             </v-alert>
                                                         </v-flex>
                                                         <v-flex xs12 class="mt-4">
-                                                            <p class="subheading pa-0 font-weight-bold">Event Presentation</p>
+                                                            <p class="subheading pa-0 font-weight-bold">Présentation de l’événement</p>
                                                         </v-flex>
                                                         <v-flex xs12>
-                                                            <v-file-input @click:clear="img_remove($event,'present_image')" accept="image/*" label="Presentation Image"  @change="onFileChange($event,'present_image')"></v-file-input>
+                                                            <v-file-input @click:clear="img_remove($event,'present_image')" accept="image/*" label="Image de présentation"  @change="onFileChange($event,'present_image')"></v-file-input>
                                                         </v-flex>
                                                         <v-flex xs12 sm12>
-                                                            <div class="subheading pa-0 mb-2 font-weight-bold"> Details</div>
+                                                            <div class="subheading pa-0 mb-2 font-weight-bold"> Détails </div>
                                                             <text-editor v-model="event2.presentation.details"></text-editor>
                                                         </v-flex>
                                                     </v-layout>
@@ -224,28 +224,28 @@
                                         </v-layout>
                                     </v-container>
                                 </v-form>
-                                <v-btn color="primary" @click.native="e1 = 3" class="float-right">Continue</v-btn>
+                                <v-btn color="primary" @click.native="e1 = 3" class="float-right">CONTINUER</v-btn>
                             </v-stepper-content>
                             <v-stepper-content step="3"> <!-- step 3 -->
                                     <v-flex xs12 class="mt-4">
                                         <v-btn small color="success" class="float-right" dense @click="use_default">
                                             <v-icon left>mdi-cog-clockwise</v-icon>{{!default_image ? 'use default' : 'add images'}}
                                         </v-btn>
-                                        <p class="subheading pa-0 font-weight-bold">Event Images</p>
+                                        <p class="subheading pa-0 font-weight-bold">Images de l’événement</p>
                                     </v-flex>
                                     <v-flex xs12 v-if="!default_image" >
                                         <v-simple-table light dense >
                                         <template v-slot:default>
                                             <thead>
                                                 <tr>
-                                                    <th class="text-left" >Image Name</th>
+                                                    <th class="text-left" >Nom de l’image</th>
                                                     <th class="text-left">Input Image</th>
                                                     <th class="text-left">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>Event Image</td>
+                                                    <td>Image de l’événement</td>
                                                     <td class="pt-2">
                                                         <v-file-input @click:clear="img_remove($event,'event_image')" outlined dense style="width:400px;"  accept="image/*"   @change="onFileChange($event,'event_image')"></v-file-input>
                                                     </td>
@@ -254,7 +254,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Event Logo</td>
+                                                    <td>Logo de l’événement</td>
                                                     <td class="pt-2">
                                                         <v-file-input @click:clear="img_remove($event,'event_logo')" outlined dense style="width:400px;"  accept="image/*"   @change="onFileChange($event,'event_logo')"></v-file-input>
                                                     </td>
@@ -263,7 +263,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Presentation Image</td>
+                                                    <td>Image de la présentation</td>
                                                     <td class="pt-2">
                                                         <v-file-input  @click:clear="img_remove($event,'presentation_image')" outlined dense style="width:400px;"  accept="image/*"   @change="onFileChange($event,'presentation_image')"></v-file-input>
                                                     </td>
@@ -272,7 +272,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Programme Image</td>
+                                                    <td>Image du programme</td>
                                                     <td class="pt-2">
                                                         <v-file-input @click:clear="img_remove($event,'programme_image')" outlined dense style="width:400px;"  accept="image/*"   @change="onFileChange($event,'programme_image')"></v-file-input>
                                                     </td>
@@ -281,7 +281,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Tarifs Image</td>
+                                                    <td>Image des tarifs</td>
                                                     <td class="pt-2">
                                                         <v-file-input @click:clear="img_remove($event,'tarifs_image')" outlined dense style="width:400px;"  accept="image/*"   @change="onFileChange($event,'tarifs_image')"></v-file-input>
                                                     </td>
@@ -290,7 +290,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Plan Image</td>
+                                                    <td>Plan</td>
                                                     <td class="pt-2">
                                                         <v-file-input @click:clear="img_remove($event,'plan_image')" outlined dense style="width:400px;"  accept="image/*"   @change="onFileChange($event,'plan_image')"></v-file-input>
                                                     </td>
@@ -299,7 +299,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Restaurant Image</td>
+                                                    <td>Restaurant</td>
                                                     <td class="pt-2">
                                                         <v-file-input outlined dense style="width:400px;"  accept="image/*"   @change="onFileChange($event,'restaurant_image')"></v-file-input>
                                                     </td>
@@ -308,7 +308,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Highlight Image</td>
+                                                    <td>Image de mise en avant</td>
                                                     <td class="pt-2">
                                                         <v-file-input @click:clear="img_remove($event,'highlights_image')" outlined dense style="width:400px;"  accept="image/*"   @change="onFileChange($event,'highlights_image')"></v-file-input>
                                                     </td>
@@ -357,31 +357,31 @@
                                             Default images will be used .
                                         </v-alert>
                                     </v-flex>
-                                <v-btn color="primary" @click.native="e1 = 4" class="float-right mt-3">Continue</v-btn>
+                                <v-btn color="primary" @click.native="e1 = 4" class="float-right mt-3">CONTINUER</v-btn>
                             </v-stepper-content>
                             <v-stepper-content step="4"> <!-- step 4 -->
                                 <v-container grid-list-md>
                                     <v-layout row >
                                         <v-flex xs7>
                                            <v-btn small color="success" class="float-right" dense @click="open_map">
-                                                <v-icon left>mdi-map-check-outline</v-icon> manage map
+                                                <v-icon left>mdi-map-check-outline</v-icon> Gérer la carte
                                             </v-btn>
-                                            <p class="subheading font-weight-bold">Map Overview</p>
+                                            <p class="subheading font-weight-bold">Aperçu de la carte </p>
                                             <v-img class="elevation-1" :src="event2.map ? event2.map : 'http://www.aclcbutuan.edu.ph/plugins/images/no-image.jpg'" contain aspect-ratio="1.5"></v-img>
                                         </v-flex>
                                         <v-flex xs5 class="">
-                                            <p class="subheading font-weight-bold">Companies</p>
+                                            <p class="subheading font-weight-bold">Sociétés </p>
                                             <v-autocomplete
                                                 v-model="event2.companies"
                                                 :items="companies"
-                                                placeholder="type or select companies"
+                                                placeholder="Entrez ou sélectionnez une société"
                                                 deletable-chips
                                                 item-text="name"
                                                 item-value="id"
                                                 return-object
                                                 chips
                                                 small-chips
-                                                label="Companies"
+                                                label="Sociétés "
                                                 multiple
                                             ></v-autocomplete>
                                                 <div v-if="event2.companies.length" >
@@ -458,7 +458,7 @@
                                                     </template>
                                                 </div>
                                                 <v-alert  v-else dense outlined type="info" >
-                                                    No Companies added yet .
+                                                    Aucune société ajouté pour le moment  .
                                                 </v-alert>
                                         </v-flex>
                                         <v-flex xs12 >
@@ -535,12 +535,12 @@
                 </v-flex>
                 <v-flex xs6 sm3>
                     <v-card class="pa-3">
-                        <p class="subheading pa-0 font-weight-bold">Event Overview</p>
+                        <p class="subheading pa-0 font-weight-bold">Événement</p>
                          <v-list two-line>
                         <v-list-item >
                             <v-list-item-content>
                             <v-list-item-title class="text-capitalize font-weight-bold primary--text " >{{event2.name ? event2.name:'Not set'}}</v-list-item-title>
-                            <v-list-item-subtitle class="font-weight-bold">Name</v-list-item-subtitle>
+                            <v-list-item-subtitle class="font-weight-bold">Nom</v-list-item-subtitle>
                             </v-list-item-content>
                             <v-list-item-icon>
                             <v-icon>mdi-card-text-outline</v-icon>
@@ -549,14 +549,14 @@
                         <v-list-item >
                             <v-list-item-content>
                             <v-list-item-title class="text-capitalize font-weight-bold primary--text" v-text="dateRangeText ? dateRangeText : 'Not Set' " ></v-list-item-title>
-                            <v-list-item-subtitle class="font-weight-bold">Date Range</v-list-item-subtitle>
+                            <v-list-item-subtitle class="font-weight-bold">Date de début / Date de fin</v-list-item-subtitle>
                             </v-list-item-content>
                             <v-list-item-icon>
                             <v-icon>mdi-calendar-outline</v-icon>
                             </v-list-item-icon>
                         </v-list-item>
                         <v-divider></v-divider>
-                        <p class="subheading pa-0 font-weight-bold pt-3">Prices Overview</p>
+                        <p class="subheading pa-0 font-weight-bold pt-3">Prix</p>
                         <div v-if="event2.prices.length">
                             <v-list-item v-for="items in event2.prices " :key="items.id" dense  >
                                 <v-list-item-content>
@@ -572,7 +572,7 @@
                             No Prices added yet.
                         </v-alert>
                         <v-divider></v-divider>
-                        <p class="subheading pa-0 font-weight-bold pt-3">Program Overview</p>
+                        <p class="subheading pa-0 font-weight-bold pt-3">Programme</p>
                         <div v-if="event2.programs.length">
                             <v-list-item v-for="items in event2.programs " :key="items.id" dense  >
                                 <v-list-item-content>

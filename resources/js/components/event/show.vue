@@ -70,13 +70,13 @@
                             </v-menu>
                         </template>
                         <template v-slot:item.from="{ item }">
-                                <v-chip v-if="item.from != 'no given date'"
+                                <v-chip v-if="item.from != 'Aucune date renseignée'"
                                     color="primary"
                                     class="ma-2"
                                     label
                                     text-color="white"
                                     >
-                                    {{item.from}}
+                                    {{fulldate(item.from)}}
                                 </v-chip>
                                     <v-chip v-else
                                     color="grey"
@@ -88,13 +88,13 @@
                                 </v-chip>
                         </template>
                         <template v-slot:item.to="{ item }">
-                                <v-chip v-if="item.to != 'no given date'"
+                                <v-chip v-if="item.to != 'Aucune date renseignée'"
                                     color="error"
                                     class="ma-2"
                                     label
                                     text-color="white"
                                     >
-                                    {{item.to}}
+                                    {{fulldate(item.to)}}
                                 </v-chip>
                                     <v-chip v-else
                                     color="grey"
@@ -120,9 +120,11 @@
     </div>
 </template>
 <script>
+import DateHelperVue from '../mixins/DateHelper.vue';
 import Repository from "@/js/repositories/RepositoryFactory";
 const EventRepository = Repository.get("events");
 export default {
+    mixins:[DateHelperVue],
     data: () => ({
         data_loaded : true ,
         events:[],
@@ -131,15 +133,15 @@ export default {
         search:'',
         headers: [
             {
-                text: "nom de l'événement",
+                text: "Nom de l'événement",
                 align: 'left',
                 value: 'name',
             },
-            { text: 'date de début', value: 'from' ,sortable: false },
-            { text: 'date de fin', value: 'to' ,sortable: false },
-            { text: 'entreprise participant', value: 'company_count' ,sortable: false },
-            { text: 'visiteurs attendus', value: 'visitor_count' ,sortable: false },
-            { text: 'actions', value: 'action' },
+            { text: 'Date de début', value: 'from' ,sortable: false },
+            { text: 'Date de fin', value: 'to' ,sortable: false },
+            { text: 'Entreprise participant', value: 'company_count' ,sortable: false },
+            { text: 'Visiteurs attendus', value: 'visitor_count' ,sortable: false },
+            { text: 'Actions', value: 'action' },
         ],
     }),
 

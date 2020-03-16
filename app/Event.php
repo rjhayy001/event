@@ -18,8 +18,8 @@ class Event extends Model
         return [
             'id' => $this->id ,
             'name'=>$this->name   ,
-            'from'=> $this->fromdate ?  date('d F Y', strtotime($this->fromdate)) : 'no given date' ,
-            'to'=> $this->todate ? date('d F Y', strtotime($this->todate)) : 'no given date',
+            'from'=> $this->fromdate ?  date('d F Y', strtotime($this->fromdate)) : 'Aucune date renseignée' ,
+            'to'=> $this->todate ? date('d F Y', strtotime($this->todate)) : 'Aucune date renseignée',
             'start' => $this->fromdate,
             'end' => $this->todate,
             'company_count'=> $this->companies->count() ,
@@ -70,17 +70,17 @@ class Event extends Model
     {
         return ucfirst($value);
     }
-     public function getFormatfromAttribute($value)
-    {
-        if($this->fromdate == '')
-        {
-            return 'no given date yet ';
-        }
-        else
-        {
-            return date('d F Y', strtotime($this->fromdate)) ;
-        }
-    }
+    //  public function getFormatfromAttribute($value)
+    // {
+    //     if($this->fromdate == '')
+    //     {
+    //         return 'Aucune date renseignée  ';
+    //     }
+    //     else
+    //     {
+    //         return date('d F Y', strtotime($this->fromdate)) ;
+    //     }
+    // }
     public function getCompanycountAttribute($value)
     {
         return $this->companies->count();
