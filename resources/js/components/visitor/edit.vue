@@ -1,11 +1,11 @@
 <template>
     <div>
         <v-toolbar flat color="white" class="mb-3">
-            <v-toolbar-title class="text-uppercase title">edit visitors</v-toolbar-title>
+            <v-toolbar-title class="text-uppercase title">Editer le visiteur</v-toolbar-title>
             <v-spacer></v-spacer>
             <v-btn color="primary" tile @click="$router.go(-1)">
                 <v-icon left>mdi-arrow-left-circle</v-icon>
-               back
+               Retour
             </v-btn>
         </v-toolbar>
         <v-divider></v-divider>
@@ -22,7 +22,7 @@
                             <v-layout row wrap mb-3 class="text-capitalize">
                                 <v-flex xs12>
                                     
-                                    <p class="subheading pa-0 font-weight-bold">visitor Information</p>
+                                    <p class="subheading pa-0 font-weight-bold">Information du visiteur</p>
                                 </v-flex>
                                 <v-flex xs12 sm6>
                                     <v-text-field 
@@ -31,7 +31,7 @@
                                         v-validate="'required|min:3'" 
                                         :error-messages="errors.collect(' Name')" 
                                         data-vv-name=" Name" 
-                                        label=" Name" required>
+                                        label=" Nom" required>
                                     </v-text-field>
                                 </v-flex>
                                 <v-flex xs12 sm6>
@@ -41,7 +41,7 @@
                                         v-validate="'required|min:3'" 
                                         :error-messages="errors.collect('Phone')" 
                                         data-vv-name="Phone" 
-                                        label="Phone" required>
+                                        label="Téléphone " required>
                                     </v-text-field>
                                 </v-flex>
                                 <v-flex xs12 sm6>
@@ -61,10 +61,10 @@
                                         v-validate="'required|min:3'" 
                                         :error-messages="errors.collect('Username')" 
                                         data-vv-name="Username" 
-                                        label="Username" required>
+                                        label="Identifiant" required>
                                     </v-text-field>
                                 </v-flex>
-                                <v-btn text  color="primary" @click="show = !show" dense><v-icon class="mr-2">mdi-key</v-icon>  change password</v-btn>
+                                <v-btn text  color="primary" @click="show = !show" dense><v-icon class="mr-2">mdi-key</v-icon>  Modifier le mot de passe </v-btn>
                                 <v-flex xs12 >
                                     <transition name="fade">
                                         <div v-if="show">
@@ -77,7 +77,7 @@
                                                         v-validate="'required|min:3'" 
                                                         :error-messages="errors.collect('New Password')" 
                                                         data-vv-name="New Password" 
-                                                        label="New Password" required>
+                                                        label="Nouveau mot de passe" required>
                                                     </v-text-field>
                                                 </v-flex>
                                                 <v-flex xs12 sm6>
@@ -87,7 +87,7 @@
                                                         v-validate="'required|confirmed:password'" 
                                                         :error-messages="errors.collect(' Password')" 
                                                         data-vv-name=" Password" 
-                                                        label="Confirm Password" required>
+                                                        label="Confirmer le mot de passe" required>
                                                     </v-text-field>
                                                 </v-flex>
                                             </v-layout>
@@ -99,11 +99,11 @@
                                  <v-flex xs12 class="text-right">
                                     <v-btn color="teal" class="custom_button" tile @click="submit" >
                                         <v-icon left>mdi-content-save-edit-outline</v-icon>
-                                        save visitor
+                                        Sauvegarder
                                     </v-btn>
                                     <v-btn color="primary" tile @click="clear" >
                                         <v-icon left>mdi-lock-reset</v-icon>
-                                        reload form
+                                       Recharger le formulaire
                                     </v-btn>
                                  </v-flex>
                             </v-layout>

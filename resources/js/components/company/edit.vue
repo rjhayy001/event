@@ -1,11 +1,11 @@
 <template>
     <div>
         <v-toolbar flat color="white" class="mb-3">
-            <v-toolbar-title class="text-uppercase title">edit company</v-toolbar-title>
+            <v-toolbar-title class="text-uppercase title">Modifier la société</v-toolbar-title>
             <v-spacer></v-spacer>
             <v-btn color="primary" tile @click="$router.go(-1)">
                 <v-icon left>mdi-arrow-left-circle</v-icon>
-               back
+               Retour 
             </v-btn>
         </v-toolbar>
         <v-divider></v-divider>
@@ -21,7 +21,7 @@
                         <v-card class="pa-5" >
                             <v-layout row wrap mb-3 class="text-capitalize">
                                 <v-flex xs12>
-                                    <p class="subheading pa-0 font-weight-bold">Company Information</p>
+                                    <p class="subheading pa-0 font-weight-bold">Information de la société</p>
                                 </v-flex>
                                 <v-flex xs12 sm6>
                                     <v-text-field 
@@ -30,7 +30,7 @@
                                         v-validate="'required|min:3'" 
                                         :error-messages="errors.collect('Company Name')" 
                                         data-vv-name="Company Name" 
-                                        label="Company Name" required>
+                                        label="Nom de la société" required>
                                     </v-text-field>
                                 </v-flex>
                                 <v-flex xs12 sm6>
@@ -50,7 +50,7 @@
                                         v-validate="'min:3'" 
                                         :error-messages="errors.collect('Address1')" 
                                         data-vv-name="Address1" 
-                                        label="Address1" required>
+                                        label="Adresse 1" required>
                                     </v-text-field>
                                 </v-flex>
                                 <v-flex xs12 sm6>
@@ -60,7 +60,7 @@
                                         v-validate="'required|min:3'" 
                                         :error-messages="errors.collect('Contact Number')" 
                                         data-vv-name="Contact Number" 
-                                        label="Contact Number" required>
+                                        label="Téléphone" required>
                                     </v-text-field>
                                 </v-flex>
                                 <v-flex xs12 sm6>
@@ -70,7 +70,7 @@
                                         v-validate="'min:3'" 
                                         :error-messages="errors.collect('Address2')" 
                                         data-vv-name="Address2" 
-                                        label="Address2" required>
+                                        label="Adresse 2" required>
                                     </v-text-field>
                                 </v-flex>
                                 <v-flex xs12 sm6>
@@ -80,7 +80,7 @@
                                         v-validate="'required|min:3|email'" 
                                         :error-messages="errors.collect('Company Email')" 
                                         data-vv-name="Company Email" 
-                                        label="Company Email" required>
+                                        label="Email de la société" required>
                                     </v-text-field>
                                 </v-flex>
                                 <v-flex xs12 sm6>
@@ -90,7 +90,7 @@
                                         v-validate="'min:3'" 
                                         :error-messages="errors.collect('Zip Code')" 
                                         data-vv-name="Zip Code" 
-                                        label="Zip Code" required>
+                                        label="Code Postal" required>
                                     </v-text-field>
                                 </v-flex>
                                 <v-flex xs12 sm6>
@@ -100,7 +100,7 @@
                                         v-validate="'min:3'" 
                                         :error-messages="errors.collect('City')" 
                                         data-vv-name="City" 
-                                        label="City" required>
+                                        label="Ville " required>
                                     </v-text-field>
                                 </v-flex>
                                 <v-flex xs12 sm6>
@@ -110,13 +110,13 @@
                                         v-validate="'min:3'" 
                                         :error-messages="errors.collect('Country')" 
                                         data-vv-name="Country" 
-                                        label="Country" required>
+                                        label="Pays " required>
                                     </v-text-field>
                                 </v-flex>
                                 <v-flex xs12 sm6>
                                     <v-file-input small-chips 
                                         accept="image/*"  
-                                        label="Company Logo" 
+                                        label="logo de la société" 
                                         @change="onFileChange"
                                         v-validate="'image'" 
                                         :error-messages="errors.collect('Company Logo')" 
@@ -132,11 +132,11 @@
                                  <v-flex xs12 class="text-right">
                                     <v-btn color="teal" class="custom_button" tile @click="submit" >
                                         <v-icon left>mdi-content-save-edit-outline</v-icon>
-                                        save company
+                                       Sauvegarder 
                                     </v-btn>
                                     <v-btn color="primary" tile @click="clear" >
                                         <v-icon left>mdi-lock-reset</v-icon>
-                                        reload form
+                                        Recharger le formulaire
                                     </v-btn>
                                  </v-flex>
                             </v-layout>
@@ -144,7 +144,7 @@
                     </v-flex>
                     <v-flex xs12 md4>
                         <v-card class="pa-3">
-                             <p class="subheading pa-0 font-weight-bold">Company logo</p>
+                             <p class="subheading pa-0 font-weight-bold">logo de la société</p>
                              <v-divider></v-divider>
                             <div id="preview"  v-if="company.logo" class="pa-5" >
                                 <v-img  

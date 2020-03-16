@@ -47,7 +47,7 @@
                                             <v-icon size="20" color="primary">mdi-eye</v-icon>
                                         </v-list-item-icon>
                                         <v-list-item-title>
-                                            View
+                                            Voir 
                                         </v-list-item-title>
                                     </v-list-item>
                                     <v-list-item  @click="$router.push({name: 'edit_event', params: { id: item.id },})">
@@ -55,7 +55,7 @@
                                             <v-icon size="20" color="info">mdi-pencil</v-icon>
                                         </v-list-item-icon>
                                         <v-list-item-title>
-                                            Edit
+                                            Editer
                                         </v-list-item-title>
                                     </v-list-item>
                                     <v-list-item @click="destroy(item.id)" >
@@ -63,7 +63,7 @@
                                             <v-icon size="20" color="error">mdi-delete</v-icon>
                                         </v-list-item-icon>
                                         <v-list-item-title>
-                                            Delete
+                                            Supprimer 
                                         </v-list-item-title>
                                     </v-list-item>
                                 </v-list>

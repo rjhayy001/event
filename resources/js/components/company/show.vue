@@ -47,7 +47,7 @@
                                             <v-icon size="20" color="primary">mdi-eye</v-icon>
                                         </v-list-item-icon>
                                         <v-list-item-title>
-                                            View
+                                            Voir 
                                         </v-list-item-title>
                                     </v-list-item>
                                     <v-list-item @click="$router.push({name: 'edit_company', params: { id: item.id },})" >
@@ -55,7 +55,7 @@
                                             <v-icon size="20" color="info">mdi-pencil</v-icon>
                                         </v-list-item-icon>
                                         <v-list-item-title>
-                                            Edit
+                                            Editer
                                         </v-list-item-title>
                                     </v-list-item>
                                     <v-list-item @click="destroy(item.id)" >
@@ -63,7 +63,7 @@
                                             <v-icon size="20" color="error">mdi-delete</v-icon>
                                         </v-list-item-icon>
                                         <v-list-item-title>
-                                            Delete
+                                            Supprimer 
                                         </v-list-item-title>
                                     </v-list-item>
                                 </v-list>
@@ -96,10 +96,10 @@ export default {
                 value: 'name',
             },
             { text: 'Personne de contact', value: 'contact person',sortable: false },
-            { text: 'Numéro de contact', value: 'contact number',sortable: false },
-            { text: "e-mail de l'entreprise", value: 'company email' ,sortable: false},
-            { text: 'Rejoint à', value: 'created_at',sortable: false},
-            { text: 'actions', value: 'action' ,sortable: false },
+            { text: 'Téléphone ', value: 'contact number',sortable: false },
+            { text: "Email", value: 'company email' ,sortable: false},
+            { text: 'Enregistré le', value: 'created_at',sortable: false},
+            { text: 'Actions', value: 'action' ,sortable: false },
         ],
     }),
 
