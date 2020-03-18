@@ -4,7 +4,7 @@
             <v-layout row wrap>
                 <v-flex xs12>
                     <v-toolbar flat >
-                        <v-toolbar-title class="font-weight-bold">Age Categories List</v-toolbar-title>
+                        <v-toolbar-title class="font-weight-bold">Liste des catégories d'âge</v-toolbar-title>
                     </v-toolbar>
                 </v-flex>
                 <v-flex xs12 sm8 >
@@ -15,7 +15,7 @@
                                     <v-card class="pa-5" >
                                         <v-layout row wrap mb-3 class="text-capitalize">
                                             <v-flex xs12>
-                                                <p class="subheading pa-0 font-weight-bold">Category Information</p>
+                                                <p class="subheading pa-0 font-weight-bold">Informations sur les catégories</p>
                                             </v-flex>
                                             <v-flex xs12>
                                                 <v-text-field 
@@ -24,7 +24,7 @@
                                                     v-validate="'required'" 
                                                     :error-messages="errors.collect('Category Name')" 
                                                     data-vv-name="Category Name" 
-                                                    label="Category Name" required>
+                                                    label="Nom de la catégorie" required>
                                                 </v-text-field>
                                             </v-flex>
                                         </v-layout>
@@ -32,7 +32,7 @@
                                             <v-flex xs12 class="text-right">
                                                 <v-btn color="teal" class="custom_button" tile @click="submit"  >
                                                     <v-icon left>mdi-content-save-edit-outline</v-icon>
-                                                    save category
+                                                    Sauvegarder la catégorie
                                                 </v-btn>
                                                 <v-btn color="primary" tile @click="clear"  >
                                                     <v-icon left>mdi-lock-reset</v-icon>
@@ -69,7 +69,7 @@
                                             <v-icon size="20" color="primary">mdi-pencil</v-icon>
                                         </v-list-item-icon>
                                         <v-list-item-title>
-                                            Edit
+                                            Éditer
                                         </v-list-item-title>
                                     </v-list-item>
                                     <v-list-item @click="destroy(item.id)" >
@@ -77,7 +77,7 @@
                                             <v-icon size="20" color="error">mdi-delete</v-icon>
                                         </v-list-item-icon>
                                         <v-list-item-title>
-                                            Delete
+                                            Supprimer
                                         </v-list-item-title>
                                     </v-list-item>
                                 </v-list>
@@ -107,14 +107,14 @@ const CategoryRepository = Repository.get("categories");
             },
             headers: [
           {
-            text: 'Category Name',
+            text: 'Nom de la catégorie',
             align: 'left',
             sortable: false,
             value: 'person',
           },
           ,
-          { text: 'created at', value: 'created_at' },
-          { text: 'actions', value: 'action' },
+          { text: 'Créé à', value: 'created_at' },
+          { text: 'Actions', value: 'action' },
         ],
         }),
         methods: {

@@ -5,13 +5,13 @@
       background-color="white"
       color="teal"
     >
-      <v-tab>General</v-tab>
+      <v-tab>Généralités</v-tab>
       <v-tab>Images</v-tab>
 
       <v-tab-item>
           <div>
               <v-toolbar flat >
-                <v-toolbar-title class="font-weight-bold">Apps General Information</v-toolbar-title>
+                <v-toolbar-title class="font-weight-bold">Apps informations générales</v-toolbar-title>
                 <v-spacer></v-spacer>
             </v-toolbar>
             <v-divider></v-divider>
@@ -19,7 +19,7 @@
                 <v-layout row wrap>
                     <v-flex xs12 sm5 >
                         <v-toolbar flat>
-                            <v-toolbar-title>Owner Details</v-toolbar-title>
+                            <v-toolbar-title>Détails sur le propriétaire</v-toolbar-title>
 
                             <v-spacer></v-spacer>
                             <v-tooltip bottom>
@@ -28,7 +28,7 @@
                                         <v-icon>mdi-plus</v-icon>
                                     </v-btn>
                                 </template>
-                                <span>add information</span>
+                                <span>ajouter des informations</span>
                             </v-tooltip>
                             <v-tooltip bottom>
                                 <template v-slot:activator="{ on }">
@@ -36,7 +36,7 @@
                                         <v-icon>mdi-content-save-edit-outline</v-icon>
                                     </v-btn>
                                 </template>
-                                <span>Save changes</span>
+                                <span>Enregistrer les changements</span>
                             </v-tooltip>
                             </v-toolbar>
                         <!-- <v-toolbar flat >
@@ -63,32 +63,32 @@
                             ></v-text-field>
                         </template>
                         <v-alert type="info" outlined dense v-else  class="ma-4" >
-                            No Information given yet.
+                            Aucune information n'a encore été donnée.
                         </v-alert>
                     </v-flex>
                     <v-flex offset-sm1 xs12 sm4>
                         <v-toolbar flat >
-                            <v-toolbar-title class="font-weight-bold small" >Apps Access</v-toolbar-title>
+                            <v-toolbar-title class="font-weight-bold small" >Accès aux applications</v-toolbar-title>
                             <v-spacer></v-spacer>
                         <v-switch v-model="private_access.required" label="Private Access" class="mt-4" @change="access_change" color="teal"></v-switch>
                         </v-toolbar>
                         <v-card class="elevation-2 mx-4" :disabled="!private_access.required">
-                            <p class="font-weight-bold small px-4 pt-4" >Parameter Required</p>
+                            <p class="font-weight-bold small px-4 pt-4" >Paramètre requis</p>
                             <v-divider></v-divider>
                             <v-card-text>
                                     <v-simple-table>
                                         <template v-slot:default>
                                         <thead>
                                             <tr>
-                                            <th class="text-left">Fields</th>
-                                            <th class="text-left">Required</th>
+                                            <th class="text-left">Domaines</th>
+                                            <th class="text-left">Obligatoire</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr v-for="(item,index) in rules" :key="index">
                                                 <td>{{ item.fields }}</td>
                                                 <td v-if="item.fields != 'Username' && item.fields != 'Password'"> <v-switch v-model="item.required"  @change="required_change(item)" color="teal"></v-switch></td>
-                                                <td v-else>strictly required</td>
+                                                <td v-else>strictement requis</td>
                                             </tr>
                                         </tbody>
                                         </template>
@@ -100,12 +100,12 @@
             </v-container>
             <v-dialog v-model="dialog" max-width="350">
                 <v-card>
-                    <v-card-title class="headline">Add Information</v-card-title>
+                    <v-card-title class="headline">Ajouter des informations</v-card-title>
                     <v-card-text>
                         <v-text-field
                             dense
                             color="teal"
-                            label="Fields"
+                            label="Domaines"
                             v-model="field"
                             append-icon="mdi-information-outline"
                             outlined
@@ -114,7 +114,7 @@
                             dense
                             append-icon="mdi-card-text-outline"
                             color="teal"
-                            label="Value"
+                            label="Valeur"
                             v-model="value"
                             outlined
                         ></v-text-field>
@@ -129,7 +129,7 @@
                         :disabled="!field"
                         @click="add_info"
                     >
-                        Add
+                        Ajouter
                     </v-btn>
 
                     <v-btn
@@ -137,7 +137,7 @@
                         text
                         @click="dialog = false"
                     >
-                        Cancel
+                        Annuler
                     </v-btn>
                     </v-card-actions>
                 </v-card>
@@ -147,10 +147,10 @@
       <v-tab-item>
         <div>
             <v-toolbar flat >
-                <v-toolbar-title class="font-weight-bold">Apps Default Images</v-toolbar-title>
+                <v-toolbar-title class="font-weight-bold">Apps Images par défaut</v-toolbar-title>
                 <v-spacer></v-spacer>
                 <v-btn color="teal" class="custom_button" small @click="submit"  >
-                    <v-icon class="pr-2">mdi-content-save-edit-outline</v-icon> Save Changes
+                    <v-icon class="pr-2">mdi-content-save-edit-outline</v-icon> Enregistrer les changements
                 </v-btn>
             </v-toolbar>
             <v-divider></v-divider>
@@ -188,7 +188,7 @@
                                     
                                     </v-col>
                                 </v-row>
-                                    <p class="font-weight-bold ma-0">Default {{item.field}}</p> 
+                                    <p class="font-weight-bold ma-0">Par défaut {{item.field}}</p> 
                             </v-container>
                         </v-card>
                     </v-flex>
