@@ -14,7 +14,7 @@
                 <v-layout row wrap>
                     <v-flex xs12 md8>
                         <v-card class="pa-5" >
-                            <v-layout row wrap mb-3 class="text-capitalize">
+                            <v-layout row wrap mb-3 class="">
                                 <v-flex xs12>
                                     <p class="subheading pa-0 font-weight-bold">Information de la société</p>
                                 </v-flex>
@@ -35,7 +35,7 @@
                                         v-validate="'required|min:3'" 
                                         :error-messages="errors.collect('Contact Person')" 
                                         data-vv-name="Contact Person" 
-                                        label="Contact Person" required>
+                                        label="Contact person" required>
                                     </v-text-field>
                                 </v-flex>
                                 <v-flex xs12 sm6>
@@ -111,7 +111,7 @@
                                 <v-flex xs12 sm6>
                                     <v-file-input small-chips 
                                         accept="image/*"  
-                                        label="logo de la société" 
+                                        label="Logo de la société" 
                                         @change="onFileChange"
                                         v-validate="'image'" 
                                         :error-messages="errors.collect('Company Logo')" 

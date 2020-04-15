@@ -26,6 +26,9 @@ thead .v-data-table__checkbox > .v-icon {
 .teal {
     color: white !important;
 }
+.v-text-field__slot label {
+  text-transform: none !important;
+}
 .custom_button {
   color: white !important;
 }

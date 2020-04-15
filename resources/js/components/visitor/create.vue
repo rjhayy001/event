@@ -14,7 +14,7 @@
                 <v-layout row wrap>
                     <v-flex xs12 md8>
                         <v-card class="pa-5" >
-                            <v-layout row wrap mb-3 class="text-capitalize">
+                            <v-layout row wrap mb-3 class="">
                                 <v-flex xs12>
                                     <p class="subheading pa-0 font-weight-bold">Information du visiteur</p>
                                 </v-flex>
@@ -65,7 +65,7 @@
                                         v-validate="'required|min:3'" 
                                         :error-messages="errors.collect('Password')" 
                                         data-vv-name="Password" 
-                                        label="mot de passe" required>
+                                        label="Mot de passe" required>
                                     </v-text-field>
                                 </v-flex>
                                  <v-flex xs12 sm6>

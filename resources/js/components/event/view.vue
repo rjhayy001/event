@@ -1,19 +1,19 @@
 <template>
     <div>
         <v-toolbar flat color="white" class="mb-4">
-            <v-toolbar-title class="text-uppercase title">view event</v-toolbar-title>
+            <v-toolbar-title class="text-uppercase title">Évènement</v-toolbar-title>
             <v-spacer></v-spacer>
             <v-btn color="#078282FF" tile @click="map_dialog = !map_dialog" class="mr-3 custom_button">
                 <v-icon left>mdi-map</v-icon>
-               view map
+               Voir le plan
             </v-btn>
             <v-btn color="teal" tile @click="open_modal" class="mr-3 custom_button">
                 <v-icon left>mdi-eye</v-icon>
-               view images used
+               Voir les images utilisées
             </v-btn>
             <v-btn color="primary" tile @click="$router.go(-1)">
                 <v-icon left>mdi-arrow-left-circle</v-icon>
-               back
+               Retour
             </v-btn>
         </v-toolbar>
         <v-divider></v-divider>
@@ -29,7 +29,7 @@
                 <v-flex xs12 sm3>
                     <v-card>
                         <v-img max-height="250" contain :src="event.image" lazy-src="https://cdn.dribbble.com/users/197853/screenshots/5506993/boat-wave.gif" ></v-img>
-                        <v-card-title>Event Information</v-card-title>
+                        <v-card-title>Informations</v-card-title>
                         <v-card-text>
                             <v-row >
                                 <v-flex xs12>
@@ -37,19 +37,19 @@
                                     <v-simple-table>
                                         <tbody>
                                             <tr>
-                                                <td class="font-weight-bold text-capitalize"> name</td>
+                                                <td class="font-weight-bold text-capitalize"> Nom </td>
                                                 <td class="font-weight-bold">{{event.name}}</td>
                                             </tr>
                                             <tr>
-                                                <td class="font-weight-bold text-capitalize">Start Date</td>
+                                                <td class="font-weight-bold text-capitalize">Date de début</td>
                                                 <td class="font-weight-bold">{{event.from ? fulldate(event.from) : 'not set'}}</td>
                                             </tr>
                                             <tr>
-                                                <td class="font-weight-bold text-capitalize">End Date</td>
+                                                <td class="font-weight-bold text-capitalize">Date de fin</td>
                                                 <td class="font-weight-bold">{{event.to ? fulldate(event.to) : 'not set'}}</td>
                                             </tr>
                                             <tr>
-                                                <td class="font-weight-bold text-capitalize">Place</td>
+                                                <td class="font-weight-bold text-capitalize">Lieu</td>
                                                 <td class="font-weight-bold">{{event.place ? event.place : 'not set'}}</td>
                                             </tr>
                                             <tr>
@@ -61,19 +61,19 @@
                                 </v-flex>
                             </v-row>
                         </v-card-text>
-                        <v-card-title>Price Information</v-card-title>
+                        <v-card-title>Prix </v-card-title>
                        
                         <v-simple-table v-if="event.prices.length ">
                             <tbody >
                                 <tr v-for="(item,index) in event.prices" :key="index" >
                                     <td class="font-weight-bold text-capitalize"> {{item.name}}</td>
-                                    <td class="font-weight-bold">{{item.price}}</td>
+                                    <td class="font-weight-bold">{{item.price}} &euro;</td>
                                 </tr>
                             </tbody>
                         </v-simple-table>
                          <div class="mb-4" v-else  >
                         <v-alert type="info" outlined dense class="ma-3 mb-5" >
-                            No fixed prices yet.
+                            Pas de prix pour .
                         </v-alert>
                         </div>
                         <v-divider></v-divider>
@@ -84,7 +84,7 @@
                         <v-layout row wrap >
                             <v-flex sm12 xs12>
                                 <v-toolbar flat :color="event.notify == 1 ? 'success' : 'error'" dense>
-                                    <v-toolbar-title class="text-uppercase title custom_button" > {{event.notify == 1 ? 'notification sent' : 'notification not sent' }}</v-toolbar-title>
+                                    <v-toolbar-title class="text-uppercase title custom_button" > {{event.notify == 1 ? 'Notification envoyées' : 'notification non envoyée' }}</v-toolbar-title>
                                     <v-spacer></v-spacer>
                                     
                                      <v-tooltip bottom>
@@ -92,23 +92,23 @@
                                         <!-- @click="send_notification" -->
                                         <v-btn v-on="on" :color="event.notify == 1 ? 'teal' : 'success'" @click="notification_dialog = !notification_dialog"  small tile :loading="loading"  class="custom_button">
                                         <v-icon left>mdi-alert-box-outline</v-icon>
-                                        {{event.notify == 1 ? 'resend notification' : 'send notification' }}
+                                        {{event.notify == 1 ? 'renvoyer la notification' : 'envoyer une notification' }}
                                     </v-btn>
                                     </template>
-                                    <span>  {{event.notify == 1 ? 'Resend notification ' : 'Send notification ' }}</span>
+                                    <span>  {{event.notify == 1 ? 'renvoyer la notification ' : 'envoyer une notification ' }}</span>
                                     </v-tooltip>
                                 </v-toolbar>
                             </v-flex>
                             <v-flex xs12 sm6>
                                 <v-toolbar flat color="#E0E0E0" dense>
-                                    <v-toolbar-title class="text-uppercase title">Programs saved</v-toolbar-title>
+                                    <v-toolbar-title class="text-uppercase title">Programmes</v-toolbar-title>
                                 </v-toolbar>
                                 <v-simple-table class="elevation-1">
                                     <template v-slot:default fixed-header>
                                         <thead>
                                             <tr>
-                                            <th class="text-left">Title</th>
-                                            <th class="text-left">Time Scheduled</th>
+                                            <th class="text-left">Titre</th>
+                                            <th class="text-left">Heure planifié</th>
                                             <th class="text-left">Description</th>
                                             </tr>
                                         </thead>
@@ -122,7 +122,7 @@
                                             </template>
                                             <tr v-else>
                                                 <td colspan="3" class="font-weight-bold text-center">
-                                                        No data saved.
+                                                        Aucune donnée sauvegardée.
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -131,15 +131,15 @@
                             </v-flex>
                             <v-flex xs12 sm6 class="pl-4" >
                                 <v-toolbar flat color="#E0E0E0" dense>
-                                    <v-toolbar-title class="text-uppercase title">Companies attached</v-toolbar-title>
+                                    <v-toolbar-title class="text-uppercase title">Sociétés </v-toolbar-title>
                                 </v-toolbar>
                                 <v-simple-table class="elevation-1">
                                     <template v-slot:default fixed-header>
                                         <thead>
                                             <tr>
-                                            <th class="text-left">Name</th>
-                                            <th class="text-left">Paid Price</th>
-                                            <th class="text-left">is Restaurant</th>
+                                            <th class="text-left">Nom </th>
+                                            <th class="text-left">Prix payé</th>
+                                            <th class="text-left">Restaurant </th>
                                             </tr>
                                         </thead>
                                         <tbody class="font-weight-bold">
@@ -152,7 +152,7 @@
                                             </template>
                                             <tr v-else>
                                                 <td colspan="3" class="font-weight-bold text-center">
-                                                        No data saved.
+                                                        Aucune donnée sauvegardée.
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -162,18 +162,18 @@
                             <v-flex xs12 class="my-4">
                             <v-divider></v-divider>
                                 <v-toolbar flat color="#E0E0E0" dense>
-                                    <v-toolbar-title class="text-uppercase title">Highlights of this EVent</v-toolbar-title>
+                                    <v-toolbar-title class="text-uppercase title">Les points forts de l’évènement </v-toolbar-title>
                                 </v-toolbar>
                                 <v-layout row wrap>
                                     
                                 <v-flex xs12 sm6>
-                                <p class="font-weight-bold">Programs</p>
+                                <p class="font-weight-bold">Programmes</p>
                                 <v-simple-table class="elevation-1">
                                     <template v-slot:default fixed-header>
                                         <thead>
                                             <tr>
-                                            <th class="text-left">Title</th>
-                                            <th class="text-left">Time Scheduled</th>
+                                            <th class="text-left">Titre</th>
+                                            <th class="text-left">Heure planifié</th>
                                             <th class="text-left">Description</th>
                                             </tr>
                                         </thead>
@@ -187,7 +187,7 @@
                                             </template>
                                             <tr v-else>
                                                <td colspan="3" class="font-weight-bold text-center">
-                                                        No data saved.
+                                                        Aucune donnée sauvegardée.
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -195,14 +195,14 @@
                                 </v-simple-table>
                             </v-flex>
                             <v-flex xs12 sm6>
-                                <p class="font-weight-bold">Companies</p>
+                                <p class="font-weight-bold">Sociétés</p>
                                 <v-simple-table class="elevation-1">
                                     <template v-slot:default fixed-header>
                                         <thead>
                                             <tr>
-                                            <th class="text-left">Name</th>
-                                            <th class="text-left">Paid Price</th>
-                                            <th class="text-left">is Restaurant</th>
+                                            <th class="text-left">Nom </th>
+                                            <th class="text-left">Prix payé</th>
+                                            <th class="text-left">Restaurant </th>
                                             </tr>
                                         </thead>
                                         <tbody  class="font-weight-bold">
@@ -215,7 +215,7 @@
                                             </template>
                                             <tr v-else>
                                                <td colspan="3" class="font-weight-bold text-center">
-                                                        No data saved.
+                                                        Aucune donnée sauvegardée.
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -231,7 +231,7 @@
                                     <v-layout row wrap>
                                         <v-flex xs12>
                                             <v-toolbar flat color="#E0E0E0" dense >
-                                                <v-toolbar-title class="text-uppercase title">images used</v-toolbar-title>
+                                                <v-toolbar-title class="text-uppercase title">Images utilisées </v-toolbar-title>
                                                 <v-spacer></v-spacer>
                                                 <v-btn color="teal" tile @click="dialog2 = !dialog2" icon class=" custom_button" depressed>
                                                     <v-icon left>mdi-close-circle</v-icon>
@@ -302,7 +302,7 @@
                                     <v-layout row wrap>
                                         <v-flex xs12>
                                             <v-toolbar flat color="#E0E0E0" dense >
-                                                <v-toolbar-title class="text-uppercase title">Notification Details</v-toolbar-title>
+                                                <v-toolbar-title class="text-uppercase title">Notification</v-toolbar-title>
                                                 <v-spacer></v-spacer>
                                                 <v-btn color="teal" tile @click="notification_dialog = !notification_dialog" icon class="custom_button" depressed>
                                                     <v-icon left>mdi-close-circle</v-icon>
@@ -313,14 +313,14 @@
                                                 <v-layout row wrap>
                                                     <v-flex xs12 class="pa-4">
                                                         <v-text-field
-                                                            label="Notification Title"
+                                                            label="Titre"
                                                             v-model="event.notification.title"
                                                             filled
                                                         ></v-text-field>
                                                         <v-textarea
                                                         v-model="event.notification.bodies"
                                                         filled
-                                                        label="Notification Body"
+                                                        label="Message"
                                                     ></v-textarea>
                                                     <v-tooltip right>
                                                         <template v-slot:activator="{ on }">
@@ -328,7 +328,7 @@
                                                                 <v-icon >mdi-account-group</v-icon>
                                                             </v-btn>
                                                         </template>
-                                                        <span>Send to all Users</span>
+                                                        <span>Envoyer à tous les utilisateurs </span>
                                                     </v-tooltip>
                                                     <v-tooltip left>
                                                         <template v-slot:activator="{ on }">
@@ -336,7 +336,7 @@
                                                                 <v-icon>mdi-account-check</v-icon>
                                                             </v-btn>
                                                         </template>
-                                                        <span>Send to attending Users</span>
+                                                        <span>Envoyer aux utilisateurs attendus</span>
                                                     </v-tooltip>
                                                     </v-flex>
                                                 </v-layout>
@@ -352,7 +352,7 @@
                                     <v-layout row wrap>
                                         <v-flex xs12>
                                             <v-toolbar flat color="#E0E0E0" dense >
-                                                <v-toolbar-title class="text-uppercase title">Map of this event</v-toolbar-title>
+                                                <v-toolbar-title class="text-uppercase title">Plan</v-toolbar-title>
                                                 <v-spacer></v-spacer>
                                                 <v-btn color="teal" tile @click="map_dialog = !map_dialog" icon class="custom_button" depressed>
                                                     <v-icon left>mdi-close-circle</v-icon>

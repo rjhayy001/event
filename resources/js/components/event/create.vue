@@ -17,13 +17,13 @@
                 <v-flex xs12 sm9>
                     <v-stepper v-model="e1">
                         <v-stepper-header>
-                            <v-stepper-step :complete="e1 > 1" step="1" editable>Détails et prix de l’événement</v-stepper-step>
+                            <v-stepper-step :complete="e1 > 1" step="1" editable>Détails et prix </v-stepper-step>
                             <v-divider></v-divider>
                             <v-stepper-step :complete="e1 > 2" step="2" editable>Programme et présentation</v-stepper-step>
                             <v-divider></v-divider>
-                            <v-stepper-step :complete="e1 > 3" step="3" editable>Images de l’événement</v-stepper-step>
+                            <v-stepper-step :complete="e1 > 3" step="3" editable>Images </v-stepper-step>
                             <v-divider></v-divider>
-                            <v-stepper-step :complete="e1 > 4" step="4" editable>Carte de l’événement</v-stepper-step>
+                            <v-stepper-step :complete="e1 > 4" step="4" editable>Plan </v-stepper-step>
                         </v-stepper-header>
                         <v-stepper-items>
                             <v-stepper-content step="1"> <!-- step 1 -->
@@ -31,7 +31,7 @@
                                     <v-container  grid-list-md>
                                         <v-layout row wrap>
                                             <v-flex xs12 md12>
-                                                    <v-layout row wrap mb-3 class="text-capitalize">
+                                                    <v-layout row wrap mb-3 class="">
                                                         <v-flex xs12>
                                                             <p class="subheading pa-0 font-weight-bold">Détails de l’événement</p>
                                                         </v-flex>
@@ -114,7 +114,7 @@
                                                             </v-flex>
                                                         </v-layout>
                                                         <v-alert dense outlined type="info" v-else >
-                                                    No Prices added yet .
+                                                   Aucun enregistrement
                                                 </v-alert>
                                                     </v-container>
                                             </v-flex>
@@ -206,7 +206,7 @@
                                                                 </v-expansion-panels>
                                                             </div>
                                                              <v-alert  v-else dense outlined type="info" >
-                                                                No Program added yet .
+                                                               Aucun enregistrement
                                                             </v-alert>
                                                         </v-flex>
                                                         <v-flex xs12 class="mt-4">
@@ -229,7 +229,7 @@
                             <v-stepper-content step="3"> <!-- step 3 -->
                                     <v-flex xs12 class="mt-4">
                                         <v-btn small color="success" class="float-right" dense @click="use_default">
-                                            <v-icon left>mdi-cog-clockwise</v-icon>{{default_image ? 'use default' : 'add images'}}
+                                            <v-icon left>mdi-cog-clockwise</v-icon>{{default_image ? 'utiliser par défaut' : 'Ajouter'}}
                                         </v-btn>
                                         <p class="subheading pa-0 font-weight-bold">Images de l’événement</p>
                                     </v-flex>
@@ -354,7 +354,7 @@
                                     </v-flex>
                                     <v-flex xs12 v-else>
                                         <v-alert type="info" outlined dense>
-                                            Default images will be used .
+                                            L’image par défaut sera utilisé 
                                         </v-alert>
                                     </v-flex>
                                 <v-btn color="primary" @click.native="e1 = 4" class="float-right mt-3">CONTINUER</v-btn>
@@ -479,13 +479,13 @@
                                                                     <v-icon>mdi-close-circle</v-icon>
                                                                 </v-btn>
                                                                 <br><br>
-                                                                <p class="subheading"> Select a map:</p>
+                                                                <p class="subheading"> Plan :</p>
                                                                 <v-divider></v-divider>
                                                                 <upload-btn
                                                                     block
                                                                     @file-update="file_changed"
                                                                     fixedWidth="300"
-                                                                    title="Add Map"
+                                                                    title="Ajouter un plan "
                                                                     color="teal" 
                                                                     class="custom_button my-3 "                                                                       >
                                                                     <template slot="icon">
@@ -493,7 +493,7 @@
                                                                     </template>
                                                                 </upload-btn>
                                                                 <v-divider></v-divider>
-                                                                <p class="subheading pt-3"> Place Company on the map:</p>
+                                                                <p class="subheading pt-3"> Placer les sociétés sur le plan :</p>
                                                                 <v-divider></v-divider>
                                                                 <v-container grid-list-md>
                                                                     <v-layout row wrap>
@@ -515,7 +515,7 @@
                                                                         <template v-else>
                                                                             <v-flex xs12>
                                                                                 <v-alert type="info" outlined dense >
-                                                                                    Add map first.
+                                                                                    Ajoutez d'abord la carte.
                                                                                 </v-alert>
                                                                             </v-flex>
                                                                         </template>
@@ -539,7 +539,7 @@
                          <v-list two-line>
                         <v-list-item >
                             <v-list-item-content>
-                            <v-list-item-title class="text-capitalize font-weight-bold primary--text " >{{event.name ? event.name:'Not set'}}</v-list-item-title>
+                            <v-list-item-title class="text-capitalize font-weight-bold primary--text " >{{event.name ? event.name:'Non défini'}}</v-list-item-title>
                             <v-list-item-subtitle class="font-weight-bold">Nom </v-list-item-subtitle>
                             </v-list-item-content>
                             <v-list-item-icon>
@@ -548,7 +548,7 @@
                         </v-list-item>
                         <v-list-item >
                             <v-list-item-content>
-                            <v-list-item-title class="text-capitalize font-weight-bold primary--text" v-text="dateRangeText ? dateRangeText : 'Not Set' " ></v-list-item-title>
+                            <v-list-item-title class="text-capitalize font-weight-bold primary--text" v-text="dateRangeText ? dateRangeText : 'Non défini' " ></v-list-item-title>
                             <v-list-item-subtitle class="font-weight-bold">Date de début / Date de fin </v-list-item-subtitle>
                             </v-list-item-content>
                             <v-list-item-icon>
@@ -560,7 +560,7 @@
                         <div v-if="event.prices.length">
                             <v-list-item v-for="items in event.prices " :key="items.id" dense  >
                                 <v-list-item-content>
-                                <v-list-item-title class="text-capitalize font-weight-bold" >{{items.price ? items.price : 'not Set'}}</v-list-item-title>
+                                <v-list-item-title class="text-capitalize font-weight-bold" >{{items.price ? items.price : 'Non défini'}}</v-list-item-title>
                                 <v-list-item-subtitle>{{items.name}}</v-list-item-subtitle>
                                 </v-list-item-content>
                                 <v-list-item-icon>
@@ -569,7 +569,7 @@
                             </v-list-item>
                         </div>
                         <v-alert type="info" outlined dense v-else >
-                            No Prices added yet.
+                            Aucun enregistrement
                         </v-alert>
                         <v-divider></v-divider>
                         <p class="subheading pa-0 font-weight-bold pt-3">Programme</p>
@@ -585,7 +585,7 @@
                             </v-list-item>
                         </div>
                         <v-alert type="info" outlined dense v-else >
-                            No Program added yet.
+                            Aucun enregistrement
                         </v-alert>
                          </v-list>
                     </v-card>
@@ -657,6 +657,7 @@ export default {
    },
     computed: {
         dateRangeText () {
+            // this.event.dates[0] = 'test'
             return this.event.dates.join(' ~ ')
         },
         filteredList() {

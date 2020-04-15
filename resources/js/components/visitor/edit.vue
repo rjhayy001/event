@@ -19,7 +19,7 @@
                     </v-flex>
                     <v-flex xs12 md8 v-else>
                         <v-card class="pa-5" >
-                            <v-layout row wrap mb-3 class="text-capitalize">
+                            <v-layout row wrap mb-3 class="">
                                 <v-flex xs12>
                                     
                                     <p class="subheading pa-0 font-weight-bold">Information du visiteur</p>

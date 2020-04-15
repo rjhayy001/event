@@ -1,10 +1,10 @@
 <template>
     <div>
         <v-toolbar flat color="white" class="mb-3">
-            <v-toolbar-title class="text-uppercase title">Visitors information</v-toolbar-title>
+            <v-toolbar-title class="text-uppercase title">Informations visiteur</v-toolbar-title>
             <v-spacer></v-spacer>
             <v-btn color="primary" tile @click="$router.go(-1)">
-                <v-icon left>mdi-arrow-left-circle</v-icon> back
+                <v-icon left>mdi-arrow-left-circle</v-icon> Retour 
             </v-btn>
         </v-toolbar>
         <v-divider></v-divider>
@@ -76,15 +76,15 @@
                         <v-layout row wrap >
                             <v-flex xs12 sm6>
                                 <v-toolbar flat color="#E0E0E0" dense>
-                                    <v-toolbar-title class="text-uppercase title">upcoming events</v-toolbar-title>
+                                    <v-toolbar-title class="text-uppercase title">Événement à venir</v-toolbar-title>
                                 </v-toolbar>
                                 <v-simple-table class="elevation-1">
                                     <template v-slot:default fixed-header>
                                         <thead>
                                             <tr>
-                                            <th class="text-left">Name</th>
-                                            <th class="text-left">Date Scheduled</th>
-                                            <th class="text-left">End Date</th>
+                                            <th class="text-left">Nom </th>
+                                            <th class="text-left">Date de début</th>
+                                            <th class="text-left">Date de fin </th>
                                             </tr>
                                         </thead>
                                         <tbody  class="font-weight-bold"> 
@@ -95,26 +95,22 @@
                                             <td>{{ item.todate ? fulldate(item.todate): 'not set' }}</td>
                                             </tr>
                                             </template>
-                                            <tr v-else>
-                                                <td colspan="3" class="font-weight-bold text-center">
-                                                        No data saved.
-                                                </td>
-                                            </tr>
+                                            
                                         </tbody>
                                     </template>
                                 </v-simple-table>
                             </v-flex>
                             <v-flex xs12 sm6>
                                 <v-toolbar flat color="#E0E0E0" dense>
-                                    <v-toolbar-title class="text-uppercase title">past events</v-toolbar-title>
+                                    <v-toolbar-title class="text-uppercase title">Événement passé</v-toolbar-title>
                                 </v-toolbar>
                                 <v-simple-table class="elevation-1">
                                     <template v-slot:default fixed-header>
                                         <thead>
                                             <tr>
-                                            <th class="text-left">Name</th>
-                                            <th class="text-left">Date Scheduled</th>
-                                            <th class="text-left">End Date</th>
+                                            <th class="text-left">Nom </th>
+                                            <th class="text-left">Date de début</th>
+                                            <th class="text-left">Date de fin </th>
                                             </tr>
                                         </thead>
                                         <tbody  class="font-weight-bold">
@@ -125,11 +121,7 @@
                                             <td>{{ item.todate ? fulldate(item.todate): 'not set' }}</td>
                                             </tr>
                                             </template>
-                                            <tr v-else>
-                                                <td colspan="3" class="font-weight-bold text-center">
-                                                        No data saved.
-                                                </td>
-                                            </tr>
+                                           
                                         </tbody>
                                     </template>
                                 </v-simple-table>
