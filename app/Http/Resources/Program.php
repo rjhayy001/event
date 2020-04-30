@@ -19,7 +19,7 @@ class Program extends JsonResource
             'id'=> $this->id,
             'time'=> date('h:i' , strtotime($this->time)),
             'name'=> $this->name,
-            'details'=> $this->details,
+            'details'=> strip_tags($this->details),
             'highlight'=> $this->highlight,
         ];
     }

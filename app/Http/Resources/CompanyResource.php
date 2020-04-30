@@ -25,7 +25,7 @@ class CompanyResource extends JsonResource
             'city'=> $this->city,
             'zip_code'=> $this->zip_code,
             'country'=> $this->country,
-            'logo'=> asset('company_logo/'.$this->logo),
+            'logo'=> $this->logo,
             'contact_person'=> $this->contact->name ,
             'contact_number'=> $this->contact->phone ,
             'contact_email'=> $this->contact->email ,
