@@ -48,7 +48,7 @@ class Event extends JsonResource
 
             'presentation_details' => [
                 'details' => $this->presentation['details']  ? strip_tags($this->presentation['details']): null ,
-                'image' => $this->presentation['image']  ?  asset('event_images/'.$this->presentation['image']) : null ,
+                'image' => $this->presentation['image']  ?  $this->presentation['image'] : null ,
             ],
 
             'highlights' =>  [
